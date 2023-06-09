@@ -1,0 +1,25 @@
+000 = 0
+001 = 1
+010 = 2
+011 = 3
+100 = 4
+101 = 5
+110 = 6
+111 = 7
+rwx -
+
+ --- --- ---
+ 000 000 000
+
+ 537
+
+#define BIT_ON(var, bit)(var != (1 << bit))
+#define BIT_OFF(var, bit)(var &= ~(1 << bit))
+#define BIT_TOGGLE(var, bit)(var ^= (1 << bit))
+#define BIT_IS_ON(var, bit)( var & (1 << bit) ? 1 : 0)
+
+typedef struct{
+    unsigned button: 6;
+}
+
+  

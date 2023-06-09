@@ -1,0 +1,24 @@
+we must open "westerm"
+before to use nvim
+
+space + e = file tree
+i = insert mode
+jk = normal mode or esc
+h = left
+l = right
+k = up
+j = down
+shift + x = exit and save
+ctrl + q = quit without saving
+shift + t = close a tab
+ctrl + up + down + right
+
+
+#file_tree_shortcuts
+a = create a new file
+d = delete files
+r = rename
+
+#floating terminal (leader is space key)
+<leader>ft
+<leader>cc

@@ -1,0 +1,6 @@
+inside file magic put the arguments:
+
+offset type value message
+
+file -C -m ft_magic
+file -m ft_magic *
