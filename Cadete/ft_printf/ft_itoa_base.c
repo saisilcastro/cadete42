@@ -48,8 +48,7 @@ int	ft_itoa_base_unsigned(unsigned nb, unsigned char base, unsigned char upper)
 	if ((int)nb > -base && (int)nb < 0)
 		ft_putchar_fd('-', 1);
 	len = 1;
-	while ((upper && ((int)nb <= -base || nb >= base))
-			|| (!upper && ((int)nb <= -base || nb >= base)))
+	while ((int)nb <= -base || nb >= base)
 	{
 		ft_itoa_base_unsigned((nb / base), base, upper);
 		nb %= base;
