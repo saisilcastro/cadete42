@@ -1,0 +1,10 @@
+create 2 partitions
+
+first must be a primary partition to boot in /root
+second must by logical partition at /
+encrypt the second partition
+
+at the second partition create a LVM with 3 pieces
+create logical volume to each piece
+finish partition
+
