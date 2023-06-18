@@ -1,0 +1,1 @@
+create a sleep.sh in the folder /etc/profile.d/

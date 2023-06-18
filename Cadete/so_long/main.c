@@ -9,6 +9,11 @@ void	local_init(t_machine *set)
 	if (!set)
 		return ;
 	set->map_create(set, set->w, set->h);
+	set->image_load(set, "img/sprite/player/twinsen-front-up.xpm");
+	set->image_load(set, "img/sprite/player/twinsen-front-up.xpm");
+	set->image_load(set, "img/sprite/player/twinsen-front-up.xpm");
+	set->image_load(set, "img/sprite/player/twinsen-front-up.xpm");
+	set->image_load(set, "img/sprite/player/twinsen-front-up.xpm");
 	id = 0;
 	while (id < 10)
 	{
