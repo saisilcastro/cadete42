@@ -1,0 +1,94 @@
+#begining
+login as root with su -
+install sudo with: sudo apt-get install sudo
+
+#ssh install
+
+sudo apt install openssh-server
+
+#ssh status
+
+sudo systemctl status ssh
+
+#install ufw
+
+sudo apt install ufw
+
+#execute stript from firewall_config.sh
+
+#change default port of ssh
+
+sudo nano /etc/ssh/sshd_config
+
+inside the file unmark:
+
+Port and change it to 4242
+PermitRootLogin and set it to no
+
+#install net-tools with
+
+sudo apt install net-tools
+
+#verify your ip executing the command
+
+ifconfig -a
+
+get your id in inet line that is different from 127.0.0.1
+
+#check user and group
+
+less /etc/passwd
+less /etc/group
+
+#password policy
+
+sudo nano /etc/login.defs
+
+change
+
+PASS_MAX_DAYS 30
+PASS_MIN_DAYS 2
+PASS_WARN_AGE 7
+
+LOGIN_RETRIES 3
+
+#change it through too
+
+user=lde-cast and root
+
+chage -M 30 $user
+chage -m 2 $user
+chage -W 7 $user
+chage -l $user #list to see if everything is ok
+
+#install libpam-pwquality with
+
+sudo apt install libpam-pwquality
+
+#edit pwquality in /etc/security/pwquality.conf
+unmark comment and change the values to
+
+difok = 7
+minlen = 10
+dcredit = -1
+ucredit = -1
+maxrepeat = 3
+usercheck = 1
+retry = 3
+enforce_for_root
+
+#enable cron
+
+systemctl enable cron
+
+#put the monitoring and sleep to running each 10 min with
+
+crontab -e
+
+inside the file add the line
+
+*/10 * * * * bash /usr/local/bin/sleep.sh && bash /usr/local/bin/monitoring.sh | wall
+
+#verify is file /etc/sudoers has
+
+

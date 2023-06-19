@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 11:31:13 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/13 13:37:17 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/06/18 10:55:56 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/18 21:15:16 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "pipex.h"
+#include <stdio.h>
 
-# include <stdarg.h>
-# include "ft_itoa_base.h"
+int	main(int argc, char **argv, char **envp)
+{
+	while (*envp)
+	{
+		printf("%s\n", *envp++);
+	}
+	return (0);
+}
 
-extern int	ft_printf(const char *str, ...);
+void	backup(void)
+{
+	t_pipex		pipex;
+	t_chained	*cmd;
 
-#endif // FT_PRINTF_H
+	pipex_start(&pipex);
+	cmd = pipex.cmd;
+	while (cmd)
+	{
+		if (cmd->data)
+			printf("%s\n", (char *)cmd->data);
+		cmd = cmd->next;
+	}
+	chained_delete(&pipex.cmd);
+}

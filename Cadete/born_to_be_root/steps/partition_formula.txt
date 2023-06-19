@@ -1,0 +1,23 @@
+boot = 500mb
+total_gb = 30.8
+percent = 100 * (1024 * Gb)/((1024 * total_gb) - boot)
+
+root    = percent = 100 * (1024 * 10) /((1024 * total_gb) - boot) = 32.990541  %percent
+swap    = percent = 100 * (1024 * 2.3)/((1024 * total_gb) - boot) = 07.5878244 %percent
+home    = percent = 100 * (1024 * 5)  /((1024 * total_gb) - boot) = 16.49527   %percent
+var     = percent = 100 * (1024 * 3)  /((1024 * total_gb) - boot) = 09.8971623 %percent
+srv     = percent = 100 * (1024 * 3)  /((1024 * total_gb) - boot) = 09.8971623 %percent
+tmp     = percent = 100 * (1024 * 3)  /((1024 * total_gb) - boot) = 09.8971623 %percent
+var/log = percent = 100 * (1024 * 4)  /((1024 * total_gb) - boot) = 13.196216  %percent
+
+total_gb = 8
+
+piece = (((1024 * total_gb) - boot) / 100) * %percent
+
+root    = (((1024 * 8) - 500) / 100) * 32.990541  = 2537.6324 mb
+swap    = (((1024 * 8) - 500) / 100) * 07.5878244 = 583.65545 mb
+home    = (((1024 * 8) - 500) / 100) * 16.49527   = 1268.8162 mb
+var     = (((1024 * 8) - 500) / 100) * 09.8971623 = 761.28972 mb
+srv     = (((1024 * 8) - 500) / 100) * 09.8971623 = 761.28972 mb
+tmp     = (((1024 * 8) - 500) / 100) * 09.8971623 = 761.28972 mb
+var/log = (((1024 * 8) - 500) / 100) * 13.196216  = 1015.0529 mb
