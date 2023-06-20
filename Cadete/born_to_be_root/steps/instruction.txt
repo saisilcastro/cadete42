@@ -2,6 +2,17 @@
 login as root with su -
 install sudo with: sudo apt-get install sudo
 
+#configure /var/log/sudo with the following lines
+
+mkdir /var/log/sudo
+
+#enter the folder /etc/sudoers.d/sudoers-specs and change
+
+Defaults	passwd_tries=3
+Defaults	logfile=/var/log/sudo/sudo.log
+Defaults	requiretty
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
 #ssh install
 
 sudo apt install openssh-server
@@ -72,6 +83,7 @@ difok = 7
 minlen = 10
 dcredit = -1
 ucredit = -1
+lcredit = -1
 maxrepeat = 3
 usercheck = 1
 retry = 3
@@ -89,6 +101,20 @@ inside the file add the line
 
 */10 * * * * bash /usr/local/bin/sleep.sh && bash /usr/local/bin/monitoring.sh | wall
 
-#verify is file /etc/sudoers has
+#before static do this
+
+route -n
+get your gateway (10.11.254.254)
+
+#configure static /etc/network/interfaces
+
+change the line to
+
+ip=10.11.200.17
+mask=255.255.0.0
+
+iface enp0s3 inet static
+address $ip
+netmas $mask
 
 

@@ -6,17 +6,18 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:16:02 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/05/22 17:58:13 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:58:30 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <machine.h>
+# include <machine.h>
 
-static void machine_function(t_machine *set);
+static void	machine_function(t_machine *set);
 
 void	machine_start(t_machine *set)
 {
-	short i;
+	short	i;
+	t_image	*image;
 
 	if (!set)
 		return ;
@@ -25,9 +26,11 @@ void	machine_start(t_machine *set)
 	set->h = 600;
 	set->x = 320;
 	set->y = 240;
-	set->bg[0] = object_start(0, "background", image_of_init(vi2d_start(set->w, set->h), pixel_rgba_local(255, 0, 0, 255)));
 	set->plugin = mlx_init();
 	set->window = mlx_new_window(set->plugin, set->w, set->h, set->title);
+	image = image_of_set(set->plugin, 0, vi2d_start(set->w, set->h));
+	set->bg[0] = object_start(0, "background", image);
+	set->image = NULL;
 	set->object = NULL;
 	BIT_ON(set->status, MACHINE_RUNNING);
 	mouse_of_set(set->mouse, 0, 0, 0, 0);
@@ -39,52 +42,66 @@ void	machine_start(t_machine *set)
 
 static void	machine_map_create(t_machine *set, B32 w, B32 h)
 {
+	t_image	*image;
+
 	if (!set)
 		return ;
-	set->bg[0] = object_start(0, "background", image_of_init(vi2d_start(w, h), pixel_rgba_local(255, 0, 0, 255)));
-	set->bg->image->buffer = mlx_new_image(set->plugin, set->bg->image->size->x, set->bg->image->size->y);
-	set->bg->image->addr = mlx_get_data_addr(set->bg->image->buffer, &set->bg->image->bpp, &set->bg->image->length, &set->bg->image->endian);
+	image = image_of_set(set->plugin, 0, vi2d_start(w, h));
+	set->bg[0] = object_start(0, "background", image);
+	set->bg->image->buffer = mlx_new_image(set->plugin, set->bg->image->size->x,
+			set->bg->image->size->y);
+	set->bg->image->addr = mlx_get_data_addr(set->bg->image->buffer,
+			&set->bg->image->bpp, &set->bg->image->length,
+			&set->bg->image->endian);
 }
 
-void 	machine_bg_draw(t_machine *set)
+void	machine_bg_draw(t_machine *set)
 {
 	if (!set || !set->bg->image->buffer)
 		return ;
-	mlx_put_image_to_window(set->plugin, set->window, set->bg->image->buffer, -set->bg->pos->x, -set->bg->pos->y);
+	mlx_put_image_to_window(set->plugin, set->window,
+		set->bg->image->buffer, -set->bg->pos->x, -set->bg->pos->y);
 }
 
 void	machine_image_draw(t_image *image, t_pixel color)
 {
-	int i;
-	int j;
-	int pixel;
+	int		i;
+	int		j;
+	int		pixel;
 	char	*dst;
-	
-	pixel = (color.a << 24 | color.r << 16 | color.g << 8 | color.b);
-	for (j = 0; j < image->size->y; j++)
-		for(i = 0; i < image->size->x; i++){
 
+	pixel = (color.a << 24 | color.r << 16 | color.g << 8 | color.b);
+	j = 0;
+	while (j < image->size->y)
+	{
+		i = 0;
+		while (i < image->size->x)
+		{
 			dst = image->addr + (j * image->length + i * (image->bpp / 8));
-			*(unsigned int*)dst = pixel;
+			*(unsigned int *)dst = pixel;
+			i++;
 		}
+		j++;
+	}
 }
 
 void	machine_image_pixel(t_image *image, B32 x, B32 y)
 {
 	char	*dest;
 	int		pixel;
-	
+
 	if (!image || !image->addr)
 		return ;
-	pixel = (image->color.a << 24 | image->color.r << 16 | image->color.g << 8 | image->color.b);
+	pixel = (image->color.a << 24 | image->color.r << 16
+			| image->color.g << 8 | image->color.b);
 	dest = image->addr + (y * image->length + x * (image->bpp / 8));
 	*(unsigned int *)dest = pixel;
 }	
 
 void machine_bg_update(t_machine *set, unsigned char style)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	if (!set)
 		return ;
@@ -118,44 +135,60 @@ t_object	*machine_object_search(t_chained *chained, B32 id)
 	return (object);
 }
 
-static void machine_object_create(t_machine *set, B32 id, t_vi2d size, t_vi2d pos)
+static void	machine_object_create(t_machine *set, B32 id, t_vi2d pos, t_image *image)
 {
 	t_object	*object;
-	
+	t_image		*buffer;
+
 	if (!set)
-		return;
-	chained_next_first(&set->object, chained_new(object_set(id, "object", image_of_create_start(set->plugin, vi2d_start(size.x, size.y)))));
-	object = set->object_search(set->object, id);
+		return ;
+	if (!image)
+		buffer = image_of_set(set->plugin, 0, vi2d_start(16, 16));
+	else
+		buffer = image;
+	object = object_set(id, "object", buffer);
 	if (object)
 	{
 		object->pos->x = pos.x;
 		object->pos->y = pos.y;
-		//machine_image_draw(object->image, object->image->color);	
 	}
+	chained_next_first(&set->object, chained_new(object));
 }
 
-static void machine_image_load(t_machine *set, char *path, B32 id, t_vi2d pos)
+static void machine_image_load(t_machine *set, char *path, B32 id)
 {
-	void		*image;
+	void		*buffer;
 	t_chained	*chained;
-	t_object	*object;
-	B32		w;
-	B32		h;
+	B32			w;
+	B32			h;
 
-	if (!set)
+	if (!set || id < 0)
 		return ;
-	image = mlx_xpm_file_to_image(set->plugin, path, &w, &h);
-	if (image)
+	buffer = mlx_xpm_file_to_image(set->plugin, path, &w, &h);
+	if (buffer)
 	{
-		chained = chained_new(object_set(id, "object", image_of_buffer_init(image, vi2d_start(w, h))));
-		object = chained->content;
-		object->pos->x = pos.x;
-		object->pos->y = pos.y;
-		chained_next_first(&set->object, chained);
+		chained = chained_new(image_of_buffer(buffer, id, vi2d_start(w, h)));
+		chained_next_first(&set->image, chained);
 	}
 }
 
-static STATUS machine_object_move(t_object *object)
+static t_image *machine_image_search(t_machine *set, B32 id)
+{
+	t_chained	*chained;
+	t_image		*image;
+
+	chained = set->image;
+	while (chained)
+	{
+		image = chained->content;
+		if (image->id == id)
+			return (image);
+		chained = chained->next;
+	}
+	return (NULL);
+}
+
+static STATUS	machine_object_move(t_object *object)
 {
 	STATUS		x_done;
 	STATUS		y_done;
@@ -164,102 +197,117 @@ static STATUS machine_object_move(t_object *object)
 		return (Off);
 	x_done = Off;
 	y_done = Off;
-	if (object->pos->x == object->route->x) {
-		if (object->pos->y > object->route->y) {
+	if (object->pos->x == object->route->x)
+	{
+		if (object->pos->y > object->route->y)
+		{
 			object->pos->y -= object->vel->y;
-			if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-			if (object->pos->y < object->route->y) {
+			object->where = NORTH;
+			if (object->pos->y < object->route->y)
+			{
 				object->pos->y = object->route->y;
 				y_done = On;
 			}
 		}
-		if (object->pos->y < object->route->y) {
+		if (object->pos->y < object->route->y)
+		{
 			object->pos->y += object->vel->y;
-			if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-			if (object->pos->y > object->route->y) {
+			object->where = SOUTH;
+			if (object->pos->y > object->route->y)
+			{
 				object->pos->y = object->route->y;
 				y_done = On;
-	    	}
+			}
 		}
 		x_done = On;
-    }
-	if (object->pos->y == object->route->y) {
-		if (object->pos->x > object->route->x) {
+	}
+	if (object->pos->y == object->route->y)
+	{
+		if (object->pos->x > object->route->x)
+		{
 			object->pos->x -= object->vel->x;
-			if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-			if (object->pos->x < object->route->x) {
+			object->where = WEST;
+			if (object->pos->x < object->route->x)
+			{
 				object->pos->x = object->route->x;
 				x_done = On;
 			}
 		}
-		if (object->pos->x < object->route->x) {
+		if (object->pos->x < object->route->x)
+		{
 			object->pos->x += object->vel->x;
-			if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-			if (object->pos->x > object->route->x) {
+			object->where = EAST;
+			if (object->pos->x > object->route->x)
+			{
 				object->pos->x = object->route->x;
 				x_done = On;
 			}
 		}
 		y_done = On;
-    }
-	if (object->pos->x > object->route->x) {  // WEST
+	}
+	if (object->pos->x > object->route->x)
+	{ // WEST
 		object->pos->x -= object->vel->x;
-		if (object->pos->x < object->route->x) {
-	    	object->pos->x = object->route->x;
-	    	x_done = On;
+		if (object->pos->x < object->route->x)
+		{
+			object->pos->x = object->route->x;
+			x_done = On;
 		}
-		if (object->pos->y > object->route->y) {
-	    	object->pos->y -= object->vel->y;
-	    	if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-	    	if (object->pos->y < object->route->y) {
+		if (object->pos->y > object->route->y)
+		{
+			object->pos->y -= object->vel->y;
+			object->where = NORTHWEST;
+			if (object->pos->y < object->route->y)
+			{
 				object->pos->y = object->route->y;
 				y_done = On;
-	    	}
+			}
 		}
-		if (object->pos->y < object->route->y) {
-	    	object->pos->y += object->vel->y;
-			if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-	    	if (object->pos->y > object->route->y) {
+		if (object->pos->y < object->route->y)
+		{
+			object->pos->y += object->vel->y;
+			object->where = SOUTHWEST;
+			if (object->pos->y > object->route->y)
+			{
 				object->pos->y = object->route->y;
 				y_done = On;
-	    	}
+			}
 		}
-    }
-	if (object->pos->x < object->route->x) {  // EAST
+	}
+	if (object->pos->x < object->route->x)
+	{  // EAST
 		object->pos->x += object->vel->x;
-		if (object->pos->x > object->route->x) {
-	    	object->pos->x = object->route->x;
-	    	x_done = On;
+		if (object->pos->x > object->route->x)
+		{
+			object->pos->x = object->route->x;
+			x_done = On;
 		}
-		if (object->pos->y > object->route->y) {
-	    	object->pos->y -= object->vel->y;
-			if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-	    	if (object->pos->y < object->route->y) {
+		if (object->pos->y > object->route->y)
+		{
+			object->pos->y -= object->vel->y;
+			object->where = NORTHEAST;
+			if (object->pos->y < object->route->y)
+			{
 				object->pos->y = object->route->y;
 				y_done = On;
-	    	}
+			}
 		}
-		if (object->pos->y < object->route->y) {
-	    	object->pos->y += object->vel->y;
-			if (object->pos->x)
-				object->angle = atan(object->pos->y / object->pos->x);
-	    	if (object->pos->y > object->route->y) {
+		if (object->pos->y < object->route->y)
+		{
+			object->pos->y += object->vel->y;
+			object->where = SOUTHEAST;
+			if (object->pos->y > object->route->y)
+			{
 				object->pos->y = object->route->y;
 				y_done = On;
-	    	}
+			}
 		}
-    }
-	if (x_done && y_done) {
-		object->angle = 0;
-		return On;
-    }
+	}
+	if (x_done && y_done)
+	{
+		object->where = NOWHERE;
+		return (On);
+	}
 	return (Off);
 }
 
@@ -419,6 +467,7 @@ static void machine_function(t_machine *set)
 	set->map_create = machine_map_create;
 	set->object_create = machine_object_create;
 	set->image_load = machine_image_load;
+	set->image_search = machine_image_search;
 	set->object_search = machine_object_search;
 	set->route_set = machine_route_set;
 	set->object_route = machine_object_route;
@@ -458,6 +507,8 @@ void machine_run(t_machine *set)
 	if (set->update)
 		set->update(set);
 	mlx_loop(set->plugin);
+	if (set->bg->image)
+		image_of_destroy(set->plugin, set->bg->image->buffer);
 	mlx_destroy_display(set->plugin);
 	if (set->object)
 		set->object->destroy(set->object);

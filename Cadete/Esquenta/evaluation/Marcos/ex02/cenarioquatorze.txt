@@ -1,4 +1,0 @@
-Cenário Quatorze - Hierarquia
-B) Explica mesmo que brevemente o conceito por trás do teste e ajuda a avaliadora a
-executar os comandos, afinal é uma ótima oportunidade para que ela comece a se famil-
-iarizar com o que virá pela frente.
