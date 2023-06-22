@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:42:06 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/19 21:42:08 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:06:16 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	local_update(t_machine *set)
 	color = pixel_rgba_local(0, 255, 0, 255);
 	if (!set)
 		return (0);
-	machine_bg_update(set, 0);
+	machine_bg_update(set, 1);
 	set->draw(set);
 	set->mouse_pos(set);
 	if (set->mouse_press(set, MACHINE_MOUSE_RIGHT))
