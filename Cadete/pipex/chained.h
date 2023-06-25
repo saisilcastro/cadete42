@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   chained.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 11:07:01 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 04:47:27 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/06/24 22:39:12 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/25 00:18:28 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef CHAINED_H
+#define	CHAINED_H
 
-void	pipe_start(t_pipe *set)
-{
-	if (!set)
-		return ;
-	set->input = NULL;
-	set->output = NULL;
-	set->cmd = NULL;
-	set->path = NULL;
-}
+typedef struct s_chained	t_chained;
+struct s_chained{
+	void		*data;
+	t_chained	*prev;
+	t_chained	*next;	
+};
 
-void	pipe_pop(t_pipe *set)
-{
-	if (!set)
-		return ;
-	pipe_command_pop(&set->cmd);
-	chained_pop(&set->path);
-	if (set->input)
-		free(set->input);
-	if (set->output)
-		free(set->output);
-}
+extern t_chained	*chained_push(void *data);
+extern void			chained_next_first(t_chained **head, t_chained *next);
+extern void			chained_next_last(t_chained **head, t_chained *next);
+extern void			chained_pop(t_chained **head);
+
+#endif // CHAINED_H

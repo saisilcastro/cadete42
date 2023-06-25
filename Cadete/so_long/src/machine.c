@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:16:02 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/19 17:58:30 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:21:07 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,41 @@ t_object	*machine_object_search(t_chained *chained, B32 id)
 		update = update->next;
 	}
 	return (object);
+}
+
+static void	machine_object_remove(t_chained **set, B32 id)
+{
+	t_chained	*update;
+	t_chained	*prev;
+	t_chained	*next;
+	t_object	*object;
+	
+	update = *set;
+	while (update)
+	{
+		prev = update->preview;
+		next = update->next;
+		object = update->content;
+		if (object->id == id)
+		{
+			free(update);
+			if (prev)
+			{
+				update = prev;
+				if (next)
+					next->preview = update;
+				update->next = next;
+				*set = update;
+			}
+			else
+			{
+				next->preview = prev;
+				*set = next;
+			}
+			break ;
+		}
+		update = next;
+	}
 }
 
 static void	machine_object_create(t_machine *set, B32 id, t_vi2d pos, t_image *image)
@@ -469,6 +504,7 @@ static void machine_function(t_machine *set)
 	set->image_load = machine_image_load;
 	set->image_search = machine_image_search;
 	set->object_search = machine_object_search;
+	set->object_remove = machine_object_remove;
 	set->route_set = machine_route_set;
 	set->object_route = machine_object_route;
 	set->init = NULL;

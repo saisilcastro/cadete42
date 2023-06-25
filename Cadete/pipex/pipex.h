@@ -6,31 +6,29 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:59:15 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/18 18:20:26 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/25 04:36:13 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-typedef struct s_chained	t_chained;
-struct s_chained{
-	void		*data;
-	t_chained	*prev;
-	t_chained	*next;	
-};
+#include "chained.h"
+#include "command-of.h"
+#include <unistd.h>
 
-extern t_chained	*chained_set(void *data);
-extern void			chained_next_last(t_chained **head, t_chained *next);
-extern void			chained_delete(t_chained **head);
-
-typedef struct s_pipex		t_pipex;
-struct s_pipex{
+typedef struct s_pipe t_pipe;
+struct s_pipe{
 	char		*input;
 	char		*output;
 	t_chained	*cmd;
+	t_chained	*path;
 };
 
-extern void			pipex_start(t_pipex *set);
+extern void			pipe_start(t_pipe *set);
+extern void			pipe_file_get(t_pipe *set, int argc, char **argv);
+extern void			pipe_command_get(t_pipe *set, int argc, char **argv);
+extern void			pipe_command_pop(t_chained **set);
+extern void			pipe_pop(t_pipe *set);
 
 #endif // PIPEX_H

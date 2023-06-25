@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:42:06 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/21 17:06:16 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/24 17:55:02 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	local_init(t_machine *set)
 	set->image_load(set, "img/twinsen-diagonal-front.xpm", TWINSEN_DIAGONAL_FRONT_RIGHT);
 	set->image_load(set, "img/twinsen-diagonal-front-left.xpm", TWINSEN_DIAGONAL_FRONT_LEFT);
 	id = 0;
-	while (id < 10)
+	while (id < 1000)
 	{
 		x = rand() % set->w;
 		y = rand() % set->h;
@@ -52,6 +52,9 @@ void	local_init(t_machine *set)
 				set->image_search(set, TWINSEN_BACK));
 		id++;
 	}
+	id = 1;
+	while (id < 800)
+		set->object_remove(&set->object,id++);
 }
 
 int	local_update(t_machine *set)
@@ -64,7 +67,7 @@ int	local_update(t_machine *set)
 	color = pixel_rgba_local(0, 255, 0, 255);
 	if (!set)
 		return (0);
-	machine_bg_update(set, 1);
+	machine_bg_update(set, 0);
 	set->draw(set);
 	set->mouse_pos(set);
 	if (set->mouse_press(set, MACHINE_MOUSE_RIGHT))

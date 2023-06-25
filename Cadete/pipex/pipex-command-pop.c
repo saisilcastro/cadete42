@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex-command-pop.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 11:07:01 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 04:47:27 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/06/25 00:26:01 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/25 05:54:30 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "pipex.h"
+#include "command-of.h"
 
-void	pipe_start(t_pipe *set)
+void	pipe_command_pop(t_chained **chained)
 {
-	if (!set)
-		return ;
-	set->input = NULL;
-	set->output = NULL;
-	set->cmd = NULL;
-	set->path = NULL;
-}
+	t_chained	*next;
 
-void	pipe_pop(t_pipe *set)
-{
-	if (!set)
+	if (!*chained)
 		return ;
-	pipe_command_pop(&set->cmd);
-	chained_pop(&set->path);
-	if (set->input)
-		free(set->input);
-	if (set->output)
-		free(set->output);
+	while (*chained)
+	{
+		next = (*chained)->next;
+		command_pop((*chained)->data);
+		*chained = next;
+	}
+	free(*chained);
 }

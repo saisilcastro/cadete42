@@ -15,22 +15,20 @@ t_chained	*chained_new(void *content)
 	return (set);
 }
 
-STATUS	chained_next_first(t_chained **head, t_chained *next)
+STATUS    chained_next_first(t_chained **head, t_chained *next)
 {
-	if (!next)
-		return (Off);
-	next->next = *head;
-	next->preview = NULL;
-	if (*head)
-		(*head)->preview = next;
-	*head = next;
-	return (On);
+    if (!next)
+        return (Off);
+    next->next = *head;
+    if (*head)
+        (*head)->preview = next;
+    *head = next;
+    return (On);
 }
 
 static STATUS	chained_next_last(t_chained **head, t_chained *next)
 {
 	t_chained *update;
-	t_chained *preview;
 
 	if (!next)
 		return (Off);
@@ -39,15 +37,10 @@ static STATUS	chained_next_last(t_chained **head, t_chained *next)
 		*head = next;
 		return (On);
 	}
-	preview = NULL;
 	update = *head;
 	while (update->next)
-	{
-		preview = update;
 		update = update->next;
-	}
 	next->preview = update;
-	update->preview = preview;
 	update->next = next;
 	return (On);
 }
