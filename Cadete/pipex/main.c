@@ -3,19 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:55:56 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 04:40:48 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:40:29 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <stdlib.h>
 #include <stdio.h>
 
 void show(t_pipe *pipe);
+void name_get(void *data, char **);
 
-int	main(int argc, char **argv)
+int	main(void)
+{
+	char buffer[] = "I am alive";
+	char	*envp[] = {"-l"};
+
+	pipe_process(buffer, name_get, envp);
+	printf("keep going\n");
+	printf("I am done\n");
+	return (0);
+}
+
+void name_get(void *data, char **envp)
+{
+	if (!data)
+		return ;
+	char *parameter[] = {"executer_name", "main.c", "remover2.txt", NULL};
+	pipe_process_execute("/bin", "cat", parameter, envp);
+	//execve("/bin/cat", argv, envp);
+}
+
+void execute(int argc, char **argv)
 {
 	t_pipe	pipe;
 	
@@ -27,8 +49,6 @@ int	main(int argc, char **argv)
 		show(&pipe);
 	}
 	pipe_pop(&pipe);
-	//execve("/bin/ls", argv, "");
-	return (0);
 }
 
 void show(t_pipe *pipe)

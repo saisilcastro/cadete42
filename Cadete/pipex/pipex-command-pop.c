@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-command-pop.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 00:26:01 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 05:54:30 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:01:40 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "pipex.h"
 #include "command-of.h"
 
@@ -25,7 +23,7 @@ void	pipe_command_pop(t_chained **chained)
 	{
 		next = (*chained)->next;
 		command_pop((*chained)->data);
+		free(*chained);
 		*chained = next;
 	}
-	free(*chained);
 }

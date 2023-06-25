@@ -23,6 +23,6 @@ struct s_command{
 
 extern t_command	*command_push(char *name, t_chained *flag);
 extern void			command_get(t_command *set, int argc, char **argv);
-extern void			command_pop(t_command **set);
+extern void			command_pop(t_command *set);
 
 #endif // COMMAND_OF_H

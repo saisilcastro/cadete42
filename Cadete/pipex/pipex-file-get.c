@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-file-get.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:02:36 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/24 23:04:11 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:01:48 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "pipex.h"
 
 static int	ft_strlen(char *str)

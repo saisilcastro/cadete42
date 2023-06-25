@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command-of.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:20:06 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 05:56:56 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:00:59 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include "command-of.h"
 
@@ -22,20 +21,22 @@ t_command	*command_push(char *name, t_chained *flag)
 	return (set);
 }
 
-void	command_pop(t_command **set)
+void	command_pop(t_command *set)
 {
 	t_chained	*next;
 
-	if (!*set)
+	if (!set)
 		return ;
-	if ((*set)->name)
-		free((*set)->name);
-	while ((*set)->flag)
+	if (set->name)
+		free(set->name);
+	while (set->flag)
 	{
-		next = (*set)->flag;
-		if ((*set)->flag->data)
-			free((*set)->flag->data);
-		free((*set)->flag);
-		(*set)->flag = next;
+		next = set->flag->next;
+		if (set->flag->data)
+			free(set->flag->data);
+		if (set->flag)
+			free(set->flag);
+		set->flag = next;
 	}
+	free(set);
 }

@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "chained.h"
 
 t_chained	*chained_push(void *data)

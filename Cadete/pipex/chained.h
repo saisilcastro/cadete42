@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   chained.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 22:39:12 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 00:18:28 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:00:51 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHAINED_H
 #define	CHAINED_H
+
+#include <stdlib.h>
 
 typedef struct s_chained	t_chained;
 struct s_chained{

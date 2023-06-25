@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-command-get.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:32:59 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 05:52:07 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/25 17:38:34 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "pipex.h"
 #include "command-of.h"
 
 static void			command_break(t_pipe *set, char *command);
-static char			*name_get(char *command, char name[16], int *pos);
+static char			*name_get(char *command, char name[], int *pos);
 static t_chained	*flag_get(char *command, int *pos);
 static char *		ft_strdup(char *str);
 
@@ -73,7 +71,7 @@ static char	*name_get(char *command, char name[], int *pos)
 	return (buffer);
 }
 
-static t_chained	*flag_get(char *command, int *pos)
+ static t_chained	*flag_get(char *command, int *pos)
 {
 	t_chained	*flag;
 	char		buffer[32];
@@ -93,7 +91,7 @@ static t_chained	*flag_get(char *command, int *pos)
 		if (*(command + *pos) == '-' && i > 0)
 		{
 			*(buffer + i) = '\0';
-			//chained_next_last(&flag, chained_push(buffer));
+			chained_next_last(&flag, chained_push(ft_strdup(buffer)));
 			i = 0;
 		}
 		i++;
@@ -102,7 +100,6 @@ static t_chained	*flag_get(char *command, int *pos)
 	if (i > 0)
 	{
 		*(buffer + i) = '\0';
-		printf("***%s\n", buffer);
 		chained_next_last(&flag, chained_push(ft_strdup(buffer)));
 	}
 	return (flag);

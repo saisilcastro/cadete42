@@ -1,6 +1,7 @@
 NAME = pipex
 SRC = main.c chained.c pipex.c pipex-file-get.c \
-	  pipex-command-get.c pipex-command-pop.c \
+	  pipex-command-get.c pipex-process.c \
+	  pipex-command-pop.c \
 	  command-of.c
 FLAG = -Wall -Wextra -Werror
 
