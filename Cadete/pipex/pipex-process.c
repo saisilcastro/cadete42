@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:45:30 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/25 16:26:59 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/26 01:12:58 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define READ 0
 #define WRITE 1
 
-int pipe_process(void *data, void (*child_get)(void *data,char **envp), char **envp)
+int pipe_process(void *data, void (*child_get)(void *data))
 {
     int     fd[2];
     pid_t   pid;
@@ -41,15 +41,15 @@ int pipe_process(void *data, void (*child_get)(void *data,char **envp), char **e
         close(fd[WRITE]);
         read(fd[READ], data, sizeof(data));
         if (child_get)
-            child_get(data, envp);
+            child_get(data);
         exit(0);
     }
     return (0);
 }
 
-void    pipe_process_execute(const char *path, char *app, char **parameter, char **unknown)
+void    pipe_process_execute(const char *path, char *app, char **parameter, char **flag)
 {
     char executor[64];
     sprintf(executor, "%s/%s",path, app);
-    execve(executor, parameter, unknown);
+    execve(executor, parameter, flag);
 }

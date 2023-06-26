@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:55:56 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 16:40:29 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/26 01:33:20 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,25 @@
 #include <stdio.h>
 
 void show(t_pipe *pipe);
-void name_get(void *data, char **);
+void name_get(void *data);
 
 int	main(void)
 {
 	char buffer[] = "I am alive";
-	char	*envp[] = {"-l"};
 
-	pipe_process(buffer, name_get, envp);
+	pipe_process(buffer, name_get);
 	printf("keep going\n");
 	printf("I am done\n");
 	return (0);
 }
 
-void name_get(void *data, char **envp)
+void name_get(void *data)
 {
 	if (!data)
 		return ;
-	char *parameter[] = {"executer_name", "main.c", "remover2.txt", NULL};
-	pipe_process_execute("/bin", "cat", parameter, envp);
-	//execve("/bin/cat", argv, envp);
+	char *parameter[] = {NULL, "-l"};
+	char	*do_nothing[] = {NULL};
+	pipe_process_execute("/bin", "ls", parameter, do_nothing);
 }
 
 void execute(int argc, char **argv)
