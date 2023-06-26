@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:55:56 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/26 01:33:20 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/26 08:06:46 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void execute(int argc, char **argv, char **envp);
 void show(t_pipe *pipe);
 void name_get(void *data);
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	char buffer[] = "I am alive";
-
-	pipe_process(buffer, name_get);
-	printf("keep going\n");
-	printf("I am done\n");
+	execute(argc, argv, envp);
 	return (0);
 }
 
@@ -36,7 +33,7 @@ void name_get(void *data)
 	pipe_process_execute("/bin", "ls", parameter, do_nothing);
 }
 
-void execute(int argc, char **argv)
+void execute(int argc, char **argv, char **envp)
 {
 	t_pipe	pipe;
 	
@@ -45,7 +42,8 @@ void execute(int argc, char **argv)
 		pipe_start(&pipe);
 		pipe_file_get(&pipe, argc, argv);
 		pipe_command_get(&pipe, argc, argv);
-		show(&pipe);
+		pipe_environment_get(&pipe, envp);
+		pipe_execute(&pipe);
 	}
 	pipe_pop(&pipe);
 }
@@ -70,4 +68,19 @@ void show(t_pipe *pipe)
 		update = update->next;
 		printf("\n");
 	}
+	update = pipe->path;
+	while (update)
+	{
+		printf("%s\n", (char *)update->data);
+		update = update->next;
+	}
+}
+
+void example(void)
+{
+	char buffer[] = "I am alive";
+
+	pipe_process(buffer, name_get);
+	printf("keep going\n");
+	printf("I am done\n");
 }
