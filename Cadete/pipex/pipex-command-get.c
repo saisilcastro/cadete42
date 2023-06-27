@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-command-get.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:32:59 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/26 08:01:36 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/26 22:49:14 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 static void			command_break(t_pipe *set, char *command);
 static char			*name_get(char *command, char name[], int *pos);
-static t_chained	*flag_get(char *command, int *pos);
-static char *		ft_strdup(char *str);
+static t_chained	*flag_get(t_descriptor *descriptor,
+						char *command, int *pos);
 
 void	pipe_command_get(t_pipe *set, int argc, char **argv)
 {
 	int	pos;
-	
+
 	if (!set || argc < 5)
 		return ;
 	pos = 2;
@@ -38,13 +38,13 @@ static void	command_break(t_pipe *set, char *command)
 	char		*name;
 	int			pos;
 	t_chained	*flag;
-	
+
 	if (!command || !set)
 		return ;
 	flag = NULL;
 	pos = 0;
 	name = name_get(command, buffer, &pos);
-	flag = flag_get(command, &pos);
+	flag = flag_get(set->descriptor, command, &pos);
 	chained_next_last(&set->cmd, chained_push(command_push(name, flag)));
 }
 
@@ -71,15 +71,13 @@ static char	*name_get(char *command, char name[], int *pos)
 	return (buffer);
 }
 
- static t_chained	*flag_get(char *command, int *pos)
+static void	command_loop(t_descriptor *descriptor, char *command
+	, int *pos, t_chained **flag)
 {
-	t_chained	*flag;
-	char		buffer[32];
+	char		buffer[64];
 	int			i;
 
 	flag = NULL;
-	if (!command || *(command + *pos) == '\0')
-		return (NULL);	
 	i = 0;
 	while (*(command + *pos))
 	{
@@ -91,35 +89,30 @@ static char	*name_get(char *command, char name[], int *pos)
 		if (*(command + *pos) == '-' && i > 0)
 		{
 			*(buffer + i) = '\0';
-			chained_next_last(&flag, chained_push(ft_strdup(buffer)));
+			descriptor->max++;
+			chained_next_last(flag, chained_push(ft_strdup(buffer)));
 			i = 0;
 		}
 		i++;
 		*pos += 1;
 	}
+}
+
+static t_chained	*flag_get(t_descriptor *descriptor, char *command, int *pos)
+{
+	t_chained	*flag;
+	char		buffer[32];
+	int			i;
+
+	flag = NULL;
+	if (!command || *(command + *pos) == '\0')
+		return (NULL);
+	command_loop(descriptor, command, pos, &flag);
 	if (i > 0)
 	{
 		*(buffer + i) = '\0';
+		descriptor->max++;
 		chained_next_last(&flag, chained_push(ft_strdup(buffer)));
 	}
 	return (flag);
-}
-
-static char *		ft_strdup(char *str)
-{
-	char *buffer;
-	int	len;
-
-	len = 0;
-	while (*(str + len))
-		len++;
-	buffer = (char *)malloc(len + 1 * sizeof(char));
-	len = 0;
-	while (*(str + len))
-	{
-		*(buffer + len) = *(str + len);
-		len++;
-	}
-	*(buffer + len) = '\0';
-	return (buffer);
 }

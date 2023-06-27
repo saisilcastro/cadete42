@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-file-get.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:02:36 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/25 15:01:48 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/26 19:18:25 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,6 @@ void	pipe_file_get(t_pipe *set, int argc, char **argv)
 		pos++;
 	}
 	*(set->output + pos) = '\0';
+	set->descriptor->input = open(set->input, O_WRONLY);
+	set->descriptor->input = open(set->output, O_RDONLY);
 }

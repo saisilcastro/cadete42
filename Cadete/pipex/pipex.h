@@ -3,35 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:59:15 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/26 08:06:12 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/26 22:48:26 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include "chained.h"
-#include "command-of.h"
-#include <unistd.h>
-#include <stdio.h>
+# include "chained.h"
+# include "descriptor_of.h"
+# include "process_of.h"
+# include "command_of.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
 
-typedef struct s_pipe t_pipe;
-struct s_pipe{
-	char		*input;
-	char		*output;
-	t_chained	*cmd;
-	t_chained	*path;
-};
+extern char			*ft_strdup(char *str);
+
+typedef struct s_pipe{
+	char			*input;
+	char			*output;
+	t_chained		*cmd;
+	t_chained		*path;
+	t_descriptor	*descriptor;
+}t_pipe;
 
 extern void			pipe_start(t_pipe *set);
 extern void			pipe_file_get(t_pipe *set, int argc, char **argv);
 extern void			pipe_command_get(t_pipe *set, int argc, char **argv);
 extern void			pipe_environment_get(t_pipe *set, char **envp);
-extern int			pipe_process(void *, void (*child_get)(void *));
-extern void			pipe_process_execute(const char *path, char *app, char **parameter, char **flag);
+extern void			pipe_process_execute(t_process *process);
 extern void			pipe_execute(t_pipe *set);
 extern void			pipe_command_pop(t_chained **set);
 extern void			pipe_pop(t_pipe *set);
