@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-environment-get.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 04:17:59 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/26 22:46:50 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:02:45 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static char	*ft_strsub(char *str, char *sub);
-static int	ft_strlen(char *str);
 static void	path_split(t_pipe *set, char *str);
 
 void	pipe_environment_get(t_pipe *set, char **envp)
@@ -95,14 +94,4 @@ static char	*ft_strsub(char *str, char *sub)
 		str++;
 	}
 	return (NULL);
-}
-
-static int	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (*(str + len))
-		len++;
-	return (len);
 }

@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   pipex-show.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 22:44:12 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/28 00:12:32 by mister-code      ###   ########.fr       */
+/*   Created: 2023/06/27 23:47:09 by mister-code       #+#    #+#             */
+/*   Updated: 2023/06/28 00:01:13 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_strdup(char *str)
+void	pipe_show(t_pipe *set)
 {
-	char	*buffer;
-	int		pos;
+	t_chained	*flag;
 
-	if (!str)
-		return (NULL);
-	buffer = (char *)malloc(ft_strlen(str) + 1 * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	pos = 0;
-	while (*(str + pos))
+	if (!set)
+		return ;
+	while (set->path)
 	{
-		*(buffer + pos) = *(str + pos);
-		pos++;
+		printf("Path: %s\n", (char *)set->path->data);
+		set->path = set->path->next;
 	}
-	*(buffer + pos) = '\0';
-	return (buffer);
+	while (set->cmd)
+	{
+		printf("Name: %s", ((t_command *)set->cmd->data)->name);
+		flag = ((t_command *)set->cmd->data)->flag;
+		while (flag)
+		{
+			printf(" %s", (char *)flag->data);
+			flag = flag->next;
+		}
+		printf("\n");
+		set->cmd = set->cmd->next;
+	}
 }

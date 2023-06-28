@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   path_create.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 22:44:12 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/28 00:12:32 by mister-code      ###   ########.fr       */
+/*   Created: 2023/06/27 10:25:13 by mister-code       #+#    #+#             */
+/*   Updated: 2023/06/27 23:42:13 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_strdup(char *str)
+void	path_create(char *fpath, char *path, char *app)
 {
-	char	*buffer;
-	int		pos;
+	int	pos;
+	int	i;
 
-	if (!str)
-		return (NULL);
-	buffer = (char *)malloc(ft_strlen(str) + 1 * sizeof(char));
-	if (!buffer)
-		return (NULL);
+	if (!fpath || !path || !app)
+		return ;
+	i = 0;
 	pos = 0;
-	while (*(str + pos))
+	while (*(path + i))
 	{
-		*(buffer + pos) = *(str + pos);
+		*(fpath + pos) = *(path + i);
+		i++;
 		pos++;
 	}
-	*(buffer + pos) = '\0';
-	return (buffer);
+	*(fpath + pos) = '/';
+	pos++;
+	i = 0;
+	while (*(app + i))
+	{
+		*(fpath + pos) = *(app + i);
+		i++;
+		pos++;
+	}
+	*(fpath + pos) = '\0';
 }

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-execute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 08:05:05 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/26 22:42:35 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/28 01:07:55 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static void	file_exists(t_pipe *set);
-static void	command_run(void *path, void *command);
 
 void	pipe_execute(t_pipe *set)
 {
@@ -22,10 +21,17 @@ void	pipe_execute(t_pipe *set)
 	file_exists(set);
 }
 
-static void	treat_command(t_command *command, char *path)
+static void	treat_command(t_command *command,
+	t_descriptor *descriptor, char *path)
 {
-	if (!command)
+	t_process	process;
+
+	if (!command || !descriptor || !path)
 		return ;
+	process_start(&process, descriptor);
+	process_prepare(&process, command);
+	process_run(&process, path);
+	process_pop(&process);
 }
 
 static void	file_exists(t_pipe *set)
@@ -36,37 +42,20 @@ static void	file_exists(t_pipe *set)
 
 	if (!set)
 		return ;
-	path = set->path;
-	while (path)
+	cmd = set->cmd;
+	while (cmd)
 	{
-		cmd = set->cmd;
-		while (cmd)
+		path = set->path;
+		while (path)
 		{
-			sprintf(file, "%s/%s", (char *)path->data,
-				((t_command *)cmd->data)->name);
+			path_create(file, path->data, ((t_command *)cmd->data)->name);
 			if (access(file, F_OK) == 0)
-				treat_command(cmd->data, path->data);
-			cmd = cmd->next;
+			{
+				treat_command(cmd->data, set->descriptor, file);
+				break ;
+			}
+			path = path->next;
 		}
-		path = path->next;
+		cmd = cmd->next;
 	}
-}
-
-//pipe_process_execute(path, command->name, blood);
-static void	command_run(void *path, void *data)
-{
-	t_command	*command;
-	t_chained	*flag;
-
-	if (!path || !data)
-		return ;
-	command = data;
-	printf("**%s**** ", (char *)path);
-	flag = command->flag;
-	while (flag)
-	{
-		printf("%s ", (char *)flag->data);
-		flag = flag->next;
-	}
-	printf("\n");
 }

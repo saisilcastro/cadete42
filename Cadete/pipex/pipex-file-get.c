@@ -3,40 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-file-get.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:02:36 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/26 19:18:25 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:16:34 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int	ft_strlen(char *str)
-{
-	int len;
-
-	len = 0;
-	while (*(str + len))
-		len++;
-	return (len);
-}
+static void	input_name_get(t_pipe *set, char **argv);
+static void	output_name_get(t_pipe *set, int argc, char **argv);
 
 void	pipe_file_get(t_pipe *set, int argc, char **argv)
 {
+	if (!set || !argv)
+		return ;
+	input_name_get(set, argv);
+	set->descriptor->input = open(set->input, O_WRONLY, 0777);
+	if (set->descriptor->input == -1)
+	{
+		printf("%s: No such file or directory\n", set->input);
+		return ;
+	}
+	output_name_get(set, argc, argv);
+	set->descriptor->output = open(set->output, O_RDONLY | O_CREAT, 0777);
+}
+
+static void	input_name_get(t_pipe *set, char **argv)
+{
 	int	pos;
 
-	if (argc < 5 || !set)
+	if (!set || !argv)
 		return ;
 	set->input = (char *)malloc(ft_strlen(*(argv + 1)) + 1 * sizeof(char));
 	pos = 0;
 	while (*(*(argv + 1) + pos))
 	{
 		*(set->input + pos) = *(*(argv + 1) + pos);
-		pos++;	
+		pos++;
 	}
 	*(set->input + pos) = '\0';
-	set->output = (char *)malloc(ft_strlen(*(argv + argc - 1)) + 1 * sizeof(char));
+}
+
+static void	output_name_get(t_pipe *set, int argc, char **argv)
+{
+	int	pos;
+	int	len;
+
+	if (!set || !argv)
+		return ;
+	len = ft_strlen(*(argv + argc - 1));
+	set->output = (char *)malloc(len + 1 * sizeof(char));
 	pos = 0;
 	while (*(*(argv + argc - 1) + pos))
 	{
@@ -44,6 +62,4 @@ void	pipe_file_get(t_pipe *set, int argc, char **argv)
 		pos++;
 	}
 	*(set->output + pos) = '\0';
-	set->descriptor->input = open(set->input, O_WRONLY);
-	set->descriptor->input = open(set->output, O_RDONLY);
 }

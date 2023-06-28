@@ -3,73 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:45:30 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/26 22:49:40 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:49:12 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
 #include <sys/types.h>
-#define READ 0
-#define WRITE 1
+#include "pipex.h"
+#include "process_of.h"
 
-//int pipe_process(void *data, void *command, 
-//void (*child_get)(void *file, void *command))
-//{
-//    int     fd[2];
-//    pid_t   pid;
-
-//    if (pipe(fd) == -1)
-//    {
-//        perror("pipe");
-//        return (-1);
-//    }
-//    pid = fork();
-//    if (pid < 0)
-//    {
-//        perror("fork");
-//        exit(1);
-//    }
-//    if (pid > 0) // father process
-//    {
-//        close(fd[READ]);
-//        write(fd[WRITE], data, sizeof(data));
-//    }
-//    else // child process
-//    {
-//        close(fd[WRITE]);
-//        read(fd[READ], data, sizeof(data));
-//        if (child_get)
-//            child_get(data, command);
-//        exit(0);
-//    }
-//    return (0);
-//}
-
-void	pipe_process_execute(t_process *process)
+void	process_start(t_process *set, t_descriptor *descriptor)
 {
-	char	executor[1024];
+	if (!set)
+		return ;
+	set->descriptor = descriptor;
+	set->path = NULL;
+	set->flag = NULL;
+}
 
-	sprintf(executor, "%s/%s", process->path, process->app);
-	/**
-	if (descriptor->current == 0)
+void	process_prepare(t_process *set, t_command *command)
+{
+	int	max_flag;
+	int	current_flag;
+
+	if (!set || !command)
+		return ;
+	max_flag = chained_max(command->flag);
+	set->flag = (char **)malloc((max_flag + 2) * sizeof(char *));
+	if (set->flag)
 	{
-		dup2(0, 0);
-		dup2(command->fd[1], 1);
-	}        
-	if (command->current_command != 0
-		&& command->current_command < command->max_command)
-	{
-		dup2(command->fd[0], 0);
-		dup2(command->fd[1], 1);   
+		*(set->flag + 0) = "none";
+		current_flag = 1;
+		while (command->flag)
+		{
+			*(set->flag + current_flag) = ft_strdup(command->flag->data);
+			command->flag = command->flag->next;
+			current_flag++;
+		}
+		*(set->flag + current_flag) = NULL;
 	}
-	if (command->current_command == command_max)
+}
+
+void	process_pop(t_process *set)
+{
+	int		i;
+
+	if (!set)
+		return ;
+	if (set->flag)
 	{
-		//dup2(command->fd[0], 0);
-		//dup2(1,)
+		i = 1;
+		while (set->flag && *(set->flag + i))
+		{
+			free(*(set->flag + i));
+			i++;
+		}
+		free(set->flag);
 	}
-	*/
-	execve(executor, process->parameter, process->flag);
 }

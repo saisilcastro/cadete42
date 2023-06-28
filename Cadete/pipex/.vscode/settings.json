@@ -9,6 +9,7 @@
 		"string_view": "c",
 		"initializer_list": "c",
 		"pipex.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"descriptor_of.h": "c"
 	}
 }

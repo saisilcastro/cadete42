@@ -1,0 +1,1 @@
+valgrind --leak-check=full --track-origins=yes ./pipex infile "ls -l" "wc -l" outfile

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   command-of.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:20:06 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/26 22:47:20 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/27 00:19:27 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "command-of.h"
+#include "command_of.h"
 
 t_command	*command_push(char *name, t_chained *flag)
 {

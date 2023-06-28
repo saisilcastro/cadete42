@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:55:56 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/26 22:52:54 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/28 01:02:45 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,11 @@ void	execute(int argc, char **argv, char **envp);
 
 int	main(int argc, char **argv, char **envp)
 {
+	if (argc != 5)
+		return (-1);
 	execute(argc, argv, envp);
 	return (0);
 }
-
-//void name_get(void *data)
-//{
-//	if (!data)
-//		return ;
-//	char *parameter[] = {NULL, "-l"};
-//	char	*do_nothing[] = {NULL};
-//	pipe_process_execute("/bin", "ls", parameter, do_nothing);
-//}
 
 void	execute(int argc, char **argv, char **envp)
 {
