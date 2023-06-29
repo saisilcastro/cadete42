@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-environment-get.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 04:17:59 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/27 13:02:45 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/28 23:03:50 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,44 +30,31 @@ void	pipe_environment_get(t_pipe *set, char **envp)
 	}
 }
 
-static char	*path_allocate(char *str, int len)
-{
-	int		pos;
-	char	*buffer;
-
-	buffer = (char *)malloc((len + 1) * sizeof(char));
-	pos = 0;
-	while (pos < len)
-	{
-		*(buffer + pos) = *(str + pos);
-		pos++;
-	}
-	*(buffer + pos) = '\0';
-	return (buffer);
-}
-
 static void	path_split(t_pipe *set, char *str)
 {
-	char	*buffer;
-	char	*remain;
+	char	buffer[1024];
+	int		i;
 
 	if (!set || !str)
 		return ;
-	buffer = str;
-	while (buffer)
+	i = 0;
+	while (*str)
 	{
-		remain = ft_strsub(buffer, ":");
-		if (remain)
-			chained_next_last(&set->path,
-				chained_push(path_allocate(buffer, remain - buffer)));
-		if (buffer && remain)
-			buffer = remain + 1;
-		if (!remain)
-			break ;
+		*(buffer + i) = *str;
+		if (*str == ':')
+		{
+			*(buffer + i) = '\0';
+			chained_next_last(&set->path, chained_push(ft_strdup(buffer)));
+			i = -1;
+		}
+		str++;
+		i++;
 	}
-	if (buffer)
-		chained_next_last(&set->path,
-			chained_push(path_allocate(buffer, ft_strlen(buffer) + 1)));
+	if (i)
+	{
+		*(buffer + i) = '\0';
+		chained_next_last(&set->path, chained_push(ft_strdup(buffer)));
+	}
 }
 
 static char	*ft_strsub(char *str, char *sub)

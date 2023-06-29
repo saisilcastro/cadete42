@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   descriptor_of.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:39:22 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/27 22:27:15 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/28 17:34:11 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ typedef struct s_descriptor{
 	int	max;
 	int	input;
 	int	output;
-	int	aux;
 }t_descriptor;
 
 #endif // DESCRIPTOR_OF_H

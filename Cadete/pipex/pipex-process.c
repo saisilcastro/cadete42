@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:45:30 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/27 22:49:12 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/29 00:32:30 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 
 void	process_start(t_process *set, t_descriptor *descriptor)
 {
+	int	i;
+
 	if (!set)
 		return ;
+	i = 0;
 	set->descriptor = descriptor;
 	set->path = NULL;
 	set->flag = NULL;
@@ -28,13 +31,13 @@ void	process_prepare(t_process *set, t_command *command)
 	int	max_flag;
 	int	current_flag;
 
-	if (!set || !command)
+	if (!set || !command || !command->flag)
 		return ;
 	max_flag = chained_max(command->flag);
-	set->flag = (char **)malloc((max_flag + 2) * sizeof(char *));
+	set->flag = (char **)malloc(sizeof(char *) * (max_flag + 2));
 	if (set->flag)
 	{
-		*(set->flag + 0) = "none";
+		*(set->flag + 0) = ft_strdup("none");
 		current_flag = 1;
 		while (command->flag)
 		{
@@ -46,17 +49,19 @@ void	process_prepare(t_process *set, t_command *command)
 	}
 }
 
-void	process_pop(t_process *set)
+void	process_pop(t_process *set, int max)
 {
-	int		i;
+	int			i;
 
 	if (!set)
 		return ;
+	i = 0;
 	if (set->flag)
 	{
-		i = 1;
-		while (set->flag && *(set->flag + i))
+		printf("poping process flag\n");
+		while (*(set->flag + i) && i <= max)
 		{
+			printf("inside process removing %s\n", *(set->flag + i));
 			free(*(set->flag + i));
 			i++;
 		}

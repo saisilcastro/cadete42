@@ -3,35 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-execute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 08:05:05 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/28 01:07:55 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/29 00:31:26 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static void	file_exists(t_pipe *set);
+static void	treat_command(t_command *command,
+				t_descriptor *descriptor, char *path);
 
 void	pipe_execute(t_pipe *set)
 {
 	if (!set)
 		return ;
 	file_exists(set);
-}
-
-static void	treat_command(t_command *command,
-	t_descriptor *descriptor, char *path)
-{
-	t_process	process;
-
-	if (!command || !descriptor || !path)
-		return ;
-	process_start(&process, descriptor);
-	process_prepare(&process, command);
-	process_run(&process, path);
-	process_pop(&process);
 }
 
 static void	file_exists(t_pipe *set)
@@ -58,4 +47,17 @@ static void	file_exists(t_pipe *set)
 		}
 		cmd = cmd->next;
 	}
+}
+
+static void	treat_command(t_command *command,
+	t_descriptor *descriptor, char *path)
+{
+	t_process	process;
+
+	if (!command || !descriptor || !path)
+		return ;
+	process_start(&process, descriptor);
+	process_prepare(&process, command);
+	//process_run(&process, path);
+	process_pop(&process, chained_max(command->flag) + 2);
 }

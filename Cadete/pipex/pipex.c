@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 11:07:01 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/27 21:54:05 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/28 23:06:03 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ void	pipe_pop(t_pipe *set)
 		free(set->input);
 	if (set->output)
 		free(set->output);
-	if (set->descriptor->input != -1)
-		close(set->descriptor->input);
-	if (set->descriptor->output != -1)
-		close(set->descriptor->output);
-	free(set->descriptor);
+	if (set->descriptor)
+	{
+		if (set->descriptor->input != -1)
+			close(set->descriptor->input);
+		if (set->descriptor->output != -1)
+			close(set->descriptor->output);
+		free(set->descriptor);
+	}
 }

@@ -1,6 +1,7 @@
 NAME = pipex
 SRC = main.c chained.c pipex.c pipex-file-get.c \
-	  pipex-command-get.c pipex-environment-get.c \
+	  pipex-command-get.c pipex-command-break.c \
+	  pipex-environment-get.c \
 	  pipex-show.c pipex-process.c pipex-execute.c \
 	  process-run.c pipex-command-pop.c \
 	  path_create.c command-of.c \

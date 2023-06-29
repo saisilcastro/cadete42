@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-command-pop.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 00:26:01 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/27 23:31:49 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/28 21:54:30 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	pipe_command_pop(t_chained **chained)
 	t_chained	*next;
 
 	if (!*chained)
+	{
+		printf("there is no command\n");
 		return ;
+	}
 	while (*chained)
 	{
 		next = (*chained)->next;

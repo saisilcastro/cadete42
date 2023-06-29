@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chained.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 23:41:13 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/27 23:41:42 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/28 22:23:14 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,15 @@ int	chained_max(t_chained *head)
 void	chained_pop(t_chained **head)
 {
 	t_chained	*next;
+	t_chained	*current;
 
-	while (*head)
+	current = *head;
+	while (current)
 	{
-		next = (*head)->next;
-		if ((*head)->data)
-			free((*head)->data);
-		free(*head);
-		*head = next;
+		next = current->next;
+		if (current->data)
+			free(current->data);
+		free(current);
+		current = next;
 	}
 }
