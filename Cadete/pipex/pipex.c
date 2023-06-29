@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 11:07:01 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/28 23:06:03 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:54:23 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	pipe_start(t_pipe *set)
 	set->descriptor->max = 0;
 	set->descriptor->input = 0;
 	set->descriptor->output = 0;
+	set->process = NULL;
 }
 
 void	pipe_pop(t_pipe *set)
@@ -45,4 +46,5 @@ void	pipe_pop(t_pipe *set)
 			close(set->descriptor->output);
 		free(set->descriptor);
 	}
+	pipe_process_pop(&set->process);
 }

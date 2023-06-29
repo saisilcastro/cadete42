@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:59:15 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/28 23:06:44 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:53:16 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_pipe{
 	t_chained		*cmd;
 	t_chained		*path;
 	t_descriptor	*descriptor;
+	t_chained		*process;
 }t_pipe;
 
 extern void			pipe_start(t_pipe *set);
@@ -39,9 +40,11 @@ extern void			pipe_file_get(t_pipe *set, int argc, char **argv);
 extern void			pipe_command_get(t_pipe *set, int argc, char **argv);
 extern void			pipe_command_break(t_pipe *set, char *command);
 extern void			pipe_environment_get(t_pipe *set, char **envp);
+extern void			pipe_process_get(t_pipe *set);
 extern void			pipe_show(t_pipe *set);
 extern void			pipe_execute(t_pipe *set);
 extern void			pipe_command_pop(t_chained **set);
+extern void			pipe_process_pop(t_chained **set);
 extern void			pipe_pop(t_pipe *set);
 
 #endif // PIPEX_H

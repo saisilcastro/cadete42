@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_of.h                                       :+:      :+:    :+:   */
+/*   pipe-process-pop.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 19:31:17 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/29 15:08:38 by mister-code      ###   ########.fr       */
+/*   Created: 2023/06/29 12:52:11 by mister-code       #+#    #+#             */
+/*   Updated: 2023/06/29 12:57:26 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROCESS_OF_H
-# define PROCESS_OF_H
+#include "pipex.h"
 
-# include "pipex.h"
+void	pipe_process_pop(t_chained **process)
+{
+	t_chained	*next;
 
-typedef struct s_process{
-	int		fd[2];
-	char	*path;
-	char	**flag;
-}t_process;
-
-extern t_process	*process_push(char *path, t_chained *flag);
-extern void			process_pop(t_process *set);
-
-#endif // PROCESS_OF_H
+	if (!*process)
+		return ;
+	while (*process)
+	{
+		next = (*process)->next;
+		process_pop((*process)->data);
+		free(*process);
+		*process = next;
+	}
+}
