@@ -53,7 +53,7 @@ static void	command_flag_get(char *command, t_chained **flag)
 			i++;
 		}
 		if (i > 0)
-		{			
+		{
 			*(buffer + i) = '\0';
 			name = ft_strdup(buffer);
 			chained_next_last(flag, chained_push(name));

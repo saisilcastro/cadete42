@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-command-get.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:32:59 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/28 20:06:30 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/30 07:12:05 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pipe_command_get(t_pipe *set, int argc, char **argv)
 {
 	int	pos;
 
-	if (!set || argc < 5)
+	if (!set)
 		return ;
 	pos = 2;
 	while (pos < argc - 1)
