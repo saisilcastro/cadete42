@@ -1,0 +1,21 @@
+NAME = solong
+INCLUDE = ./include
+LIB = ./minilibx-linux
+SRC = 	main.c \
+		./src/so_long.c \
+		./src/chained-of.c
+SRCOBJ = $(SRC:%.c=%.o)
+CFLAG = -Wall -Wextra -Werror
+ENGINE = -lmlx -lX11 -lXext -lm
+
+
+all: $(NAME)
+$(NAME): $(SRCOBJ)
+	$(CC) $(SRCOBJ) -I$(INCLUDE) -L$(LIB) $(ENGINE) -o $(NAME) $(CFLAG)
+%.o: %.c
+	$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAG)
+clean:
+	rm -rf *.o ./obj/*.o
+fclean:
+	rm -rf $(NAME)
+re: fclean all

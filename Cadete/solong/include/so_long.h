@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 07:34:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 15:52:05 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/06/30 15:47:19 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/30 15:49:42 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-int	main(int argc, char **argv)
-{
-	if (argc < 1 || !argv)
-		return (-1);
-	so_long_execute(argv[1]);
-	return (0);
-}
+# include <place.h>
+
+extern void	so_long_execute(char *map);
+
+#endif // SO_LONG_H

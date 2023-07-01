@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   math-of.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 07:34:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 15:52:05 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/06/30 19:34:01 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/30 19:35:46 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <math_of.h>
 
-int	main(int argc, char **argv)
+t_vi2d	vi2d_start(B32 x, B32 y)
 {
-	if (argc < 1 || !argv)
-		return (-1);
-	so_long_execute(argv[1]);
-	return (0);
+	t_vi2d	set;
+
+	set.x = x;
+	set.y = y;
+	return (set);
+}
+
+t_vf2d	vf2d_start(BP32 x, BP32 y)
+{
+	t_vf2d	set;
+
+	set.x = x;
+	set.y = y;
+	return (set);
 }

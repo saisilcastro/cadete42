@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_of.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 08:20:40 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 08:42:26 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/30 12:49:52 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ struct s_object{
 	t_image				*image;
 	BP32				angle;
 	t_OBJECT_DIRECTION	where;
-
 };
 
 extern t_object	object_start(B32 id, B8 *name, t_image *image);

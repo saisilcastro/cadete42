@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:55:56 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/30 07:18:07 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/30 18:57:21 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	execute(int argc, char **argv);
 
 int	main(int argc, char **argv)
 {
-	if (argc < 3)
+	if (argc != 5)
 		return (-1);
 	execute(argc, argv);
 	return (0);

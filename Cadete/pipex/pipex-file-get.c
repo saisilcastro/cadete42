@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 23:02:36 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/28 21:52:33 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:14:17 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	pipe_file_get(t_pipe *set, int argc, char **argv)
 	if (!set || !argv)
 		return ;
 	input_name_get(set, argv);
-	set->descriptor->input = open(set->input, O_WRONLY, 0777);
+	set->descriptor->input = open(set->input, O_RDONLY, 0777);
 	if (set->descriptor->input == -1)
 	{
 		printf("%s: No such file or directory\n", set->input);
 		return ;
 	}
 	output_name_get(set, argc, argv);
-	set->descriptor->output = open(set->output, O_RDONLY | O_CREAT, 0777);
+	set->descriptor->output = open(set->output, O_WRONLY | O_CREAT, 0777);
 }
 
 static void	input_name_get(t_pipe *set, char **argv)

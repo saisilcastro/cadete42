@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 11:07:01 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/29 12:54:23 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/30 14:18:12 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	pipe_pop(t_pipe *set)
 		free(set->output);
 	if (set->descriptor)
 	{
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
 		if (set->descriptor->input != -1)
 			close(set->descriptor->input);
 		if (set->descriptor->output != -1)

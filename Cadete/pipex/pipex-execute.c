@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex-execute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:16:16 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 07:15:25 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/30 18:58:43 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	pipe_execute(t_pipe *set)
 		if (set->descriptor->current == 0)
 			process_begin(process, set->descriptor);
 		else if (set->descriptor->current == set->descriptor->max - 1)
-			process_end(process, set->descriptor);
+			process_end(chained->prev->data, set->descriptor);
 		else
 			process_between(process, chained->prev->data);
 		set->descriptor->current++;
@@ -47,10 +47,8 @@ static void	process_begin(t_process *process, t_descriptor *descriptor)
 		return ;
 	dup2(descriptor->input, STDIN_FILENO);
 	close(descriptor->input);
-	printf("begin %i %i\n", process->fd[0], process->fd[1]);
 	dup2(process->fd[1], STDOUT_FILENO);
 	close(process->fd[1]);
-	printf("continue\n");
 	process_execute(process);
 }
 
@@ -58,7 +56,6 @@ static void	process_between(t_process *current, t_process *preview)
 {
 	if (!current || !preview)
 		return ;
-	printf("between\n");
 	dup2(preview->fd[0], STDIN_FILENO);
 	close(preview->fd[0]);
 	dup2(current->fd[1], STDOUT_FILENO);
@@ -70,10 +67,11 @@ static void	process_end(t_process *process, t_descriptor *descriptor)
 {
 	if (!process || !descriptor)
 		return ;
-	printf("end\n");
 	dup2(process->fd[0], STDIN_FILENO);
 	close(process->fd[0]);
+	close(process->fd[1]);
 	dup2(descriptor->output, STDOUT_FILENO);
+	close(descriptor->output);
 	process_execute(process);
 }
 
@@ -86,7 +84,5 @@ void	process_execute(t_process *process)
 	if (!process || !process->path || id == -1)
 		return ;
 	if (id == 0)
-	{
 		execve(process->path, process->flag, __environ);
-	}
 }

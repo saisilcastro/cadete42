@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   place_run.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 07:34:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 15:52:05 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/06/30 18:22:08 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/30 18:44:51 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <place.h>
 
-int	main(int argc, char **argv)
+void	place_run(t_place *set)
 {
-	if (argc < 1 || !argv)
-		return (-1);
-	so_long_execute(argv[1]);
-	return (0);
+	if (!set)
+		return ;
+	if (set->init)
+		set->init(set);
+	if (set->pop)
+		set->pop(set);
+	place_destroy(set);
 }

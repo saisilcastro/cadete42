@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system_of.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:38:36 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:13 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/06/30 19:23:47 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_SystemSet{
 	t_SYSTEM_GRAPHIC	driver;
 	t_SYSTEM_AUDIO		audio;
 	t_SYSTEM_NETWORK	lan;
-}t_System_Set;
+}t_SystemSet;
 
 typedef enum s_MACHINE_EVENT{
 	MACHINE_RUNNING = 0,

@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   machine.h                                          :+:      :+:    :+:   */
+/*   place-destroy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 07:37:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 07:52:11 by mister-code      ###   ########.fr       */
+/*   Created: 2023/06/30 18:24:16 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/30 18:24:38 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACHINE_H
-# define MACHINE_H
+#include <place.h>
 
-# include "system_of.h"
-
-typedef struct s_machine{
-	B8	*title;
-}t_machine;
-
-#endif //MACHINE_H
+void	place_destroy(t_place *set)
+{
+	if (!set)
+		return ;
+}

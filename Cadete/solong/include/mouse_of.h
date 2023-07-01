@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_of.h                                          :+:      :+:    :+:   */
+/*   mouse_of.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 08:23:05 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 08:25:22 by mister-code      ###   ########.fr       */
+/*   Created: 2023/05/21 10:43:14 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/06/30 19:43:12 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_OF_H
-# define MATH_OF_H
+#ifndef MOUSE_OF_H
+# define MOUSE_OF_H
 
 # include "system_of.h"
 
-typedef struct s_vi2d{
+typedef struct s_mouse{
 	B32	x;
 	B32	y;
-}t_vi2d;
+	unsigned	button:MACHINE_MOUSE_MAX;
+	unsigned	wheel:MOUSE_WHEEL_MAX;
+}t_mouse;
 
-extern t_vi2d	vi2d_start(B32 x, B32 y);
+extern void	mouse_of_set(t_mouse *set, B32 x, B32 y, unsigned int button);
 
-typedef struct s_vf2d	t_vf2d;
-struct s_vf2d{
-	BP32	x;
-	BP32	y;
-};
-
-extern t_vf2d	vf2d_start(BP32 x, BP32 y);
-
-#endif // MATH_OF_H
+#endif // MOUSE_OF_H

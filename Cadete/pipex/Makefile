@@ -7,7 +7,7 @@ SRC = main.c chained.c pipex.c pipex-file-get.c \
 	  pipex-command-pop.c pipe-process-pop.c \
 	  path_create.c command-of.c \
 	  ft_strdup.c ft_strlen.c
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 $(NAME):
