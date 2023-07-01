@@ -2,6 +2,14 @@ NAME = solong
 INCLUDE = ./include
 LIB = ./minilibx-linux
 SRC = 	main.c \
+		./src/math-of.c \
+		./src/mouse-of.c \
+		./src/machine.c \
+		./src/place-set.c \
+		./src/place-run.c \
+		./src/place-destroy.c \
+		./src/object-of.c \
+		./src/user-init.c \
 		./src/so_long.c \
 		./src/chained-of.c
 SRCOBJ = $(SRC:%.c=%.o)
