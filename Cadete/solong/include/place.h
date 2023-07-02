@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:32:33 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/01 14:57:58 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/01 17:16:46 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_place	t_place;
 struct s_place{
-	t_machine	machine[1];
+	t_machine	gear[1];
 	void		(*init)(t_place *, void *);
 	void		(*image_load_first)();
 	void		(*update)(t_place *);

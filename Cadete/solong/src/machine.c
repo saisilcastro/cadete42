@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   machine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:51:44 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/01 14:19:25 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/01 21:32:33 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,10 @@ void	machine_set(t_machine *set, t_SystemSet up, B8 *title, t_vi2d size)
 	set->object = NULL;
 	mouse_of_set(&set->mouse[0], 0, 0, 0x00);
 	set->event = 0x00;
+}
+
+void	machine_pop(t_machine *set)
+{
+	if (!set)
+		return ;
 }

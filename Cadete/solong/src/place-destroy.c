@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-destroy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:16 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/30 18:24:38 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/01 21:26:44 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	place_destroy(t_place *set)
 {
 	if (!set)
 		return ;
+	machine_pop(set->gear);
 }

@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place-set.c                                        :+:      :+:    :+:   */
+/*   chained-next.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 19:22:54 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/01 17:17:03 by mister-code      ###   ########.fr       */
+/*   Created: 2023/07/01 21:30:55 by mister-code       #+#    #+#             */
+/*   Updated: 2023/07/01 21:31:42 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <place.h>
+#include <chained_of.h>
 
-static void	place_function(t_place *set);
-
-void	place_set(t_place *set, t_SystemSet up, t_vi2d size)
+void	chained_next_first(t_chained **head, t_chained *next)
 {
-	if (!set)
+	if (!next)
 		return ;
-	machine_set(set->gear, up, "machine", vi2d_start(size.x, size.y));
-	place_function(set);
+	next->next = *head;
+	if (*head)
+		(*head)->prev = next;
+	*head = next;
 }
 
-static void	place_function(t_place *set)
+void	chained_next_last(t_chained **head, t_chained *next)
 {
-	if (!set)
+	t_chained	*update;
+
+	if (!next)
 		return ;
-	set->init = NULL;
-	set->run = place_run;
-	set->update = NULL;
-	set->pop = NULL;
+	if (!*head)
+	{
+		*head = next;
+		return ;
+	}
+	update = *head;
+	while (update->next)
+		update = update->next;
+	next->prev = update;
+	update->next = next;
 }

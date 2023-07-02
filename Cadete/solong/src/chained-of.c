@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chained-of.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:02:33 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/30 13:15:39 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/01 21:31:47 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,6 @@ t_chained	*chained_push(void *data)
 	set->prev = NULL;
 	set->next = NULL;
 	return (set);
-}
-
-void	chained_next_first(t_chained **head, t_chained *next)
-{
-	if (!next)
-		return ;
-	next->next = *head;
-	if (*head)
-		(*head)->prev = next;
-	*head = next;
-}
-
-void	chained_next_last(t_chained **head, t_chained *next)
-{
-	t_chained	*update;
-
-	if (!next)
-		return ;
-	if (!*head)
-	{
-		*head = next;
-		return ;
-	}
-	update = *head;
-	while (update->next)
-		update = update->next;
-	next->prev = update;
-	update->next = next;
 }
 
 int	chained_max(t_chained *head)

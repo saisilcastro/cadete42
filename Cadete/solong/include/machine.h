@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   machine.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:37:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 19:53:47 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/01 21:26:13 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ typedef struct s_machine{
 }t_machine;
 
 extern void	machine_set(t_machine *set, t_SystemSet up, B8 *title, t_vi2d size);
+extern void	machine_pop(t_machine *set);
 
 #endif //MACHINE_H

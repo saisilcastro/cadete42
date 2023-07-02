@@ -9,9 +9,9 @@ SRC = 	main.c \
 		./src/place-run.c \
 		./src/place-destroy.c \
 		./src/object-of.c \
-		./src/user-init.c \
+		./src/user-init.c ./src/user-pop.c \
 		./src/so_long.c \
-		./src/chained-of.c
+		./src/chained-of.c ./src/chained-next.c
 SRCOBJ = $(SRC:%.c=%.o)
 CFLAG = -Wall -Wextra -Werror
 ENGINE = -lmlx -lX11 -lXext -lm
