@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 10:42:58 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/02 23:14:37 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:42:21 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ struct s_image{
 };
 
 extern t_image	*image_of_push(B32 id, void *buffer, t_vi2d size);
-extern void   	image_of_pop(t_image *image, void *plugin, t_SystemSet up);
+extern void		image_of_pop(t_image *image, void *plugin, t_SystemSet up);
 
 #endif // IMAGE_OF_H

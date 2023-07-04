@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:22:08 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/03 15:35:20 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:34:39 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,10 @@ void	place_run(t_place *set, void *data)
 		return ;
 	if (set->init)
 		set->init(set, data);
-	switch(set->gear->up->system)
-	{
-		case SYSTEM_CONSOLE:
-		break ;
-		case SYSTEM_MINILIBX:
-			mlx_plugin_run(set, data);
-		break ;
-	}
+	if (set->gear->up->system == SYSTEM_CONSOLE)
+		return ;
+	else if (set->gear->up->system == SYSTEM_MINILIBX)
+		mlx_plugin_run(set, data);
 	if (set->update)
 		set->update(set);
 	if (set->gear->up->system == SYSTEM_MINILIBX)

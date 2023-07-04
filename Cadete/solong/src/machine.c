@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:51:44 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/03 14:48:08 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:25:37 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,19 @@ t_STATUS	machine_start(t_machine *set)
 {
 	if (!set)
 		return (Off);
-	switch (set->up->system)
+	if (set->up->system == SYSTEM_CONSOLE)
+		return (On);
+	else if (set->up->system == SYSTEM_MINILIBX)
 	{
-		case SYSTEM_CONSOLE:
-			return (On);
-		break ;
-		case SYSTEM_MINILIBX:
-		{
-			set->plugin = mlx_plugin_push();
-			return (mlx_plugin_start(set));
-		}
-		break ;
+		set->plugin = mlx_plugin_push();
+		return (mlx_plugin_start(set));
 	}
 	return (Off);
 }
-#include <stdio.h>
 
 static void	machine_object_pop(t_machine *set)
 {
-	t_chained *next;
+	t_chained	*next;
 
 	if (!set)
 		return ;
@@ -60,13 +54,13 @@ static void	machine_object_pop(t_machine *set)
 		next = set->object->next;
 		free(set->object);
 		set->object = next;
-	}	
+	}
 }
 
 static void	console_pop(t_machine *set)
 {
-	t_chained *next;
-	
+	t_chained	*next;
+
 	if (!set)
 		return ;
 	while (set->image)
@@ -83,16 +77,11 @@ void	machine_pop(t_machine *set)
 {
 	if (!set)
 		return ;
-	switch(set->up->system)
+	if (set->up->system == SYSTEM_CONSOLE)
+		console_pop(set);
+	else if (set->up->system == SYSTEM_MINILIBX)
 	{
-		case SYSTEM_CONSOLE:
-			console_pop(set);
-		break ;
-		case SYSTEM_MINILIBX:
-		{
-			mlx_plugin_pop(set);
-			machine_object_pop(set);
-		}
-		break ;
+		mlx_plugin_pop(set);
+		machine_object_pop(set);
 	}
 }

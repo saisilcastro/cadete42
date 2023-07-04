@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 20:37:27 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/02 22:24:00 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:37:48 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	mlx_mouse_press(int button, int x, int y, t_machine *set)
 		return (0);
 	set->mouse->x = x;
 	set->mouse->y = y;
-		if (button == 1)
+	if (button == 1)
 		set->mouse->button |= (1 << MACHINE_MOUSE_LEFT);
 	if (button == 2)
 		set->mouse->button |= (1 << MACHINE_MOUSE_MIDDLE);

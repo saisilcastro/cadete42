@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:44:58 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/02 23:21:32 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:18:43 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_object	*object_set(B32 id, B8 *name, t_image *image)
 	return (set);
 }
 
-void		object_pop(t_object *set)
+void	object_pop(t_object *set)
 {
 	if (!set)
 		return ;

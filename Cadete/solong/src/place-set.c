@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:22:54 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/03 17:46:23 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:35:09 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_STATUS	place_start(t_place *set)
 	return (machine_start(set->gear));
 }
 
-extern t_STATUS	place_key_get(t_place *set, t_KEYBOARD_MAP map);
+t_STATUS	place_key_get(t_place *set, t_KEYBOARD_MAP map);
 
 static void	place_function(t_place *set)
 {

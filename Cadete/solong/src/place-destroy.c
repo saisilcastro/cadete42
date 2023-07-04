@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:52:30 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/03 15:29:59 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:28:14 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,13 @@ t_STATUS	place_destroy(t_place *set)
 
 	if (!(set->gear->event & (1 << MACHINE_RUNNING)))
 	{
-		switch(set->gear->up->system)
+		if (set->gear->up->system == SYSTEM_CONSOLE)
+			return (On);
+		else if (set->gear->up->system == SYSTEM_MINILIBX)
 		{
-			case SYSTEM_CONSOLE:
-			break ;
-			case SYSTEM_MINILIBX:
-			{
-				plugin = set->gear->plugin;
-				mlx_destroy_window(plugin->mlx, plugin->window);
-				return (On);
-			}
-			break ;				
+			plugin = set->gear->plugin;
+			mlx_destroy_window(plugin->mlx, plugin->window);
+			return (On);
 		}
 	}
 	return (Off);

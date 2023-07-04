@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:37:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/02 23:59:51 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:43:50 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef struct s_machine{
 	unsigned		event:MAX_EVENT;
 }t_machine;
 
-extern void		machine_set(t_machine *set, t_SystemSet up, B8 *title, t_vi2d size);
+extern void		machine_set(t_machine *set,
+					t_SystemSet up, B8 *title, t_vi2d size);
 extern t_STATUS	machine_start(t_machine *set);
 extern void		machine_pop(t_machine *set);
 

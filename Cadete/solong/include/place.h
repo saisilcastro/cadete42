@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:32:33 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/03 17:46:50 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:44:20 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ struct s_place{
 };
 
 extern void		place_set(t_place *set, t_SystemSet up, t_vi2d size);
-extern t_image *place_image_select(t_place *set, B32 id);
+extern t_image	*place_image_select(t_place *set, B32 id);
 extern void		place_image_load_first(t_place *set, B8 *path, B32 id);
 extern void		place_image_load_last(t_place *set, B8 *path, B32 id);
 extern void		place_map_set(t_place *set, B32 id);

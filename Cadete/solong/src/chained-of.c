@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:02:33 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/02 15:52:36 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:19:48 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,4 @@ static void	chained_function(t_chained *set)
 		return ;
 	set->next_first = chained_next_first;
 	set->next_last = chained_next_last;
-	//set->destroy = 
 }

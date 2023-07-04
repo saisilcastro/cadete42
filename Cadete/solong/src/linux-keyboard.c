@@ -6,13 +6,13 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 21:15:36 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/02 21:18:16 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 05:22:23 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <linux_keyboard_of.h>
 
-t_KEYBOARD_MAP linux_key_get(int keycode)
+t_KEYBOARD_MAP	linux_key_get(int keycode)
 {
 	if (keycode == 0x0030)
 		return (KEY_0);
@@ -137,7 +137,7 @@ t_KEYBOARD_MAP linux_key_get(int keycode)
 	if (keycode == 0xFF53)
 		return (KEY_RIGHT);
 	if (keycode == 0xFF54)
-		return (KEY_DOWN);	
+		return (KEY_DOWN);
 	if (keycode == 0xFF9E)
 		return (KEY_PAD_0);
 	if (keycode == 0xFF9C)
@@ -184,3 +184,4 @@ t_KEYBOARD_MAP linux_key_get(int keycode)
 		return (KEY_F12);
 	return (KEY_NONE);
 }
+
