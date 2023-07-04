@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"object_of.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"image_of.h": "c",
+		"machine.h": "c",
+		"mlx_plugin.h": "c",
+		"mlx.h": "c"
 	}
 }

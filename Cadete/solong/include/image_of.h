@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 10:42:58 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/30 08:36:08 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/02 23:14:37 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,7 @@ struct s_image{
 	t_IMAGE_FLIP	flip;
 };
 
-extern t_image	image_of_init(t_vi2d size, t_pixel color);
-extern t_image	image_of_create_start(void *plugin, t_vi2d size);
-extern t_image	image_of_buffer_init(void *buffer, t_vi2d size);
-extern void		image_of_start(t_image *set, B32 id, t_vi2d size,
-					t_pixel color);
-extern t_image	*image_of_set(void *plugin, B32 id, t_vi2d size);
-extern t_image	*image_of_buffer(void *buffer, B32 id, t_vi2d size);
-extern void		image_of_destroy(void *plugin, t_image *image);
+extern t_image	*image_of_push(B32 id, void *buffer, t_vi2d size);
+extern void   	image_of_pop(t_image *image, void *plugin, t_SystemSet up);
 
 #endif // IMAGE_OF_H

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_of.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 08:20:40 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 12:49:52 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/02 23:20:54 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ struct s_object{
 
 extern t_object	object_start(B32 id, B8 *name, t_image *image);
 extern t_object	*object_set(B32 id, B8 *name, t_image *image);
+extern void		object_pop(t_object *set);
 
 #endif // OBJECT_OF_H

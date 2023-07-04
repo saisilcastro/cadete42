@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object-of.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:44:58 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/30 19:53:10 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/02 23:21:32 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ t_object	*object_set(B32 id, B8 *name, t_image *image)
 	set->angle = 0;
 	set->where = NOWHERE;
 	return (set);
+}
+
+void		object_pop(t_object *set)
+{
+	if (!set)
+		return ;
+	free(set);
 }

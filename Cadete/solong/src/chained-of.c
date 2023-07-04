@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:02:33 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/01 21:31:47 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/02 15:52:36 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #include "chained_of.h"
 #include <stdlib.h>
 
+static void	chained_function(t_chained *set);
+
 t_chained	*chained_push(void *data)
 {
 	t_chained	*set;
@@ -35,6 +37,7 @@ t_chained	*chained_push(void *data)
 	set->data = data;
 	set->prev = NULL;
 	set->next = NULL;
+	chained_function(set);
 	return (set);
 }
 
@@ -65,4 +68,13 @@ void	chained_pop(t_chained **head)
 		free(current);
 		current = next;
 	}
+}
+
+static void	chained_function(t_chained *set)
+{
+	if (!set)
+		return ;
+	set->next_first = chained_next_first;
+	set->next_last = chained_next_last;
+	//set->destroy = 
 }
