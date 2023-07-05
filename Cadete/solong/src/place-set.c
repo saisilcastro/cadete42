@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:22:54 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 13:44:54 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:24:20 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static t_STATUS	place_start(t_place *set)
 	return (machine_start(set->gear));
 }
 
-t_STATUS	place_key_get(t_place *set, B32 map);
-
 static void	place_function(t_place *set)
 {
 	if (!set)
@@ -40,8 +38,9 @@ static void	place_function(t_place *set)
 	set->image_load_first = place_image_load_first;
 	set->image_load_last = place_image_load_last;
 	set->map_set = place_map_set;
+	set->draw_bg = place_draw_bg;
 	set->init = NULL;
-	set->key_down = place_key_get;
+	set->key_down = place_key_down;
 	set->run = place_run;
 	set->update = NULL;
 	set->stop = place_stop;

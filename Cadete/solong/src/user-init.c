@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/03 17:52:17 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/05 16:29:04 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void	user_init(t_place *place, void *data)
 {
 	if (!place || data)
 		return ;
-	place->image_load_last(place, "image", 0);
+	place->image_load_last(place, "img/background/rock.xpm", 0);
 	place->map_set(place, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image-of.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 16:00:21 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:21:50 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/05 12:49:02 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ void	image_of_pop(t_image *image, void *plugin, t_SystemSet up)
 	if (up.system == SYSTEM_CONSOLE)
 		free(image);
 	else if (up.system == SYSTEM_MINILIBX)
-		mlx_destroy_image(plugin, image->buffer);
+	{
+		if (image->buffer)
+			mlx_destroy_image(plugin, image->buffer);
+	}
 }

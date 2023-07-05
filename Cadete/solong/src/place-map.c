@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   place-map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:39:50 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:33:25 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/05 18:31:48 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
+#include <stdio.h>
 
 void	place_map_set(t_place *set, B32 id)
 {

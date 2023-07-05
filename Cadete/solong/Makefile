@@ -26,6 +26,7 @@ SRC = 	main.c \
 		./src/place-key-get.c \
 		./src/place-image-load.c \
 		./src/place-map.c \
+		./src/place-draw-bg.c \
 		./src/place-run.c \
 		./src/place-stop.c \
 		./src/place-destroy.c \

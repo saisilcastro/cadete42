@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-destroy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:52:30 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:28:14 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/05 13:45:04 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_STATUS	place_destroy(t_place *set)
 		else if (set->gear->up->system == SYSTEM_MINILIBX)
 		{
 			plugin = set->gear->plugin;
-			mlx_destroy_window(plugin->mlx, plugin->window);
+			mlx_loop_end(plugin->mlx);
 			return (On);
 		}
 	}

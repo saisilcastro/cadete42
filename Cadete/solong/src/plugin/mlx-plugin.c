@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 17:41:41 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 11:05:45 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:42:28 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	mlx_plugin_pop(t_machine *set)
 		free(set->image);
 		set->image = next;
 	}
+	mlx_destroy_window(plugin->mlx, plugin->window);
+	mlx_destroy_display(plugin->mlx);
 	free(plugin->mlx);
 	free(plugin);
 }

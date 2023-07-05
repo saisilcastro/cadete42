@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-image-plugin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 19:33:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:37:26 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/05 18:27:50 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_STATUS	mlx_image_load(t_image *set, void *mlx, B8 *path)
 			&set->size->x, &set->size->y);
 	if (set->buffer)
 	{
-		mlx_get_data_addr(set->buffer, &set->bpp,
-			&set->length, &set->endian);
+		set->addr = mlx_get_data_addr(set->buffer, &set->bpp,
+				&set->length, &set->endian);
 		return (On);
 	}
 	return (Off);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 00:03:07 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:35:53 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/05 20:42:56 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,16 @@ int	user_update(t_place *set)
 	plugin = set->gear->plugin;
 	if (!plugin)
 		return (0);
-	if (set->key_get(set, KEY_Q))
+	set->draw_bg(set);
+	if (set->key_down(set, KEY_LEFT))
+		set->gear->bg->pos->x -= set->gear->bg->vel->x;
+	if (set->key_down(set, KEY_RIGHT))
+		set->gear->bg->pos->x += set->gear->bg->vel->x;
+	if (set->key_down(set, KEY_UP))
+		set->gear->bg->pos->y -= set->gear->bg->vel->y;
+	if (set->key_down(set, KEY_DOWN))
+		set->gear->bg->pos->y += set->gear->bg->vel->y;
+	if (set->key_down(set, KEY_Q))
 		set->stop(set);
 	return (!set->destroy(set));
 }

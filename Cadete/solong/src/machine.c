@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   machine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:51:44 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 05:25:37 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/05 20:43:47 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	machine_set(t_machine *set, t_SystemSet up, B8 *title, t_vi2d size)
 	set->up[0] = up;
 	set->title = title;
 	set->size[0] = size;
-	set->pos[0] = vi2d_start(WINDOW_LEFT_CENTER, WINDOW_TOP_CENTER);
+	set->pos[0] = vi2d_start(0, 0);
 	set->bg[0] = object_start(0, "background", NULL);
 	set->plugin = NULL;
 	set->image = NULL;

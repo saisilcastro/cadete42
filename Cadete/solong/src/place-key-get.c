@@ -6,13 +6,13 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 23:58:10 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 13:44:31 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:04:53 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
 
-t_STATUS	place_key_get(t_place *set, B32 map)
+t_STATUS	place_key_down(t_place *set, t_KEYBOARD_MAP map)
 {
 	return (set->gear->key[map]);
 }
