@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-plugin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 17:41:41 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:39:16 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 11:05:45 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,6 @@ static int	mlx_expose(t_machine *set)
 	return (0);
 }
 
-int	KEY_PRESS_MASK = (1L << 0);
-int	KEY_RELEASE_MASK = (1L << 1);
-int	MOUSE_PRESS_MASK = (1L << 2);
-int	MOUSE_RELEASE_MASK = (1L << 3);
-int	EXIT_MASK = (1L << 4);
-
 extern int	mlx_key_up(int keycode, t_machine *set);
 extern int	mlx_key_down(int keycode, t_machine *set);
 extern int	mlx_mouse_update(int button, int x, int y, t_machine *set);
@@ -79,7 +73,8 @@ void	mlx_start_event(t_machine *set)
 		mlx_mouse_press, set);
 	mlx_hook(plugin->window, ON_MOUSEUP, MOUSE_RELEASE_MASK,
 		mlx_mouse_release, set);
-	mlx_hook(plugin->window, ON_DESTROY, EXIT_MASK, mlx_destroy_plugin, set);
+	mlx_hook(plugin->window, ON_DESTROY, NO_EVENT_MASK,
+		mlx_destroy_plugin, set);
 }
 
 void	mlx_plugin_pop(t_machine *set)

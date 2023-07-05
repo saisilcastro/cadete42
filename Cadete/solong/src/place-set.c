@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:22:54 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 05:35:09 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 13:44:54 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_STATUS	place_start(t_place *set)
 	return (machine_start(set->gear));
 }
 
-t_STATUS	place_key_get(t_place *set, t_KEYBOARD_MAP map);
+t_STATUS	place_key_get(t_place *set, B32 map);
 
 static void	place_function(t_place *set)
 {
@@ -41,7 +41,7 @@ static void	place_function(t_place *set)
 	set->image_load_last = place_image_load_last;
 	set->map_set = place_map_set;
 	set->init = NULL;
-	set->key_get = place_key_get;
+	set->key_down = place_key_get;
 	set->run = place_run;
 	set->update = NULL;
 	set->stop = place_stop;

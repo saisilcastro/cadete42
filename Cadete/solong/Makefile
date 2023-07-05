@@ -5,6 +5,14 @@ LIB = ./minilibx-linux
 SRC = 	main.c \
 		./src/math-of.c \
 		./src/linux-keyboard.c \
+		./src/linux-key-number.c \
+		./src/linux-key-a-to-l.c \
+		./src/linux-key-m-to-x.c \
+		./src/linux-key-y-to-stop.c \
+		./src/linux-key-tilde-to-pgdn.c \
+		./src/linux-key-left-to-pad7.c \
+		./src/linux-key-pad8-to-f5.c \
+		./src/linux-key-f6-to-f12.c \
 		./src/mouse-of.c \
 		./src/image-of.c \
 		./src/pixel-of.c \

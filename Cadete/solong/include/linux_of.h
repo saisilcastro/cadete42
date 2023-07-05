@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linux_of.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 08:19:08 by mister-code       #+#    #+#             */
-/*   Updated: 2023/06/30 08:22:53 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 10:16:44 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ enum {
 };
 
 enum {
-	NO_EVENT_MASC = 0L,
+	NO_EVENT_MASK = 0L,
 	KEY_PRESS_MASK = (1L << 0),
 	KEY_RELEASE_MASK = (1L<<1),
 	MOUSE_PRESS_MASK = (1L<<2),

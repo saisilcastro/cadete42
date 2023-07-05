@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   chained_of.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 08:12:41 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/02 15:53:57 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/04 10:11:08 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHAINED_OF_H
 # define CHAINED_OF_H
 
-# include "system_of.h"
+# include <system_of.h>
 
 typedef struct s_chained	t_chained;
 struct s_chained{

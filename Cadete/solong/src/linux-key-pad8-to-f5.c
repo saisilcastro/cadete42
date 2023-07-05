@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place-key-get.c                                    :+:      :+:    :+:   */
+/*   linux-key-pad8-to-f5.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 23:58:10 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 13:44:31 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/07/04 10:59:44 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/07/04 11:20:12 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <place.h>
+#include <linux_keyboard_of.h>
 
-t_STATUS	place_key_get(t_place *set, B32 map)
+void	key_pad8_to_f5(t_KEYBOARD_MAP *map, int keycode)
 {
-	return (set->gear->key[map]);
+	if (keycode == 0xFF97)
+		*map = KEY_PAD_8;
+	if (keycode == 0xFF9A)
+		*map = KEY_PAD_9;
+	if (keycode == 0xFFBE)
+		*map = KEY_F1;
+	if (keycode == 0xFFBF)
+		*map = KEY_F2;
+	if (keycode == 0xFFC0)
+		*map = KEY_F3;
+	if (keycode == 0xFFC1)
+		*map = KEY_F4;
+	if (keycode == 0xFFC2)
+		*map = KEY_F5;
 }

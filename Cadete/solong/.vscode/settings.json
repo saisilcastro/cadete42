@@ -5,6 +5,7 @@
 		"image_of.h": "c",
 		"machine.h": "c",
 		"mlx_plugin.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"keyboard_of.h": "c"
 	}
 }
