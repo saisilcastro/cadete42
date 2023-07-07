@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx-keyboard-plugin.c                              :+:      :+:    :+:   */
+/*   mlx-draw-plugin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 20:54:04 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:37:38 by mister-code      ###   ########.fr       */
+/*   Created: 2023/07/06 18:11:02 by mister-code       #+#    #+#             */
+/*   Updated: 2023/07/06 18:18:27 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <machine.h>
-#include <linux_keyboard_of.h>
 #include <plugin/mlx_plugin.h>
-#include <stdio.h>
 
-int	mlx_key_down(int keycode, t_machine *set)
+void	mlx_plugin_draw(t_machine *set, void *buffer, t_vi2d pos)
 {
-	set->key[linux_key_get(keycode)] = On;
-	return (0);
-}
+	t_mlx_plugin	*plugin;
 
-int	mlx_key_up(int keycode, t_machine *set)
-{
-	set->key[linux_key_get(keycode)] = Off;
-	return (0);
+	if (!set || !buffer || set->up->system != SYSTEM_MINILIBX)
+		return ;
+	plugin = set->plugin;
+	mlx_put_image_to_window(plugin->mlx, plugin->window, buffer, pos.x, pos.y);
 }

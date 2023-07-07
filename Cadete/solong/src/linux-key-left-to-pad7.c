@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key-left-to-pad7.c                                 :+:      :+:    :+:   */
+/*   linux-key-left-to-pad7.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:54:23 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 10:58:08 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:47:19 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <linux_keyboard_of.h>
 
-void	key_left_to_pad7(t_KEYBOARD_MAP *map, int keycode)
+void	key_left_to_pad7(t_keyboard_map *map, int keycode)
 {
 	if (keycode == 0xFF51)
 		*map = KEY_LEFT;

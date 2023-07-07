@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-plugin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 17:41:41 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/05 13:42:28 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:50:16 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_mlx_plugin	*mlx_plugin_push(void)
 	return (plugin);
 }
 
-t_STATUS	mlx_plugin_start(t_machine *set)
+t_status	mlx_plugin_start(t_machine *set)
 {
 	void	*lead;
 	B32		w;

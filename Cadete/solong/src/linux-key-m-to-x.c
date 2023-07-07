@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   linux-key-m-to-x.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:42:52 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 10:43:14 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:47:29 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <linux_keyboard_of.h>
 
-void	key_m_to_x(t_KEYBOARD_MAP *map, int keycode)
+void	key_m_to_x(t_keyboard_map *map, int keycode)
 {
 	if (keycode == 0x006D)
 		*map = KEY_M;

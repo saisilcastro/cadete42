@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   linux-key-tilde-to-pgdn.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:51:00 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 11:12:36 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:47:40 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <linux_keyboard_of.h>
 
-void	key_tilde_to_pgdn(t_KEYBOARD_MAP *map, int keycode)
+void	key_tilde_to_pgdn(t_keyboard_map *map, int keycode)
 {
 	if (keycode == 0xFE53)
 		*map = KEY_TILDE;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   linux-key-pad8-to-f5.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:59:44 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 11:20:12 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:49:17 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <linux_keyboard_of.h>
 
-void	key_pad8_to_f5(t_KEYBOARD_MAP *map, int keycode)
+void	key_pad8_to_f5(t_keyboard_map *map, int keycode)
 {
 	if (keycode == 0xFF97)
 		*map = KEY_PAD_8;

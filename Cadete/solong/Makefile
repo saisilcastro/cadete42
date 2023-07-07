@@ -17,16 +17,20 @@ SRC = 	main.c \
 		./src/image-of.c \
 		./src/pixel-of.c \
 		./src/plugin/mlx-plugin.c \
-		./src/plugin/mlx-keyboard-plugin.c \
-		./src/plugin/mlx-mouse-plugin.c \
-		./src/plugin/mlx-image-plugin.c \
-		./src/plugin/mlx-destroy-plugin.c \
+		./src/plugin/mlx-plugin-keyboard.c \
+		./src/plugin/mlx-plugin-mouse.c \
+		./src/plugin/mlx-plugin-image.c \
+		./src/plugin/mlx-plugin-draw.c \
+		./src/plugin/mlx-plugin-destroy.c \
 		./src/machine.c \
+		./src/machine-draw.c \
 		./src/place-set.c \
 		./src/place-key-get.c \
 		./src/place-image-load.c \
+		./src/place-object.c \
 		./src/place-map.c \
 		./src/place-draw-bg.c \
+		./src/place-draw.c \
 		./src/place-run.c \
 		./src/place-stop.c \
 		./src/place-destroy.c \

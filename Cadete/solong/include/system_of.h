@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   system_of.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:38:36 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/05 16:45:45 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:43:30 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SYSTEM_OF_H
 # define SYSTEM_OF_H
 
-typedef enum e_STATUS{
+typedef enum e_status	t_status;
+enum e_status{
 	Off,
 	On
-}t_STATUS;
+};
 
 # define BO void
 # define B8 char
@@ -30,36 +31,36 @@ typedef enum e_STATUS{
 # define BP32 float
 # define BP64 double
 
-typedef enum e_SYSTEM_MAIN{
+typedef enum e_system_main{
 	SYSTEM_CONSOLE,
 	SYSTEM_MINILIBX
-}t_SYSTEM_MAIN;
+}t_system_main;
 
-typedef enum e_SYSTEM_GRAPHIC{
+typedef enum e_system_graphic{
 	GRAPHIC_CONSOLE,
 	GRAPHIC_PRIMARY,
 	GRAPHIC_OPENGL,
 	GRAPHIC_DIRECTX
-}t_SYSTEM_GRAPHIC;
+}t_system_graphic;
 
-typedef enum e_SYSTEM_AUDIO{
+typedef enum e_system_audio{
 	SYSTEM_AUDIO_NONE,
 	SYSTEM_AUDIO_PRIMARY
-}t_SYSTEM_AUDIO;
+}t_system_audio;
 
-typedef enum e_SYSTEM_NETWORK{
+typedef enum e_system_network{
 	SYSTEM_NETWORK_NONE,
 	SYSTEM_NETWORK_PRIMARY
-}t_SYSTEM_NETWORK;
+}t_system_network;
 
 typedef struct s_SystemSet{
-	t_SYSTEM_MAIN		system;
-	t_SYSTEM_GRAPHIC	driver;
-	t_SYSTEM_AUDIO		audio;
-	t_SYSTEM_NETWORK	lan;
+	t_system_main		system;
+	t_system_graphic	driver;
+	t_system_audio		audio;
+	t_system_network	lan;
 }t_SystemSet;
 
-typedef enum s_MACHINE_EVENT{
+typedef enum s_machine_event{
 	MACHINE_RUNNING = 0,
 	MACHINE_FULLSCREEN = 1,
 	MACHINE_MOUSE_MOVE = 2,
@@ -72,37 +73,37 @@ typedef enum s_MACHINE_EVENT{
 	MACHINE_VSYNC = 9,
 	MACHINE_DRAW = 10,
 	MAX_EVENT
-}t_MACHINE_EVENT;
+}t_machine_event;
 
-typedef enum s_WINDOW_STANDARD{
+typedef enum s_window_standard{
 	WINDOW_LEFT_CENTER = 0x7ffd,
 	WINDOW_TOP_CENTER = 0x7ffe,
 	WINDOW_WIDTH = 640,
 	WINDOW_HEIGHT = 480
-}t_WINDOW_STANDARD;
+}t_window_standard;
 
-typedef enum s_MOUSE_BUTTON{
+typedef enum s_mouse_button{
 	MACHINE_MOUSE_LEFT = 0,
 	MACHINE_MOUSE_MIDDLE = 1,
 	MACHINE_MOUSE_RIGHT = 2,
 	MACHINE_MOUSE_MAX
-}t_MOUSE_BUTTON;
+}t_mouse_button;
 
-typedef enum s_MOUSE_WHEEL{
+typedef enum s_mouse_wheel{
 	MOUSE_WHEEL_UP = 0,
 	MOUSE_WHEEL_DOWN = 1,
 	MOUSE_WHEEL_MAX
-}t_MOUSE_WHEEL;
+}t_mouse_wheel;
 
-typedef enum s_MACHINE_TOUCH{
+typedef enum s_machine_touch{
 	MACHINE_FINGER_PRESS
-}t_MACHINE_TOUCH;
+}t_machine_touch;
 
-typedef enum s_MACHINE_JOYSTICK{
+typedef enum s_machine_joystick{
 	MACHINE_JOY_LEFT = 0,
 	MACHINE_JOY_UP = 1,
 	MACHINE_JOY_RIGHT = 2,
 	MACHINE_JOY_DOWN = 3
-}t_MACHINE_JOYSTICK;
+}t_machine_joystick;
 
 #endif // SYSTEM_OF_H

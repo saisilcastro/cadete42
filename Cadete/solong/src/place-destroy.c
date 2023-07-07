@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   place-destroy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:52:30 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/05 13:45:04 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:52:33 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
 
-t_STATUS	place_destroy(t_place *set)
+t_status	place_destroy(t_place *set)
 {
 	t_mlx_plugin	*plugin;
 

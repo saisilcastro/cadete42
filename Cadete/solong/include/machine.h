@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:37:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:43:50 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/06 20:25:59 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ typedef struct s_machine{
 	t_object		bg[1];
 	t_chained		*image;
 	t_chained		*object;
-	t_STATUS		key[255];
+	t_status		key[255];
 	t_mouse			mouse[1];
 	unsigned		event:MAX_EVENT;
 }t_machine;
 
 extern void		machine_set(t_machine *set,
 					t_SystemSet up, B8 *title, t_vi2d size);
-extern t_STATUS	machine_start(t_machine *set);
+extern t_status	machine_start(t_machine *set);
+extern void		machine_draw(t_machine *set, t_object *obj);
 extern void		machine_pop(t_machine *set);
 
 #endif //MACHINE_H

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-draw-bg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:14:32 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/05 19:39:13 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:35:04 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	map_lock(t_place *set)
 
 void	place_draw_bg(t_place *set)
 {
-	t_mlx_plugin	*plugin;
 	void			*buffer;
 	B32				x;
 	B32				y;
@@ -44,10 +43,9 @@ void	place_draw_bg(t_place *set)
 		&& set->gear->bg->image && set->gear->bg->image->buffer)
 	{
 		buffer = set->gear->bg->image->buffer;
-		plugin = set->gear->plugin;
 		map_lock(set);
 		x = -set->gear->bg->pos->x;
 		y = -set->gear->bg->pos->y;
-		mlx_put_image_to_window(plugin->mlx, plugin->window, buffer, x, y);
+		mlx_plugin_draw(set->gear, buffer, vi2d_start(x, y));
 	}
 }

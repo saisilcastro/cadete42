@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-image-plugin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 19:33:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/05 18:27:50 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:50:39 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plugin/mlx_plugin.h>
 
-t_STATUS	mlx_image_load(t_image *set, void *mlx, B8 *path)
+t_status	mlx_image_load(t_image *set, void *mlx, B8 *path)
 {
 	if (!set || !path)
 		return (Off);

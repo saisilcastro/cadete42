@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_of.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 08:17:18 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 11:34:51 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:43:59 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYBOARD_OF_H
 # define KEYBOARD_OF_H
 
-typedef enum e_KEYBOARD_MAP{
+typedef enum e_keyboard_map{
 	KEY_NONE = 0,
 	KEY_A = 1,
 	KEY_B,
@@ -136,6 +136,6 @@ typedef enum e_KEYBOARD_MAP{
 	KEY_NUMLOCK = 225,
 	KEY_CAPSLOCK = 226,
 	KEYBOARD_MAX
-}t_KEYBOARD_MAP;
+}t_keyboard_map;
 
 #endif /* KEYBOARD_OF_H */

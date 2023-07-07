@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   linux-keyboard.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 21:15:36 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 11:03:20 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:47:50 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <linux_keyboard_of.h>
 
-t_KEYBOARD_MAP	linux_key_get(int keycode)
+t_keyboard_map	linux_key_get(int keycode)
 {
-	t_KEYBOARD_MAP	map;
+	t_keyboard_map	map;
 
 	key_number(&map, keycode);
 	key_a_to_l(&map, keycode);
