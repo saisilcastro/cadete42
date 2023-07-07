@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-run.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:22:08 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/04 05:34:39 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/07 20:28:18 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ static void	mlx_plugin_run(t_place *set, void *data)
 {
 	void	*plugin;
 
-	if (!set)
-	{
-		(void)data;
+	if (!set || !data)
 		return ;
-	}
 	plugin = NULL;
 	plugin = ((t_mlx_plugin *)set->gear->plugin)->mlx;
 	if (!plugin)
 		return ;
 	if (set->update)
 		mlx_loop_hook(plugin, set->update, set->gear);
+	printf("running everything\n");
 	mlx_start_event(set->gear);
 }
 

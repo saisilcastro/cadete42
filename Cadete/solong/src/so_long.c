@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:49:09 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/03 07:55:08 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/07 19:07:42 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
-#include <stdio.h>
+#include <map_of.h>
 
 extern void	user_init(t_place *place, void *data);
 extern int	user_update(t_place *place);
 //extern void	user_pop(t_place *place);
 
-void	so_long_execute(char *map)
+void	so_long_execute(char *path)
 {
 	static t_place		place;
 	t_SystemSet			up;
@@ -32,5 +32,5 @@ void	so_long_execute(char *map)
 	place.init = user_init;
 	place.update = user_update;
 	place.pop = NULL;
-	place.run(&place, map);
+	place.run(&place, path);
 }

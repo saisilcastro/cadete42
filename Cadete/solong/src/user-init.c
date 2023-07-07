@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/07 00:02:40 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/07 11:38:34 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	object_create(t_place *set)
 	B32		id;
 
 	id = 0;
-	while (id < 100)
+	while (id < 20)
 	{
 		if (id == 0)
 		{

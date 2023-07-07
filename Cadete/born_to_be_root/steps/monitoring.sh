@@ -1,5 +1,5 @@
 arch=$(uname -a)
-physical_cpu=$(grep "physical_id" /proc/cpuinfo | uniq | wc -l)
+physical_cpu=$(cat /proc/cpuinfo | grep processor | wc -l)
 virtual_cpu=$(grep "processor" /proc/cpuinfo | uniq | wc -l)
 m_used=$(free -m | grep Mem: | awk '{print $3}')
 m_total=$(fcpuree -m | grep Mem: | awk '{print $2}')
@@ -10,7 +10,7 @@ disk_percent=$(df -Bm | grep /dev/ | grep -v /boot | awk '{ud += $3} {fd += $2} 
 cpu_load=$(mpstat | grep all | awk '{printf "%.1f", 100 - $13}')
 last_boot=$(who -b | awk '{print $3,$4}')
 lvm_use=$(lsblk | grep -q '1vm' && echo yes || echo no)
-tcp_con=$(ss -s | awk '$1 == "TCP:" {gsub(/,/,""); print $4 " Working"}')
+tcp_con=$(ss -s | awk '$1 == "TCP:" {gsub(/,/,""); print $4 " ESTABLISHED"}')
 user_log=$(users | wc -l)
 ip_addr=$(hostname -I)
 mac=$(ip link show | awk '$1 == "link/ether" {print $2}')
@@ -25,6 +25,6 @@ echo "CPU load: "$cpu_load
 echo "Last boot: "$last_boot
 echo "LVM use: "$lvm_use
 echo "Connections TCP: "$tcp_con
-echo "User log: "$user_log
-echo "Network: "$ip_addr
+echo "User log: "$user_log 
+echo "Network: IP "$ip_addr "("$mac")"
 echo "Sudo: "$sudo" cmd"

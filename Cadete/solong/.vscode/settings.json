@@ -7,6 +7,7 @@
 		"mlx_plugin.h": "c",
 		"mlx.h": "c",
 		"keyboard_of.h": "c",
-		"pixel_of.h": "c"
+		"pixel_of.h": "c",
+		"map_of.h": "c"
 	}
 }

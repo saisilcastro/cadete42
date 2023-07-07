@@ -6,12 +6,20 @@ install sudo with: sudo apt-get install sudo
 
 mkdir /var/log/sudo
 
+user=lde-cast
+
+gpasswd -a $user sudo
+
+#in /etc/sudoers
+#unmark %sudo ALL-(ALL:ALL) ALL
+
 #enter the folder /etc/sudoers.d/sudoers-specs and change
 
 Defaults	passwd_tries=3
 Defaults	logfile=/var/log/sudo/sudo.log
 Defaults	requiretty
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+Defaults	badpass_message="you're suck a fool, try this fucking again"
 
 #ssh install
 
@@ -117,4 +125,13 @@ iface enp0s3 inet static
 address $ip
 netmas $mask
 
+#samba (in su -)
+
+ufw allow samba
+ufw status #to see if it is allowed
+
+#to acess samba
+#in your file manager go to otherlocations and type
+ip=10.11.200.17
+smb:$ip
 
