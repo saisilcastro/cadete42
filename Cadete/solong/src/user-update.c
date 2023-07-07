@@ -6,13 +6,12 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 00:03:07 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/06 23:32:16 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/06 23:51:13 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include <mlx.h>
-#include <stdio.h>
 
 static void	object_update(t_place *set)
 {
@@ -25,7 +24,6 @@ static void	object_update(t_place *set)
 		object = update->data;
 		if (object->id == 0)
 		{
-			printf("%i %i\n", object->vel->x, object->vel->y);
 			if (set->key_down(set, KEY_LEFT))
 				object->pos->x -= object->vel->x;
 			if (set->key_down(set, KEY_RIGHT))
