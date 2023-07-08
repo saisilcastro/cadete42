@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/07 11:38:34 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:15:30 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	object_create(t_place *set)
 
 void	user_init(t_place *place, void *data)
 {
-	if (!place || data)
+	if (!place || !data)
 		return ;
 	image_load(place);
 	place->gear->bg->pos[0] = vi2d_start(100, 900);
