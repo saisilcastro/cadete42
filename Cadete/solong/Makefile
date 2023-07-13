@@ -3,6 +3,9 @@ INCLUDE = -I./include \
 		  -I./minilibx-linux
 LIB = ./minilibx-linux
 SRC = 	main.c \
+		./src/map-of.c \
+		./src/map-validate.c \
+		./src/map-pop.c \
 		./src/math-of.c \
 		./src/linux-keyboard.c \
 		./src/linux-key-number.c \

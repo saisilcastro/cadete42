@@ -1,0 +1,2 @@
+verilog (hardware language descriptor)
+regressão linear

@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:47:35 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/07 19:05:48 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:31:29 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <system_of.h>
 # include <math_of.h>
+# include <stdlib.h>
 
 typedef struct s_map	t_map;
 struct s_map{
@@ -23,7 +24,9 @@ struct s_map{
 	t_vi2d	size[1];
 };
 
-extern void		map_load(char *path);
-extern t_status	map_scan(t_map *map);
+extern void		map_set(t_map *map);
+extern void		map_load(t_map *map, char *path);
+extern t_status	map_validate(t_map *map);
+extern void		map_pop(t_map *map);
 
 #endif // MAP_OF_H

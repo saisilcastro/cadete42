@@ -6,14 +6,18 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/08 12:15:30 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:50:04 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
+#include <map_of.h>
+#include <unistd.h>
 
 static void	image_load(t_place *set)
 {
+	if (!set)
+		return ;
 	set->image_load_last(set, "img/background/rock.xpm", 0);
 	set->image_load_last(set, "img/sprite/croma.xpm", 1);
 	set->image_load_last(set, "img/sprite/twinsen-front-up.xpm", 2);
@@ -47,10 +51,22 @@ static void	object_create(t_place *set)
 
 void	user_init(t_place *place, void *data)
 {
-	if (!place || !data)
+	t_map	map;
+
+	map_set(&map);
+	if (!place)
 		return ;
+	map_load(&map, data);
+	if (!map_validate(&map))
+	{
+		write(1, "invalid map format\n", 19);
+		map_pop(&map);
+		place->gear->event &= ~(1 << MACHINE_RUNNING);
+		return ;
+	}
 	image_load(place);
 	place->gear->bg->pos[0] = vi2d_start(100, 900);
 	place->map_set(place, 0);
 	object_create(place);
+	map_pop(&map);
 }
