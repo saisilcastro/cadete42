@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/12 18:50:04 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:19:05 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	object_create(t_place *set)
 	}
 }
 
+#include <stdio.h>
+
 void	user_init(t_place *place, void *data)
 {
 	t_map	map;
@@ -57,9 +59,8 @@ void	user_init(t_place *place, void *data)
 	if (!place)
 		return ;
 	map_load(&map, data);
-	if (!map_validate(&map))
+	if (map_validate(&map) != MAP_NO_ERROR)
 	{
-		write(1, "invalid map format\n", 19);
 		map_pop(&map);
 		place->gear->event &= ~(1 << MACHINE_RUNNING);
 		return ;
@@ -69,4 +70,5 @@ void	user_init(t_place *place, void *data)
 	place->map_set(place, 0);
 	object_create(place);
 	map_pop(&map);
+	printf("%i\n", map.collectable);
 }

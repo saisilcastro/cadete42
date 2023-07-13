@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   map-of.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:50:18 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/12 18:45:40 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:18:47 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <map_of.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdio.h>
 
 void	map_set(t_map *map)
 {
 	if (!map)
 		return ;
 	map->data = NULL;
+	map->begin[0] = vi2d_start(0, 0);
 	map->pos[0] = vi2d_start(0, 0);
 	map->size[0] = vi2d_start(0, 0);
+	map->collectable = 0;
 }
 
 static void	malloc_length(t_map *map)
@@ -69,6 +70,10 @@ void	word_write(t_map *map, char *buffer, B32 i, B32 word)
 		return ;
 	while (*(buffer + i))
 	{
+		if (*(buffer + i) == 'P')
+			map->begin[0] = vi2d_start(word, map->pos->x);
+		if (*(buffer + i) == 'C')
+			map->collectable += 1;
 		if (*(buffer + i) == '\n')
 		{
 			i++;

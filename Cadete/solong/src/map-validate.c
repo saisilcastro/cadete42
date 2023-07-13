@@ -3,43 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   map-validate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:30:52 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/12 18:46:54 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:46:53 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <map_of.h>
-#include <stdio.h>
+#include <unistd.h>
 
-static t_status	valid_border(t_map *map)
+static int	ft_strlen(char *str)
 {
-	B32	x;
-	B32	y;
+	int	len;
 
-	if (!map)
-		return (Off);
-	y = -1;
-	while (++y < 2)
-	{
-		x = -1;
-		while (++x < map->size->x)
-		{
-			if (y == 0 && *(*(map->data + 0) + x) != '1')
-				return (Off);
-			if (y == 1 && *(*(map->data + map->size->y - 1) + x) != '1')
-				return (Off);
-		}
-	}
-	return (On);
+	len = 0;
+	while (*(str + len))
+		len++;
+	return (len);
 }
 
-t_status	map_validate(t_map *map)
+static void map_error_msg(t_map_error error)
 {
+	char	*message = "map ok\n";
+	if (error == MAP_NOT_CREATED)
+		message = "map not created\n";
+	else if (error == MAP_INVALID_TOP_BOTTOM)
+		message = "map invalid top | bottom\n";
+	else if (error == MAP_INVALID_MID_BORDER)
+		message = "map invalid mid border\n";
+	write(1, message, ft_strlen(message));
+}
+
+t_map_error	map_validate(t_map *map)
+{
+	t_map_error	error;
+
+	error = MAP_NO_ERROR;
 	if (!map)
-		return (Off);
-	if (valid_border(map))
-		return (On);
-	return (Off);
+		return (MAP_NOT_CREATED);
+	error = map_border_validator(map);
+	if (error != MAP_NO_ERROR)
+	{
+		map_error_msg(error);
+		return (error);
+	}
+	return (error);
 }
