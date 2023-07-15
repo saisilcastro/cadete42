@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:22:54 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/06 14:36:38 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/14 19:30:08 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	place_set(t_place *set, t_SystemSet up, t_vi2d size)
 	if (!set)
 		return ;
 	machine_set(set->gear, up, "machine", vi2d_start(size.x, size.y));
+	set->collect->current = 0;
+	set->collect->max = 0;
 	place_function(set);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:11:03 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/08 11:37:04 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:51:21 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ void	xpm_to_alpha(t_machine *set, t_object *obj)
 	if (!set || !set->bg->image)
 		return ;
 	y = -1;
-	while (++y < obj->image->size->y)
+	while (++y < obj->image->size->y
+		&& obj->pos->y + y >= 0 && obj->pos->y + y <= set->bg->image->size->y)
 	{
 		x = -1;
-		while (++x < obj->image->size->x)
+		while (++x < obj->image->size->x
+			&& obj->pos->x + x >= 0
+			&& obj->pos->x + x <= set->bg->image->size->x)
 		{
 			pixel_from_abgr(&px, image_color_int(obj->image, x, y));
 			if (is_croma(&px, 255))

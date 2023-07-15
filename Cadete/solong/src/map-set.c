@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map-pop.c                                          :+:      :+:    :+:   */
+/*   map-set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 15:57:00 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/14 20:53:19 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/07/14 20:03:47 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/07/14 20:04:22 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <map_of.h>
 
-void	map_pop(t_map *map)
+void	map_set(t_map *map)
 {
-	int	i;
-
 	if (!map)
 		return ;
-	i = 0;
-	if (map->data)
-	{
-		while (*(map->data + i))
-		{
-			free(*(map->data + i));
-			i++;
-		}
-		free(map->data);
-	}
-	i = 0;
-	if (map->validator)
-	{
-		while (*(map->validator + i))
-		{
-			free(*(map->validator + i));
-			i++;
-		}
-		free(map->validator);
-	}
+	map->data = NULL;
+	map->validator = NULL;
+	map->begin[0] = vi2d_start(0, 0);
+	map->pos[0] = vi2d_start(0, 0);
+	map->size[0] = vi2d_start(0, 0);
+	map->collectable = 0;
 }

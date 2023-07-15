@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:32:33 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/12 16:09:53 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:39:58 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@
 # include <plugin/mlx_plugin.h>
 # include <system_of.h>
 
+typedef struct s_collect{
+	B32	current;
+	B32	max;
+}t_collect;
+
 typedef struct s_place	t_place;
 struct s_place
 {
 	t_machine	gear[1];
+	t_collect	collect[1];
 	t_status	(*start)(t_place *);
 	t_image		*(*image_select)(t_place *set, B32 id);
 	void		(*image_load_first)(t_place *set, B8 *path, B32 id);
@@ -61,4 +67,4 @@ extern void		place_stop(t_place *set);
 extern t_status	place_destroy(t_place *set);
 extern void		place_pop(t_place *set);
 
-#endif // PLACE_H
+#endif //PLACE_H

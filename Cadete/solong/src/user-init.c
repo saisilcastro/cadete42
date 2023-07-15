@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/13 18:19:05 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/14 17:30:08 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static void	image_load(t_place *set)
 	if (!set)
 		return ;
 	set->image_load_last(set, "img/background/rock.xpm", 0);
-	set->image_load_last(set, "img/sprite/croma.xpm", 1);
-	set->image_load_last(set, "img/sprite/twinsen-front-up.xpm", 2);
+	set->image_load_last(set, "img/tileset/grass.xpm", 1);
+	set->image_load_last(set, "img/tileset/tree.xpm", 2);
+	set->image_load_last(set, "img/sprite/twinsen-front-up.xpm", 3);
+	set->image_load_last(set, "img/sprite/croma.xpm", 4);
 }
 
 static void	object_create(t_place *set)
@@ -35,21 +37,19 @@ static void	object_create(t_place *set)
 		{
 			pos.x = set->gear->bg->pos->x + (set->gear->size->x / 2);
 			pos.y = set->gear->bg->pos->y + (set->gear->size->y / 2);
-			set->object_next_first(set, id, vi2d_start(pos.x, pos.y),
-				set->image_select(set, 2));
+			set->object_next_last(set, id, vi2d_start(pos.x, pos.y),
+				set->image_select(set, 3));
 		}
 		else
 		{
 			pos.x = rand() % (set->gear->bg->image->size->x);
 			pos.y = rand() % (B32)(set->gear->bg->image->size->y / 1.5);
 			set->object_next_last(set, id, vi2d_start(pos.x, pos.y),
-				set->image_select(set, 1));
+				set->image_select(set, 4));
 		}
 		id++;
 	}
 }
-
-#include <stdio.h>
 
 void	user_init(t_place *place, void *data)
 {
@@ -66,9 +66,8 @@ void	user_init(t_place *place, void *data)
 		return ;
 	}
 	image_load(place);
-	place->gear->bg->pos[0] = vi2d_start(100, 900);
+	place->gear->bg->pos[0] = vi2d_start(100, 2300);
 	place->map_set(place, 0);
 	object_create(place);
 	map_pop(&map);
-	printf("%i\n", map.collectable);
 }

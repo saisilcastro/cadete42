@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   object-of.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:44:58 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/06 23:58:23 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/14 16:27:05 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <object_of.h>
-#define VEL_X 10
-#define VEL_Y 10
+#define VEL_X 6
+#define VEL_Y 6
 
 t_object	object_start(B32 id, B8 *name, t_image *image)
 {

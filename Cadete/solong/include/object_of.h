@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 08:20:40 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/07 11:41:27 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/14 22:18:24 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "system_of.h"
 # include "math_of.h"
 # include "image_of.h"
+
+typedef enum e_object_status{
+	OBJECT_VISIBLE = 0
+}t_object_status;
 
 typedef enum e_object_direction{
 	NOWHERE,
@@ -41,6 +45,7 @@ struct s_object{
 	t_image				*image;
 	BP32				angle;
 	t_object_direction	where;
+	unsigned			status:1;
 };
 
 extern t_object	object_start(B32 id, B8 *name, t_image *image);

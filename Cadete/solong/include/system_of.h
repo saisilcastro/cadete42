@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:38:36 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/10 23:37:06 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/14 22:15:50 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ enum e_status{
 # define B64U unsigned long long
 # define BP32 float
 # define BP64 double
+# define BP128 long double
 
 typedef enum e_system_main{
 	SYSTEM_CONSOLE,

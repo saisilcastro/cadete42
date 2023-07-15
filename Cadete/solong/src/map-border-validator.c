@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map-border-validator.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:11:34 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/13 13:38:20 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/14 19:33:57 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <map_of.h>
 
-static t_map_error  top_bottom_validation(t_map *map, B32 x, B32 y)
+static t_map_error	top_bottom_validation(t_map *map, B32 x, B32 y)
 {
 	while (++y < 2)
 	{
@@ -28,7 +28,7 @@ static t_map_error  top_bottom_validation(t_map *map, B32 x, B32 y)
 	return (MAP_NO_ERROR);
 }
 
-static t_map_error  between_validation(t_map *map, B32 x, B32 y)
+static t_map_error	between_validation(t_map *map, B32 x, B32 y)
 {
 	while (++x < 2)
 	{
@@ -44,23 +44,21 @@ static t_map_error  between_validation(t_map *map, B32 x, B32 y)
 	return (MAP_NO_ERROR);
 }
 
-#include <stdio.h>
-
-t_map_error map_border_validator(t_map *map)
+t_map_error	map_border_validator(t_map *map)
 {
-	B32	x;
-	B32	y;
-    t_map_error error;
+	B32			x;
+	B32			y;
+	t_map_error	error;
 
 	if (!map)
 		return (MAP_NOT_CREATED);
 	x = -1;
 	y = -1;
-    error = top_bottom_validation(map, x, y);
-	if(error != MAP_NO_ERROR)
+	error = top_bottom_validation(map, x, y);
+	if (error != MAP_NO_ERROR)
 		return (error);
 	x = -1;
-    error = between_validation(map, x, y);
+	error = between_validation(map, x, y);
 	if (error != MAP_NO_ERROR)
 		return (error);
 	return (MAP_NO_ERROR);
