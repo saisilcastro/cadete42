@@ -6,7 +6,7 @@
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:14:32 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/06 18:35:04 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/15 22:02:39 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	map_lock(t_place *set)
 {
 	t_vi2d	limit;
 
-	if (!set)
+	if (!set || !set->gear->bg->image)
 		return ;
 	limit.x = set->gear->bg->image->size->x - set->gear->size->x;
 	limit.y = set->gear->bg->image->size->y - set->gear->size->y;
@@ -31,6 +31,27 @@ static void	map_lock(t_place *set)
 		set->gear->bg->pos->y = limit.y;
 }
 
+void		place_draw_sub_bg(t_place *set, B32 id, t_vi2d begin)
+{
+	t_image	*image;
+	t_vi2d	pos;
+	t_pixel	px;
+	B32		i;
+
+	(void)begin;
+	if (!set || !set->gear->bg->image)
+		return ;
+	image = set->image_select(set, id);
+	i = -1;
+	while (++i < image->size->x * image->size->y)
+	{
+		pos.x = (i % image->size->x);
+		pos.y = (i / image->size->x);
+		pixel_from_abgr(&px, image_color_int(image, pos.x, pos.y));
+		pixel_to_int(set->gear->bg->image, &px, vi2d_start(begin.x + pos.x, begin.y + pos.y));
+	}
+}
+
 void	place_draw_bg(t_place *set)
 {
 	void			*buffer;
@@ -39,13 +60,16 @@ void	place_draw_bg(t_place *set)
 
 	if (!set)
 		return ;
-	if (set->gear->up->system == SYSTEM_MINILIBX
-		&& set->gear->bg->image && set->gear->bg->image->buffer)
+	if (set->gear->up->system == SYSTEM_MINILIBX)
 	{
-		buffer = set->gear->bg->image->buffer;
 		map_lock(set);
-		x = -set->gear->bg->pos->x;
-		y = -set->gear->bg->pos->y;
-		mlx_plugin_draw(set->gear, buffer, vi2d_start(x, y));
+		if (set->gear->bg->image && set->gear->bg->image->buffer)
+		{
+			buffer = set->gear->bg->image->buffer;
+			x = -set->gear->bg->pos->x;
+			y = -set->gear->bg->pos->y;
+			mlx_plugin_draw(set->gear, buffer, vi2d_start(x, y));
+		}
 	}
+	set->draw(set);
 }

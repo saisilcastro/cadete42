@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map-pop.c                                          :+:      :+:    :+:   */
+/*   place-camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 15:57:00 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/15 14:59:43 by mister-code      ###   ########.fr       */
+/*   Created: 2023/07/15 13:01:28 by mister-code       #+#    #+#             */
+/*   Updated: 2023/07/15 13:09:24 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <map_of.h>
+#include <place.h>
 
-void	map_pop(t_map *map)
+void    place_camera_object(t_place *set, t_object *obj)
 {
-	int	i;
-
-	if (!map)
-		return ;
-	if (map->data)
-	{
-		i = -1;
-		while (*(map->data + ++i))
-			free(*(map->data + i));
-		free(map->data);
-	}
-	if (map->validator)
-	{
-		i = -1;
-		while (*(map->validator + ++i))
-			free(*(map->validator + i));
-		free(map->validator);
-	}
+    t_vi2d  pos;
+    if (!set)
+        return ;
+    pos.x = obj->pos->x - ((set->gear->size->x - obj->image->size->x) * 0.5);
+    pos.y = obj->pos->y - ((set->gear->size->y - obj->image->size->y) * 0.5);
+    set->gear->bg->pos->x = pos.x;
+    set->gear->bg->pos->y = pos.y;
 }

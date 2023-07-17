@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:49:09 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/12 12:03:21 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/16 00:37:17 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 extern void	user_init(t_place *place, void *data);
 extern int	user_update(t_place *place);
-//extern void	user_pop(t_place *place);
 
 void	so_long_execute(char *path)
 {

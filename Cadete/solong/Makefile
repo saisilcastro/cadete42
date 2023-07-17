@@ -1,10 +1,11 @@
 NAME = solong
 INCLUDE = -I./include \
-		  -I./minilibx-linux
-LIB = ./minilibx-linux
+		  -I./mlx-linux
+LIB = ./mlx-linux
 SRC = 	main.c \
 		./src/map-of.c \
 		./src/map-set.c \
+		./src/map-size.c \
 		./src/map-border-validator.c \
 		./src/map-flood-fill.c \
 		./src/map-validate.c \
@@ -34,6 +35,7 @@ SRC = 	main.c \
 		./src/place-key-get.c \
 		./src/place-image-load.c \
 		./src/place-object.c \
+		./src/place-camera.c \
 		./src/place-map.c \
 		./src/place-draw-bg.c \
 		./src/place-draw.c \
@@ -42,6 +44,8 @@ SRC = 	main.c \
 		./src/place-destroy.c \
 		./src/place-pop.c \
 		./src/object-of.c \
+		./src/object-collision.c \
+		./src/user-object-create.c \
 		./src/user-init.c ./src/user-update.c ./src/user-pop.c \
 		./src/so_long.c \
 		./src/chained-of.c ./src/chained-next.c

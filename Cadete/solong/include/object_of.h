@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_of.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 08:20:40 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/14 22:18:24 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:19:56 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "image_of.h"
 
 typedef enum e_object_status{
-	OBJECT_VISIBLE = 0
+	OBJECT_VISIBLE = 0,
+	OBJECT_MOVING = 1
 }t_object_status;
 
 typedef enum e_object_direction{
@@ -50,6 +51,7 @@ struct s_object{
 
 extern t_object	object_start(B32 id, B8 *name, t_image *image);
 extern t_object	*object_set(B32 id, B8 *name, t_vi2d pos, t_image *image);
+extern t_status	object_collision(t_object *ob1, t_object *ob2);
 extern void		object_pop(t_object *set);
 
 #endif // OBJECT_OF_H

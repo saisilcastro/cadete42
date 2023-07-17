@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object-of.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:44:58 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/14 16:27:05 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/16 08:13:38 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_object	*object_set(B32 id, B8 *name, t_vi2d pos, t_image *image)
 	set->image = image;
 	set->angle = 0;
 	set->where = NOWHERE;
+	set->status = 0x1;
 	return (set);
 }
 

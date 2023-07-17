@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_of.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:47:35 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/14 20:54:57 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/16 00:40:34 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 typedef struct s_map	t_map;
 struct s_map{
-	char	**data;
-	char	**validator;
+	B8	**data;
+	B8	**validator;
 	t_vi2d	begin[1];
 	t_vi2d	pos[1];
 	t_vi2d	size[1];
@@ -36,7 +36,8 @@ typedef enum e_map_error{
 }t_map_error;
 
 extern void			map_set(t_map *map);
-extern void			map_load(t_map *map, char *path);
+extern void			map_load(t_map *map, B8 *path);
+extern void			map_size(t_map *map, B8 *buffer, B32 fd);
 extern t_map_error	map_border_validator(t_map *map);
 extern t_map_error	map_flood_fill(t_map *map);
 extern t_map_error	map_validate(t_map *map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map-flood-fill.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 14:55:11 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/14 21:52:19 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/15 07:14:29 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_map_error	map_flood_fill(t_map *map)
 	i = -1;
 	while (++i < map->size->x * map->size->y)
 	{
-		printf("%c", *(*(map->validator + (i / map->size->x)) + (i % map->size->x)));
-		if ((i % map->size->x + 1) == map->size->x)
-			printf("\n");
+		//printf("%c", *(*(map->validator + (i / map->size->x)) + (i % map->size->x)));
+		// if ((i % map->size->x + 1) == map->size->x)
+		// 	printf("\n");
 	}
 	return (MAP_NO_ERROR);
 }

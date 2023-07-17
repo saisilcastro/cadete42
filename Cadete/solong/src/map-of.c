@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map-of.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:50:18 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/14 20:30:17 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:52:39 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,79 +14,32 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-static void	malloc_length(t_map *map)
+static void	word_write(t_map *map, char *buffer)
 {
-	int	word;
-
-	map->data = (char **)malloc((map->size->y + 1) * sizeof(char *));
-	map->validator = (char **)malloc((map->size->y + 1) * sizeof(char *));
-	if (!map->data || !map->validator)
-		return ;
-	word = 0;
-	while (word < map->size->y)
-	{
-		*(map->data + word)
-			= (char *)malloc((map->size->x + 1) * sizeof(char));
-		*(map->validator + word)
-			= (char *)malloc((map->size->x + 1) * sizeof(char));
-		if (*(map->data + word))
-			*(*(map->data + word) + map->size->x) = '\0';
-		if (*(map->validator + word))
-			*(*(map->validator + word) + map->size->x) = '\0';
-		word++;
-	}
-	if (*(map->data + word))
-		*(*(map->data + word) + map->size->x) = '\0';
-	if (*(map->validator + word))
-		*(*(map->validator + word) + map->size->x) = '\0';
-	map->pos->y = 0;
-}
-
-static void	map_size(t_map *map, char *buffer, int fd)
-{
-	int	size;
+	B32	wd;
 
 	if (!map || !buffer)
 		return ;
-	size = read(fd, buffer, 65535);
-	map->size->x = 0;
-	while (map->size->x < size)
+	wd = 0;
+	while (*buffer)
 	{
-		if (*(buffer + map->size->x) == '\n')
-			break ;
-		map->size->x++;
-	}
-	map->size->y = size / map->size->x;
-	malloc_length(map);
-}
-
-void	word_write(t_map *map, char *buffer, B32 i, B32 word)
-{
-	if (!map || !buffer)
-		return ;
-	while (*(buffer + ++i))
-	{
-		if (*(buffer + i) == 'P')
-			map->begin[0] = vi2d_start(map->pos->x, word);
-		if (*(buffer + i) == 'C')
-			map->collectable += 1;
-		if (*(buffer + i) == '\n')
+		if (*buffer == 'P')
+			map->begin[0] = vi2d_start(map->pos->x, wd);
+		if (*buffer == 'C')
+			map->collectable++;
+		if (*buffer == '\n')
 		{
-			i++;
-			*(*(map->data + word) + map->pos->x) = '\0';
-			if (!*(buffer + i))
-			{
-				*(*(map->data + word) + map->pos->x) = '\0';
-				break ;
-			}
+			buffer++;
+			*(*(map->data + wd) + map->pos->x) = '\0';	
+			if (!*buffer)
+				break;
 			map->pos->x = 0;
-			word++;
+			wd++;
 		}
-		*(*(map->data + word) + map->pos->x)
-			= *(buffer + i);
+		*(*(map->data + wd) + map->pos->x) = *buffer;
+		buffer++;
 		map->pos->x++;
 	}
-	*(map->data + map->size->y) = NULL;
 }
 
 static void	collectable_write(t_map *map)
@@ -106,8 +59,6 @@ static void	collectable_write(t_map *map)
 
 void	map_load(t_map *map, char *path)
 {
-	B32		i;
-	B32		word;
 	int		fd;
 	char	buffer[65535];
 
@@ -115,9 +66,7 @@ void	map_load(t_map *map, char *path)
 		return ;
 	fd = open(path, O_RDONLY);
 	map_size(map, buffer, fd);
-	i = -1;
-	word = 0;
-	word_write(map, buffer, i, word);
+	word_write(map, buffer);
 	collectable_write(map);
 	close(fd);
 }

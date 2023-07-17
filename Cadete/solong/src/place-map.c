@@ -3,15 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   place-map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:39:50 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/05 18:31:48 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/15 02:41:26 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
 #include <stdio.h>
+
+void		place_map_create(t_place *set, B32 id, t_vi2d size)
+{
+	t_mlx_plugin	*plugin;
+	t_image			*image;
+
+	if (!set || set->gear->bg->image)
+		return ;
+	if (set->gear->up->system == SYSTEM_MINILIBX)
+	{
+		plugin = set->gear->plugin;
+		image = image_of_push(id, NULL, size);
+		mlx_create_image(image, plugin->mlx);
+		chained_next_last(&set->gear->image, chained_push(image));
+		set->map_set(set, 0);
+	}
+}
 
 void	place_map_set(t_place *set, B32 id)
 {
