@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   object-collision.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:05:35 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/15 22:13:55 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/17 23:50:12 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <object_of.h>
 
-static t_status    object_x_collision(t_object *ob1, t_object *ob2)
+static t_status	object_x_collision(t_object *ob1, t_object *ob2)
 {
 	B32	ob1_left;
 	B32	ob1_right;
@@ -30,7 +30,7 @@ static t_status    object_x_collision(t_object *ob1, t_object *ob2)
 	return (On);
 }
 
-static t_status    object_y_collision(t_object *ob1, t_object *ob2)
+static t_status	object_y_collision(t_object *ob1, t_object *ob2)
 {
 	B32	ob1_top;
 	B32	ob1_bottom;
@@ -44,7 +44,7 @@ static t_status    object_y_collision(t_object *ob1, t_object *ob2)
 	ob2_top = ob2->pos->y;
 	ob2_bottom = ob2->pos->y + ob2->image->size->y;
 	if (ob1_top > ob2_bottom || ob1_bottom < ob2_top)
-			return (Off);
+		return (Off);
 	return (On);
 }
 

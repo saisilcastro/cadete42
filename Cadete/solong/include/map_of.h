@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_of.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:47:35 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/16 00:40:34 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/17 22:02:23 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 typedef struct s_map	t_map;
 struct s_map{
-	B8	**data;
-	B8	**validator;
+	B8		**data;
+	B8		**validator;
 	t_vi2d	begin[1];
 	t_vi2d	pos[1];
 	t_vi2d	size[1];
@@ -28,11 +28,16 @@ struct s_map{
 };
 
 typedef enum e_map_error{
-	MAP_NOT_CREATED = -3,
-	MAP_INVALID_TOP_BOTTOM = -2,
-	MAP_INVALID_MID_BORDER = -1,
-	MAP_OBJECT_INVALID = 0,
-	MAP_NO_ERROR = 1
+	MAP_NOT_CREATED = -8,
+	MAP_INVALID_TOP_BOTTOM,
+	MAP_INVALID_MID_BORDER,
+	MAP_MULTIPLE_START_POINT,
+	MAP_MULTIPLE_EXIT,
+	MAP_COLLECTABLE_INACCESSIBLE,
+	MAP_EXIT_INACCESSIBLE,
+	MAP_ENEMY_TRAP,
+	MAP_OBJECT_INVALID,
+	MAP_NO_ERROR
 }t_map_error;
 
 extern void			map_set(t_map *map);

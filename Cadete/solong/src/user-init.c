@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/16 07:38:35 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/17 22:06:28 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static void	floor_load(t_place *set, t_map *map)
 	if (!set || !image)
 		return ;
 	set->map_create(set, 0,
-		vi2d_start(image->size->x * map->size->x, image->size->y * map->size->y));
+		vi2d_start(image->size->x * map->size->x,
+			image->size->y * map->size->y));
 	pos = vi2d_start(0, 0);
-	 i = 0;
-	 while (i < map->size->x * map->size->y)
+	i = 0;
+	while (i < map->size->x * map->size->y)
 	{
 		pos.x = (i % map->size->x) * image->size->x;
 		pos.y = (i / map->size->x) * image->size->y;

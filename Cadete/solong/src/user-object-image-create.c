@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   user-object-image-create.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 15:47:19 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/17 18:07:52 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/07/17 18:06:43 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/07/17 18:07:42 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include <so_long.h>
 
-# include <place.h>
-# include <map_of.h>
+void	image_create(t_place *set, t_map *map, t_vi2d *pos, t_vi2d id)
+{
+	t_image	*image;
 
-extern void	image_create(t_place *set, t_map *map, t_vi2d *pos, t_vi2d id);
-extern void	object_create(t_place *set, t_map *map);
-extern void	so_long_execute(char *path);
-
-#endif // SO_LONG_H
+	if (!set || !map || !pos)
+		return ;
+	image = set->image_select(set, 1);
+	if (image)
+	{
+		pos->x = (id.y % map->size->x) * image->size->x;
+		pos->y = (id.y / map->size->x) * image->size->y;
+	}
+}

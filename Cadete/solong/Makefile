@@ -44,7 +44,13 @@ SRC = 	main.c \
 		./src/place-destroy.c \
 		./src/place-pop.c \
 		./src/object-of.c \
+		./src/object-route.c \
+		./src/object-route-up.c \
+		./src/object-route-mid.c \
+		./src/object-route-down.c \
 		./src/object-collision.c \
+		./src/object-block.c \
+		./src/user-object-image-create.c \
 		./src/user-object-create.c \
 		./src/user-init.c ./src/user-update.c ./src/user-pop.c \
 		./src/so_long.c \

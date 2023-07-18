@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   map-size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:46:46 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/15 15:43:36 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/17 10:44:17 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <map_of.h>
 #include <unistd.h>
 
-static B8 **matrix_allocate(B32 size)
+static B8	**matrix_allocate(B32 size)
 {
-    B8    **matrix;
+	B8	**matrix;
 
-    matrix = (B8 **)malloc((size + 1) * sizeof(B8 *));
-    return (matrix);
+	matrix = (B8 **)malloc((size + 1) * sizeof(B8 *));
+	return (matrix);
 }
 
-static void word_allocate(B8 **word, B32 len)
+static void	word_allocate(B8 **word, B32 len)
 {
-    B32 i;
+	B32	i;
 
-    *word = (B8 *)malloc((len + 1) * sizeof(B8));
-    if (*word)
-        return ;
-    i = -1;
-    while (++i < len)
-        *(word + i) = '\0';
+	*word = (B8 *)malloc((len + 1) * sizeof(B8));
+	if (*word)
+		return ;
+	i = -1;
+	while (++i < len)
+		*(*word + i) = '\0';
 }
 
 static void	malloc_length(t_map *map)
@@ -41,14 +41,14 @@ static void	malloc_length(t_map *map)
 		return ;
 	map->data = matrix_allocate(map->size->y);
 	map->validator = matrix_allocate(map->size->y);
-    word = -1;
-    while (++word < map->size->y)
-    {
-        word_allocate(&*(map->data + word), map->size->x);
-        word_allocate(&*(map->validator + word), map->size->x);
-    }
-    *(map->data + map->size->y) = NULL;
-    *(map->validator + map->size->y) = NULL;
+	word = -1;
+	while (++word < map->size->y)
+	{
+		word_allocate(&*(map->data + word), map->size->x);
+		word_allocate(&*(map->validator + word), map->size->x);
+	}
+	*(map->data + map->size->y) = NULL;
+	*(map->validator + map->size->y) = NULL;
 }
 
 void	map_size(t_map *map, B8 *buffer, B32 fd)
@@ -66,6 +66,6 @@ void	map_size(t_map *map, B8 *buffer, B32 fd)
 		map->size->x++;
 	}
 	map->size->y = size / map->size->x;
-    *(buffer + size) = '\0';
+	*(buffer + size) = '\0';
 	malloc_length(map);
 }

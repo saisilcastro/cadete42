@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 00:03:07 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/16 08:19:53 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/18 00:50:20 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static t_object	*place_collision(t_chained *update, t_object *hero)
+t_object	*place_collision(t_chained *update, t_object *hero)
 {
 	t_object	*obj;
 	t_chained	*current;
@@ -47,10 +47,22 @@ static void	hero_control(t_place *set, t_object *hero)
 void	hero_update(t_place *set, t_object *object)
 {
 	t_object	*collider;
+	t_object	fake_hero;
 
 	if (object->id == set->hero_id)
 	{
+		fake_hero.id = object->id;
+		fake_hero.pos[0] = vi2d_start(object->pos->x, object->pos->y);
+		fake_hero.status = object->status;
+		fake_hero.vel[0] = vi2d_start(object->vel->x, object->vel->y);
+		fake_hero.image = object->image;
+		hero_control(set, &fake_hero);
+		object_route(&fake_hero);
+		collider = place_collision(set->gear->object, &fake_hero);
+		if (collider && !strcmp(collider->name, "block"))
+			return ;
 		hero_control(set, object);
+		object_route(object);
 		collider = place_collision(set->gear->object, object);
 		if (collider && !strcmp(collider->name, "collect"))
 		{
@@ -58,12 +70,8 @@ void	hero_update(t_place *set, t_object *object)
 			set->collect->current++;
 			printf("%i %i\n", set->collect->current, set->collect->max);
 		}
-		if (collider && !strcmp(collider->name, "exit"))
-			printf("exiting\n");
-		if (collider && !strcmp(collider->name, "block"))
-			object->vel[0] = vi2d_start(-6, -6);
-		else
-			object->vel[0] = vi2d_start(6, 6);
+		else if (collider && !strcmp(collider->name, "exit"))
+			object->status &= ~(1 << OBJECT_VISIBLE);
 	}
 }
 

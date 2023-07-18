@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:30:52 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/14 20:58:15 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/17 22:09:54 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ static void	map_error_msg(t_map_error error)
 		message = "map invalid top | bottom\n";
 	else if (error == MAP_INVALID_MID_BORDER)
 		message = "map invalid mid border\n";
+	else if (error == MAP_COLLECTABLE_INACCESSIBLE)
+		message = "collectable inaccessible in the map";
+	else if (error == MAP_EXIT_INACCESSIBLE)
+		message = "exit inaccessible in the map";
 	write(1, message, ft_strlen(message));
 }
 
@@ -51,5 +55,10 @@ t_map_error	map_validate(t_map *map)
 		return (error);
 	}
 	error = map_flood_fill(map);
+	if (error != MAP_NO_ERROR)
+	{
+		map_error_msg(error);
+		return (error);
+	}
 	return (error);
 }

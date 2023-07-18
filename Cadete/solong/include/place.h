@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:32:33 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/16 13:18:37 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/17 11:40:30 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ struct s_place
 	t_image		*(*image_select)(t_place *set, B32 id);
 	void		(*image_load_first)(t_place *set, B8 *path, B32 id);
 	void		(*image_load_last)(t_place *set, B8 *path, B32 id);
-	t_object	*(*object_select)(t_place * set, B32 id);
+	t_object	*(*object_select)(t_place *set, B32 id);
 	void		(*object_next_first)(t_place *set, t_object *obj);
 	void		(*object_next_last)(t_place *set, t_object *obj);
 	void		(*map_create)(t_place *set, B32 id, t_vi2d size);
