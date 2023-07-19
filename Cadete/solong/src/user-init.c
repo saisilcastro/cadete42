@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/17 22:06:28 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/18 23:22:43 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	floor_load(t_place *set, t_map *map)
 	i = 0;
 	while (i < map->size->x * map->size->y)
 	{
-		pos.x = (i % map->size->x) * image->size->x;
-		pos.y = (i / map->size->x) * image->size->y;
+		pos.x = ((i % map->size->x) * image->size->x);
+		pos.y = ((i / map->size->x) * image->size->y);
 		set->draw_sub_bg(set, 1, pos);
 		i++;
 	}

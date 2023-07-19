@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-object-create.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 08:37:38 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/17 19:58:50 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/18 23:29:22 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	start_item_image(char *array)
 	array[1] = 'C';
 	array[2] = 'E';
 	array[3] = 'P';
-	array[4] = 2;
-	array[5] = 3;
-	array[6] = 4;
-	array[7] = 5;
+	array[4] = 'F';
+	array[5] = 2;
+	array[6] = 3;
+	array[7] = 4;
+	array[8] = 5;
+	array[9] = 6;
 }
 
 static void	object_name(char **name, char letter)
@@ -43,15 +45,18 @@ static void	object_treat(t_place *set, t_vi2d i, t_map *map)
 	t_vi2d		pos;
 	t_object	*obj;
 	char		*name;
-	char		arr[8];
+	char		arr[10];
 
 	start_item_image(arr);
 	object_name(&name, arr[i.y]);
-	image_create(set, map, &pos, vi2d_start(arr[i.y + 4], i.x));
-	obj = object_set(i.x, name, pos, set->image_select(set, arr[i.y + 4]));
-	obj->dest[0] = vi2d_start(pos.x, pos.y);
+	image_create(set, map, &pos, vi2d_start(arr[i.y + 5], i.x));
+	obj = object_set(i.x, name, pos, set->image_select(set, arr[i.y + 5]));
+	obj->pos[0] = vi2d_start(pos.x, pos.y);
 	if (arr[i.y] == 'P')
+	{
+		obj->pos->y += 1;
 		set->hero_id = i.x;
+	}
 	if (arr[i.y] == 'E')
 		obj->status &= ~(1 << OBJECT_VISIBLE);
 	if (arr[i.y] == 'C')
@@ -69,7 +74,7 @@ static void	remain_load(t_place *set, t_map *map, char *array)
 	while (++id.x < map->size->x * map->size->y)
 	{
 		id.y = -1;
-		while (++id.y < 4)
+		while (++id.y < 5)
 		{
 			if (*(*(map->data + (id.x / map->size->x))
 					+ (id.x % map->size->x)) == array[id.y])
@@ -80,7 +85,7 @@ static void	remain_load(t_place *set, t_map *map, char *array)
 
 void	object_create(t_place *set, t_map *map)
 {
-	char	array[8];
+	char	array[10];
 
 	if (!set || !map)
 		return ;

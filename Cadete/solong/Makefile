@@ -35,6 +35,7 @@ SRC = 	main.c \
 		./src/place-key-get.c \
 		./src/place-image-load.c \
 		./src/place-object.c \
+		./src/place-object-collision.c \
 		./src/place-camera.c \
 		./src/place-map.c \
 		./src/place-draw-bg.c \

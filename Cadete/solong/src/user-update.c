@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 00:03:07 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/18 00:50:20 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:26:59 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
 #include <mlx.h>
 #include <stdio.h>
 #include <string.h>
-
-t_object	*place_collision(t_chained *update, t_object *hero)
-{
-	t_object	*obj;
-	t_chained	*current;
-
-	current = update;
-	while (current)
-	{
-		obj = current->data;
-		if (obj->id != hero->id && object_collision(hero, obj))
-			return (obj);
-		current = current->next;
-	}
-	return (NULL);
-}
 
 static void	hero_control(t_place *set, t_object *hero)
 {
@@ -44,26 +28,31 @@ static void	hero_control(t_place *set, t_object *hero)
 		hero->pos->y += hero->vel->y;
 }
 
+t_status	place_block_move(t_place *set, t_object *hero)
+{
+	t_object	fake_hero;
+	t_object	*collider;
+
+	object_clone(hero, &fake_hero);
+	hero_control(set, &fake_hero);
+	object_route(&fake_hero);
+	collider = place_object_collision(set, &fake_hero);
+	if (collider && !strcmp(collider->name, "block"))
+		return (On);
+	return (Off);
+}
+
 void	hero_update(t_place *set, t_object *object)
 {
 	t_object	*collider;
-	t_object	fake_hero;
 
 	if (object->id == set->hero_id)
 	{
-		fake_hero.id = object->id;
-		fake_hero.pos[0] = vi2d_start(object->pos->x, object->pos->y);
-		fake_hero.status = object->status;
-		fake_hero.vel[0] = vi2d_start(object->vel->x, object->vel->y);
-		fake_hero.image = object->image;
-		hero_control(set, &fake_hero);
-		object_route(&fake_hero);
-		collider = place_collision(set->gear->object, &fake_hero);
-		if (collider && !strcmp(collider->name, "block"))
+		if (place_block_move(set, object))
 			return ;
 		hero_control(set, object);
 		object_route(object);
-		collider = place_collision(set->gear->object, object);
+		collider = place_object_collision(set, object);
 		if (collider && !strcmp(collider->name, "collect"))
 		{
 			collider->status &= ~(1 << OBJECT_VISIBLE);

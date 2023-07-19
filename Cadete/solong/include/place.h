@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:32:33 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/17 11:40:30 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/18 02:37:36 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ extern void		place_image_load_last(t_place *set, B8 *path, B32 id);
 extern t_object	*place_object_select(t_place *set, B32 id);
 extern void		place_object_next_first(t_place *set, t_object *obj);
 extern void		place_object_next_last(t_place *set, t_object *obj);
+extern t_object	*place_object_collision(t_place *set, t_object *selected);
 extern void		place_object_pop(t_chained **set, t_object *rem);
 extern void		place_map_create(t_place *set, B32 id, t_vi2d size);
 extern void		place_map_set(t_place *set, B32 id);
