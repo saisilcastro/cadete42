@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   machine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:51:44 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/06 20:24:54 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/20 00:39:02 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	console_pop(t_machine *set)
 
 void	machine_pop(t_machine *set)
 {
-	if (!set)
+	if (!set || !set->plugin)
 		return ;
 	if (set->up->system == SYSTEM_CONSOLE)
 		console_pop(set);

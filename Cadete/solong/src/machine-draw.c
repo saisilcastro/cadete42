@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:11:03 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/19 21:15:09 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:46:59 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	machine_draw(t_machine	*set, t_object *obj)
 
 	if (!set)
 		return ;
-	if (set->up->system == SYSTEM_MINILIBX)
+	if (set->up->system == SYSTEM_MINILIBX
+		&& obj->status & (1 << OBJECT_VISIBLE))
 	{
 		x = obj->pos->x - set->bg->pos->x;
 		y = obj->pos->y - set->bg->pos->y;

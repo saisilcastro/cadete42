@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map-error-message.c                                :+:      :+:    :+:   */
+/*   map-message-error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:54:17 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/19 19:58:30 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:57:12 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 char	*map_message_error(t_map_error error)
 {
 	if (error == MAP_NOT_CREATED)
-		return ("map not created\n");
+		return ("Error\nmap not created\n");
 	else if (error == MAP_INVALID_TOP_BOTTOM)
-		return ("map invalid top | bottom\n");
+		return ("Error\nmap invalid top | bottom\n");
 	else if (error == MAP_MULTIPLE_START_POINT)
-		return ("map multiple start point\n");
+		return ("Error\nmap multiple start point\n");
 	else if (error == MAP_NO_EXIT)
-		return ("map no exit\n");
+		return ("Error\nmap no exit\n");
 	else if (error == MAP_NO_START_POINT)
-		return ("map no start point\n");
+		return ("Error\nmap no start point\n");
 	else if (error == MAP_MULTIPLE_EXIT)
-		return ("map multiple exit\n");
+		return ("Error\nmap multiple exit\n");
 	else if (error == MAP_INVALID_CHAR)
-		return ("map invalid char\n");
+		return ("Error\nmap invalid char\n");
 	else if (error == MAP_NO_COLLECTABLE)
-		return ("map no collectable item\n");
+		return ("Error\nmap no collectable item\n");
 	else if (error == MAP_INVALID_MID_BORDER)
-		return ("map invalid mid border\n");
+		return ("Error\nmap invalid mid border\n");
 	else if (error == MAP_COLLECTABLE_INACCESSIBLE)
-		return ("collectable inaccessible in the map");
+		return ("Error\ncollectable inaccessible in the map");
 	else if (error == MAP_EXIT_INACCESSIBLE)
-		return ("exit inaccessible in the map");
+		return ("Error\nexit inaccessible in the map");
 	return ("map ok");
 }

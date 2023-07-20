@@ -9,6 +9,7 @@
 		"keyboard_of.h": "c",
 		"pixel_of.h": "c",
 		"map_of.h": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"place.h": "c"
 	}
 }

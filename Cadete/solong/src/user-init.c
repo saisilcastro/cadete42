@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/19 18:49:28 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 22:26:03 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_status	image_load(t_place *set)
 	{
 		if (!set->image_load_last(set, path[i], i + 1))
 		{
-			write(1, "image doesn't exist\n", 20);
+			write(1, "Error\nimage doesn't exist\n", 26);
 			set->gear->event &= ~(1 << MACHINE_RUNNING);
 			return (Off);
 		}
@@ -57,7 +57,7 @@ static void	floor_load(t_place *set, t_map *map)
 			image->size->y * map->size->y));
 	if (!set->gear->bg->image)
 	{
-		write(1, "there is no background", 22);
+		write(1, "Error\nthere is no background", 28);
 		set->gear->event &= ~(1 << MACHINE_RUNNING);
 	}
 	pos = vi2d_start(0, 0);

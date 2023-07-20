@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:32:33 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/19 14:22:06 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/20 01:04:40 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ struct s_place
 	t_machine	gear[1];
 	t_collect	collect[1];
 	B32			hero_id;
+	B32			step;
 	t_status	(*start)(t_place *);
 	t_image		*(*image_select)(t_place *set, B32 id);
 	t_status	(*image_load_first)(t_place * set, B8 *path, B32 id);
@@ -64,6 +65,7 @@ extern void		place_map_create(t_place *set, B32 id, t_vi2d size);
 extern void		place_map_set(t_place *set, B32 id);
 extern void		place_run(t_place *set, void *data);
 extern void		place_camera_object(t_place *set, t_object *obj);
+extern t_status	place_block_move(t_place *set, t_object *hero);
 extern t_status	place_key_down(t_place *set, t_keyboard_map map);
 extern void		place_draw_sub_bg(t_place *set, B32 id, t_vi2d begin);
 extern void		place_draw_bg(t_place *set);

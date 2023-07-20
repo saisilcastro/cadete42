@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place-start.c                                      :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 15:27:37 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:35:33 by mister-code      ###   ########.fr       */
+/*   Created: 2023/04/24 16:58:59 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/04/29 15:14:51 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <place.h>
+#include "libft.h"
 
-void	place_start(t_place *set)
+int	ft_isalnum(int arg)
 {
-	if (!set)
-		return ;
-	machine_start(set->gear);
+	if ((arg > 64 && arg < 91)
+		|| (arg > 96 && arg < 123)
+		|| (arg > 47 && arg < 58))
+		return (8);
+	return (0);
 }

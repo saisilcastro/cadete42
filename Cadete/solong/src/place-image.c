@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:45:37 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:33:13 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/20 00:16:37 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	place_image_pop(t_place *set)
 	while (set->gear->image)
 	{
 		next = set->gear->image->next;
-		image_pop(set->gear->image->data);
+		image_of_pop(set->gear->image->data,
+			((t_mlx_plugin *)set->gear->plugin)->mlx, set->gear->up[0]);
 		free(set->gear->image);
 		set->gear->image = next;
 	}

@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:50:18 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/19 18:33:26 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 23:42:48 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void	word_write(t_map *map, char *buffer)
 			if (!*buffer)
 				break ;
 			map->pos->x = 0;
-			wd++;
+			wd += 1;
 		}
 		*(*(map->data + wd) + map->pos->x) = *buffer;
-		buffer++;
 		map->pos->x++;
+		buffer++;
 	}
 }
 
@@ -66,10 +66,18 @@ t_map_error	map_load(t_map *map, char *path)
 		return (MAP_NOT_CREATED);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
+	{
+		write(1, "Error\nnot reading the fucking file\n", 35);
 		return (MAP_INVALID_FILE);
-	map_size(map, buffer, fd);
-	word_write(map, buffer);
-	collectable_write(map);
+	}
+	if (map_size(map, buffer, fd))
+	{
+		word_write(map, buffer);
+		collectable_write(map);
+		close(fd);
+		return (MAP_NO_ERROR);
+	}
+	write(1, "Error\nmap not created\n", 22);
 	close(fd);
-	return (MAP_NO_ERROR);
+	return (MAP_NOT_CREATED);
 }

@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 19:44:58 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/19 21:16:41 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/20 00:54:00 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ t_object	*object_set(B32 id, B8 *name, t_vi2d pos, t_image *image)
 	set->where = SOUTH;
 	set->status = 0x1;
 	return (set);
+}
+
+t_status	object_name_is(t_object *obj, B8 *name)
+{
+	char	*buffer;
+
+	if (!obj || !name)
+		return (Off);
+	buffer = obj->name;
+	while (*buffer && *name && *buffer == *name)
+	{
+		buffer++;
+		name++;
+	}
+	if (!*buffer && !*name)
+		return (On);
+	return (Off);
 }
 
 void	object_clone(t_object *src, t_object *dest)

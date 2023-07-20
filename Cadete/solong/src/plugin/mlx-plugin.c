@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-plugin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 17:41:41 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/06 13:50:16 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/20 00:42:27 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_status	mlx_plugin_start(t_machine *set)
 	if (!set)
 		return (Off);
 	((t_mlx_plugin *)set->plugin)->mlx = mlx_init();
-	if (!((t_mlx_plugin *)set->plugin)->mlx)
+	if (!set->plugin || !((t_mlx_plugin *)set->plugin)->mlx)
 		return (Off);
 	lead = ((t_mlx_plugin *)set->plugin)->mlx;
 	w = set->size->x;
@@ -92,8 +92,10 @@ void	mlx_plugin_pop(t_machine *set)
 		free(set->image);
 		set->image = next;
 	}
-	mlx_destroy_window(plugin->mlx, plugin->window);
-	mlx_destroy_display(plugin->mlx);
+	if (plugin->mlx && plugin->window)
+		mlx_destroy_window(plugin->mlx, plugin->window);
+	if (plugin->mlx)
+		mlx_destroy_display(plugin->mlx);
 	free(plugin->mlx);
 	free(plugin);
 }

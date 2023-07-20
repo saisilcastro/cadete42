@@ -1,8 +1,9 @@
-NAME = solong
+NAME = so_long
 INCLUDE = -I./include \
 		  -I./mlx-linux
 LIB = ./mlx-linux
 SRC = 	main.c \
+		./src/map-valid-file.c \
 		./src/map-of.c \
 		./src/map-set.c \
 		./src/map-size.c \
@@ -35,11 +36,13 @@ SRC = 	main.c \
 		./src/machine-draw.c \
 		./src/place-set.c \
 		./src/place-key-get.c \
+		./src/place-image.c \
 		./src/place-image-load.c \
 		./src/place-object.c \
 		./src/place-object-collision.c \
 		./src/place-camera.c \
 		./src/place-map.c \
+		./src/place-block-move.c \
 		./src/place-draw-bg.c \
 		./src/place-draw.c \
 		./src/place-run.c \
@@ -58,6 +61,7 @@ SRC = 	main.c \
 		./src/user-init.c ./src/user-update.c ./src/user-pop.c \
 		./src/so_long.c \
 		./src/chained-of.c ./src/chained-next.c
+#		./src/place-start.c 
 SRCOBJ = $(SRC:%.c=%.o)
 CFLAG = -Wall -Wextra -Werror
 ENGINE = -lmlx -lX11 -lXext -lm

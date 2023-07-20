@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:47:35 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/19 20:59:57 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 22:33:25 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ typedef enum e_map_error{
 	MAP_NO_ERROR
 }t_map_error;
 
-extern void			map_valid_file(char *path);
+extern t_status		map_valid_file(char *path);
 extern void			map_set(t_map *map);
 extern t_map_error	map_load(t_map *map, B8 *path);
-extern void			map_size(t_map *map, B8 *buffer, B32 fd);
+extern t_status		map_size(t_map *map, B8 *buffer, B32 fd);
 extern char			*map_message_error(t_map_error error);
 extern t_map_error	map_border_validator(t_map *map);
 extern t_map_error	map_count_char_error(t_map *map);

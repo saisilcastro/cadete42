@@ -6,40 +6,65 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 00:03:07 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/19 18:03:07 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/20 01:19:34 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include <mlx.h>
-#include <stdio.h>
-#include <string.h>
+
+static void	ft_putnbr_fd(int n, int fd)
+{
+	char	multiply;
+	char	number;
+
+	multiply = 1;
+	if (n > -10 && n < 0)
+		write(fd, "-", 1);
+	while (n <= -10 || n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		n %= 10;
+	}
+	if (n < 0)
+		multiply = -1;
+	number = (n * multiply) + 48;
+	write(fd, &number, 1);
+}
+
+static void	show_step(t_place *set, t_object *hero)
+{
+	if (hero->status & (1 << OBJECT_VISIBLE))
+	{
+		write(1, "moves ", 6);
+		ft_putnbr_fd(set->step++, 1);
+		write(1, "\n", 1);
+	}
+}
 
 static void	hero_control(t_place *set, t_object *hero)
 {
 	place_camera_object(set, hero);
-	if (set->key_down(set, KEY_LEFT))
+	if (set->key_down(set, KEY_LEFT) || set->key_down(set, KEY_A))
+	{
+		show_step(set, hero);
 		hero->dest->x -= hero->vel->x;
-	else if (set->key_down(set, KEY_RIGHT))
+	}
+	if (set->key_down(set, KEY_RIGHT) || set->key_down(set, KEY_D))
+	{
+		show_step(set, hero);
 		hero->dest->x += hero->vel->x;
-	else if (set->key_down(set, KEY_UP))
+	}
+	if (set->key_down(set, KEY_UP) || set->key_down(set, KEY_W))
+	{
+		show_step(set, hero);
 		hero->dest->y -= hero->vel->y;
-	else if (set->key_down(set, KEY_DOWN))
+	}
+	if (set->key_down(set, KEY_DOWN) || set->key_down(set, KEY_S))
+	{
+		show_step(set, hero);
 		hero->dest->y += hero->vel->y;
-}
-
-t_status	place_block_move(t_place *set, t_object *hero)
-{
-	t_object	fake_hero;
-	t_object	*collider;
-
-	object_clone(hero, &fake_hero);
-	hero_control(set, &fake_hero);
-	object_route(&fake_hero);
-	collider = place_object_collision(set, &fake_hero);
-	if (collider && !strcmp(collider->name, "block"))
-		return (On);
-	return (Off);
+	}
 }
 
 void	hero_update(t_place *set, t_object *object)
@@ -53,43 +78,37 @@ void	hero_update(t_place *set, t_object *object)
 		hero_control(set, object);
 		object_route(object);
 		collider = place_object_collision(set, object);
-		if (collider && !strcmp(collider->name, "collect"))
+		if (object_name_is(collider, "collect"))
 		{
 			collider->status &= ~(1 << OBJECT_VISIBLE);
 			set->collect->current++;
-			printf("%i %i\n", set->collect->current, set->collect->max);
 		}
-		else if (collider && !strcmp(collider->name, "exit"))
+		else if (object_name_is(collider, "exit"))
 			object->status &= ~(1 << OBJECT_VISIBLE);
 	}
 }
 
-static void	object_update(t_place *set)
+int	user_update(t_place *set)
 {
 	t_chained	*update;
 	t_object	*object;
 
+	if (!set)
+		return (0);
+	if (set->key_down(set, KEY_ESC))
+		set->stop(set);
 	update = set->gear->object;
 	while (update)
 	{
 		object = update->data;
 		hero_update(set, object);
-		if (!strcmp(object->name, "exit"))
+		if (object_name_is(object, "exit"))
 		{
 			if (set->collect->current == set->collect->max)
 				object->status |= (1 << OBJECT_VISIBLE);
 		}
 		update = update->next;
 	}
-}
-
-int	user_update(t_place *set)
-{
-	if (!set)
-		return (0);
-	if (set->key_down(set, KEY_ESC))
-		set->stop(set);
-	object_update(set);
 	set->draw_bg(set);
 	return (!set->destroy(set));
 }
