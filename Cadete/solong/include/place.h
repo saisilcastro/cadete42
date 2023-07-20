@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:32:33 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/18 02:37:36 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/19 14:22:06 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <machine.h>
 # include <plugin/mlx_plugin.h>
 # include <system_of.h>
+# include <unistd.h>
 
 typedef struct s_collect{
 	B32	current;
@@ -31,8 +32,8 @@ struct s_place
 	B32			hero_id;
 	t_status	(*start)(t_place *);
 	t_image		*(*image_select)(t_place *set, B32 id);
-	void		(*image_load_first)(t_place *set, B8 *path, B32 id);
-	void		(*image_load_last)(t_place *set, B8 *path, B32 id);
+	t_status	(*image_load_first)(t_place * set, B8 *path, B32 id);
+	t_status	(*image_load_last)(t_place * set, B8 *path, B32 id);
 	t_object	*(*object_select)(t_place *set, B32 id);
 	void		(*object_next_first)(t_place *set, t_object *obj);
 	void		(*object_next_last)(t_place *set, t_object *obj);
@@ -52,8 +53,8 @@ struct s_place
 
 extern void		place_set(t_place *set, t_SystemSet up, t_vi2d size);
 extern t_image	*place_image_select(t_place *set, B32 id);
-extern void		place_image_load_first(t_place *set, B8 *path, B32 id);
-extern void		place_image_load_last(t_place *set, B8 *path, B32 id);
+extern t_status	place_image_load_first(t_place *set, B8 *path, B32 id);
+extern t_status	place_image_load_last(t_place *set, B8 *path, B32 id);
 extern t_object	*place_object_select(t_place *set, B32 id);
 extern void		place_object_next_first(t_place *set, t_object *obj);
 extern void		place_object_next_last(t_place *set, t_object *obj);

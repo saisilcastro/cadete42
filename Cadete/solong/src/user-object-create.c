@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-object-create.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 08:37:38 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/18 23:29:22 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/19 20:01:40 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static void	object_treat(t_place *set, t_vi2d i, t_map *map)
 	object_name(&name, arr[i.y]);
 	image_create(set, map, &pos, vi2d_start(arr[i.y + 5], i.x));
 	obj = object_set(i.x, name, pos, set->image_select(set, arr[i.y + 5]));
-	obj->pos[0] = vi2d_start(pos.x, pos.y);
+	obj->dest[0] = vi2d_start(pos.x, pos.y);
 	if (arr[i.y] == 'P')
 	{
-		obj->pos->y += 1;
+		obj->dest->y += 1;
 		set->hero_id = i.x;
 	}
 	if (arr[i.y] == 'E')
@@ -87,7 +87,7 @@ void	object_create(t_place *set, t_map *map)
 {
 	char	array[10];
 
-	if (!set || !map)
+	if (!set || !set->gear->bg->image || !map)
 		return ;
 	start_item_image(array);
 	remain_load(set, map, array);

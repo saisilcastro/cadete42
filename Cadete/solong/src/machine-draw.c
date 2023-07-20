@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:11:03 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/14 15:51:21 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:15:09 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,24 @@ t_status	is_croma(t_pixel *set, B8U alpha)
 	return (Off);
 }
 
+t_status	is_in_background(t_machine *set, t_object *obj)
+{
+	if (!set || !set->bg->image || !obj
+		|| obj->pos->x < set->bg->pos->x
+		|| obj->pos->y < set->bg->pos->y
+		|| obj->pos->x > set->bg->pos->x + set->bg->image->size->x
+		|| obj->pos->y > set->bg->pos->y + set->bg->image->size->y)
+		return (Off);
+	return (On);
+}
+
 void	xpm_to_alpha(t_machine *set, t_object *obj)
 {
 	B32		x;
 	B32		y;
 	t_pixel	px;
 
-	if (!set || !set->bg->image)
+	if (!set || !set->bg->image || !is_in_background(set, obj))
 		return ;
 	y = -1;
 	while (++y < obj->image->size->y

@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:46:46 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/17 10:44:17 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:08:07 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	map_size(t_map *map, B8 *buffer, B32 fd)
 	if (!map || !buffer)
 		return ;
 	size = read(fd, buffer, 65535);
+	if (size == -1)
+		return ;
 	map->size->x = 0;
 	while (map->size->x < size)
 	{

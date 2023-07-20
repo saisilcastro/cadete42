@@ -6,7 +6,9 @@ SRC = 	main.c \
 		./src/map-of.c \
 		./src/map-set.c \
 		./src/map-size.c \
+		./src/map-message-error.c \
 		./src/map-border-validator.c \
+		./src/map-count-char.c \
 		./src/map-flood-fill.c \
 		./src/map-validate.c \
 		./src/map-pop.c \

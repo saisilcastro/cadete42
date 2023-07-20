@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-plugin-image.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 19:33:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/15 02:38:02 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/19 17:00:24 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 t_status	mlx_create_image(t_image *set, void *mlx)
 {
-	if (!set)
+	if (!set || !mlx)
 		return (Off);
-
 	set->buffer = mlx_new_image(mlx, set->size->x, set->size->y);
 	if (set->buffer)
 	{

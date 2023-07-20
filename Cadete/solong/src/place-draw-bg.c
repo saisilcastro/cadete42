@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place-draw-bg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:14:32 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/15 22:02:39 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/19 16:37:43 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,24 @@ static void	map_lock(t_place *set)
 		set->gear->bg->pos->y = limit.y;
 }
 
-void		place_draw_sub_bg(t_place *set, B32 id, t_vi2d begin)
+void	place_draw_sub_bg(t_place *set, B32 id, t_vi2d begin)
 {
 	t_image	*image;
 	t_vi2d	pos;
 	t_pixel	px;
 	B32		i;
 
-	(void)begin;
-	if (!set || !set->gear->bg->image)
-		return ;
 	image = set->image_select(set, id);
+	if (!set || !image || !set->gear->bg->image)
+		return ;
 	i = -1;
 	while (++i < image->size->x * image->size->y)
 	{
 		pos.x = (i % image->size->x);
 		pos.y = (i / image->size->x);
 		pixel_from_abgr(&px, image_color_int(image, pos.x, pos.y));
-		pixel_to_int(set->gear->bg->image, &px, vi2d_start(begin.x + pos.x, begin.y + pos.y));
+		pixel_to_int(set->gear->bg->image, &px,
+			vi2d_start(begin.x + pos.x, begin.y + pos.y));
 	}
 }
 

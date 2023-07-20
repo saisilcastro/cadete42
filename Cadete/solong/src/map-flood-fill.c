@@ -6,16 +6,16 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 14:55:11 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/17 22:04:47 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:50:34 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <map_of.h>
-#include <stdio.h>
+#include <unistd.h>
 
 void	flood_fill(char **map, t_vi2d size, t_vi2d begin)
 {
-	if (*(*(map + begin.y) + begin.x) == '1'
+	if (!map || *(*(map + begin.y) + begin.x) == '1'
 		|| *(*(map + begin.y) + begin.x) == 'F'
 		|| *(*(map + begin.y) + begin.x) == 'T')
 		return ;

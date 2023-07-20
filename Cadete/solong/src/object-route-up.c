@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:00:05 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/17 20:14:04 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:46:34 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static t_status	north_dir(t_object *obj)
 {
 	obj->where = NORTH;
 	obj->status |= (1 << OBJECT_MOVING);
-	obj->dest->y -= obj->vel->y;
-	if (obj->dest->y <= obj->pos->y)
+	obj->pos->y -= obj->vel->y;
+	if (obj->pos->y <= obj->dest->y)
 	{
 		obj->status &= ~(1 << OBJECT_MOVING);
-		obj->dest->y = obj->pos->y;
+		obj->pos->y = obj->dest->y;
 		return (On);
 	}
 	return (Off);
@@ -30,14 +30,14 @@ static t_status	ne_dir(t_object *obj)
 {
 	obj->where = NORTHEAST;
 	obj->status |= (1 << OBJECT_MOVING);
-	obj->dest->x += obj->vel->x;
-	obj->dest->y -= obj->vel->y;
-	if (obj->dest->y <= obj->pos->y)
-		obj->dest->y = obj->pos->y;
-	if (obj->dest->x >= obj->pos->x)
+	obj->pos->x += obj->vel->x;
+	obj->pos->y -= obj->vel->y;
+	if (obj->pos->y <= obj->dest->y)
+		obj->pos->y = obj->dest->y;
+	if (obj->pos->x >= obj->dest->x)
 	{
 		obj->status &= ~(1 << OBJECT_MOVING);
-		obj->dest->x = obj->pos->x;
+		obj->pos->x = obj->dest->x;
 		return (On);
 	}
 	return (Off);
@@ -47,14 +47,14 @@ static t_status	nw_dir(t_object *obj)
 {
 	obj->where = NORTHWEST;
 	obj->status |= (1 << OBJECT_MOVING);
-	obj->dest->x -= obj->vel->x;
-	obj->dest->y -= obj->vel->y;
-	if (obj->dest->y <= obj->pos->y)
-		obj->dest->y = obj->pos->y;
-	if (obj->dest->x <= obj->pos->x)
+	obj->pos->x -= obj->vel->x;
+	obj->pos->y -= obj->vel->y;
+	if (obj->pos->y <= obj->dest->y)
+		obj->pos->y = obj->dest->y;
+	if (obj->pos->x <= obj->dest->x)
 	{
 		obj->status &= ~(1 << OBJECT_MOVING);
-		obj->dest->x = obj->pos->x;
+		obj->pos->x = obj->dest->x;
 		return (On);
 	}
 	return (Off);
@@ -62,13 +62,13 @@ static t_status	nw_dir(t_object *obj)
 
 t_status	up_dir(t_object *obj)
 {
-	if (obj->dest->y > obj->pos->y)
+	if (obj->pos->y > obj->dest->y)
 	{
-		if (obj->dest->x == obj->pos->x)
+		if (obj->pos->x == obj->dest->x)
 			return (north_dir(obj));
-		if (obj->dest->x < obj->pos->x)
+		if (obj->pos->x < obj->dest->x)
 			return (ne_dir(obj));
-		if (obj->dest->x > obj->pos->x)
+		if (obj->pos->x > obj->dest->x)
 			return (nw_dir(obj));
 	}
 	return (Off);

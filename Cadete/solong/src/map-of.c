@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map-of.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 16:50:18 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/15 15:52:39 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/19 18:33:26 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void	word_write(t_map *map, char *buffer)
 		if (*buffer == '\n')
 		{
 			buffer++;
-			*(*(map->data + wd) + map->pos->x) = '\0';	
+			*(*(map->data + wd) + map->pos->x) = '\0';
 			if (!*buffer)
-				break;
+				break ;
 			map->pos->x = 0;
 			wd++;
 		}
@@ -57,16 +57,19 @@ static void	collectable_write(t_map *map)
 	*(map->validator + map->size->y) = NULL;
 }
 
-void	map_load(t_map *map, char *path)
+t_map_error	map_load(t_map *map, char *path)
 {
-	int		fd;
-	char	buffer[65535];
+	int			fd;
+	char		buffer[65535];
 
 	if (!map || !path)
-		return ;
+		return (MAP_NOT_CREATED);
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (MAP_INVALID_FILE);
 	map_size(map, buffer, fd);
 	word_write(map, buffer);
 	collectable_write(map);
 	close(fd);
+	return (MAP_NO_ERROR);
 }

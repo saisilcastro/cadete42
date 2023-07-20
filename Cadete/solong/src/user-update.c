@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 00:03:07 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/18 13:26:59 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/19 18:03:07 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 static void	hero_control(t_place *set, t_object *hero)
 {
 	place_camera_object(set, hero);
-	if (set->key_down(set, KEY_A))
-		hero->pos->x -= hero->vel->x;
-	if (set->key_down(set, KEY_D))
-		hero->pos->x += hero->vel->x;
-	if (set->key_down(set, KEY_W))
-		hero->pos->y -= hero->vel->y;
-	if (set->key_down(set, KEY_S))
-		hero->pos->y += hero->vel->y;
+	if (set->key_down(set, KEY_LEFT))
+		hero->dest->x -= hero->vel->x;
+	else if (set->key_down(set, KEY_RIGHT))
+		hero->dest->x += hero->vel->x;
+	else if (set->key_down(set, KEY_UP))
+		hero->dest->y -= hero->vel->y;
+	else if (set->key_down(set, KEY_DOWN))
+		hero->dest->y += hero->vel->y;
 }
 
 t_status	place_block_move(t_place *set, t_object *hero)
