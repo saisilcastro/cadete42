@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx-draw-plugin.c                                  :+:      :+:    :+:   */
+/*   mlx-plugin-draw.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:11:02 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/06 18:18:27 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/20 19:40:21 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plugin/mlx_plugin.h>
+#include <mlx_plugin.h>
 
 void	mlx_plugin_draw(t_machine *set, void *buffer, t_vi2d pos)
 {

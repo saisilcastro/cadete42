@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx-plugin-keyboard.c                              :+:      :+:    :+:   */
+/*   place-camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 20:54:04 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/20 19:39:30 by mister-code      ###   ########.fr       */
+/*   Created: 2023/07/15 13:01:28 by mister-code       #+#    #+#             */
+/*   Updated: 2023/07/20 09:03:41 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <machine.h>
-#include <linux_keyboard_of.h>
-#include <mlx_plugin.h>
-#include <stdio.h>
+#include <place.h>
 
-int	mlx_key_down(int keycode, t_machine *set)
+void	place_camera_object(t_place *set, t_object *obj)
 {
-	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = On;
-	return (0);
-}
+	t_vi2d	pos;
 
-int	mlx_key_up(int keycode, t_machine *set)
-{
 	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = Off;
-	return (0);
+		return ;
+	pos.x = obj->pos->x - ((set->gear->size->x - obj->image->size->x) * 0.5);
+	pos.y = obj->pos->y - ((set->gear->size->y - obj->image->size->y) * 0.5);
+	set->gear->bg->pos->x = pos.x;
+	set->gear->bg->pos->y = pos.y;
 }

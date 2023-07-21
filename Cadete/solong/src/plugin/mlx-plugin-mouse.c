@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx-mouse-plugin.c                                 :+:      :+:    :+:   */
+/*   mlx-plugin-mouse.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 20:37:27 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/04 05:37:48 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/20 19:39:45 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <machine.h>
-#include <bit_of.h>
-#include <plugin/mlx_plugin.h>
+#include <mlx_plugin.h>
 
 int	mlx_mouse_update(int button, int x, int y, t_machine *set)
 {

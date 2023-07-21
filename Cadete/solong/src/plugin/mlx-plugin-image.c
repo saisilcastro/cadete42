@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-plugin-image.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 19:33:47 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/19 17:00:24 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:40:12 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plugin/mlx_plugin.h>
+#include <mlx_plugin.h>
 
 t_status	mlx_create_image(t_image *set, void *mlx)
 {
@@ -26,7 +26,7 @@ t_status	mlx_create_image(t_image *set, void *mlx)
 	return (Off);
 }
 
-t_status	mlx_image_load(t_image *set, void *mlx, B8 *path)
+t_status	mlx_image_load(t_image *set, void *mlx, char *path)
 {
 	if (!set || !path)
 		return (Off);

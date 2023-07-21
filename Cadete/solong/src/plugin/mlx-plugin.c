@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx-plugin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 17:41:41 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/20 00:42:27 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/20 23:38:19 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plugin/mlx_plugin.h>
-#include <mlx.h>
+#include <mlx_plugin.h>
 
 t_mlx_plugin	*mlx_plugin_push(void)
 {
@@ -26,8 +25,8 @@ t_mlx_plugin	*mlx_plugin_push(void)
 t_status	mlx_plugin_start(t_machine *set)
 {
 	void	*lead;
-	B32		w;
-	B32		h;
+	int		w;
+	int		h;
 
 	if (!set)
 		return (Off);

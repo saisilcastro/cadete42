@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx-plugin-keyboard.c                              :+:      :+:    :+:   */
+/*   math-of.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 20:54:04 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/20 19:39:30 by mister-code      ###   ########.fr       */
+/*   Created: 2023/06/30 19:34:01 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/07/20 09:25:22 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <machine.h>
-#include <linux_keyboard_of.h>
-#include <mlx_plugin.h>
-#include <stdio.h>
+#include <math_of.h>
 
-int	mlx_key_down(int keycode, t_machine *set)
+t_vi2d	vi2d_start(int x, int y)
 {
-	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = On;
-	return (0);
+	t_vi2d	set;
+
+	set.x = x;
+	set.y = y;
+	return (set);
 }
 
-int	mlx_key_up(int keycode, t_machine *set)
+t_vf2d	vf2d_start(float x, float y)
 {
-	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = Off;
-	return (0);
+	t_vf2d	set;
+
+	set.x = x;
+	set.y = y;
+	return (set);
 }

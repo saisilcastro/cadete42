@@ -10,6 +10,6 @@ int	main(void)
 	float	w = 800;
 	float	piece = 300;
 
-	printf("%f\n", normalise(500, 800, 4));
+	printf("%f\n", normalise(piece, w, 1));
 	return (0);
 }

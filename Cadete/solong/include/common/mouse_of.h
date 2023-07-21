@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx-plugin-keyboard.c                              :+:      :+:    :+:   */
+/*   mouse_of.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 20:54:04 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/20 19:39:30 by mister-code      ###   ########.fr       */
+/*   Created: 2023/05/21 10:43:14 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/07/20 09:15:58 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <machine.h>
-#include <linux_keyboard_of.h>
-#include <mlx_plugin.h>
-#include <stdio.h>
+#ifndef MOUSE_OF_H
+# define MOUSE_OF_H
 
-int	mlx_key_down(int keycode, t_machine *set)
-{
-	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = On;
-	return (0);
-}
+# include "system_of.h"
 
-int	mlx_key_up(int keycode, t_machine *set)
-{
-	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = Off;
-	return (0);
-}
+typedef struct s_mouse{
+	int	x;
+	int	y;
+	unsigned	button:MACHINE_MOUSE_MAX;
+	unsigned	wheel:MOUSE_WHEEL_MAX;
+}t_mouse;
+
+extern void	mouse_of_set(t_mouse *set, int x, int y, unsigned int button);
+
+#endif // MOUSE_OF_H

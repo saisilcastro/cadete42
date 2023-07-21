@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx-plugin-keyboard.c                              :+:      :+:    :+:   */
+/*   mouse-of.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 20:54:04 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/20 19:39:30 by mister-code      ###   ########.fr       */
+/*   Created: 2023/06/30 19:42:00 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/07/20 09:25:37 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <machine.h>
-#include <linux_keyboard_of.h>
-#include <mlx_plugin.h>
-#include <stdio.h>
+#include <mouse_of.h>
 
-int	mlx_key_down(int keycode, t_machine *set)
+void	mouse_of_set(t_mouse *set, int x, int y,
+	unsigned int button)
 {
 	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = On;
-	return (0);
-}
-
-int	mlx_key_up(int keycode, t_machine *set)
-{
-	if (!set)
-		return (-1);
-	set->key[linux_key_get(keycode)] = Off;
-	return (0);
+		return ;
+	set->x = x;
+	set->y = y;
+	set->button = button;
+	set->wheel = 0x00;
 }
