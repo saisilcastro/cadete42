@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user-init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:38:43 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/20 09:30:52 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/21 22:31:18 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,18 @@ static void	path_image(char *path[6])
 	*(path + 1) = "img/tileset/tree.xpm";
 	*(path + 2) = "img/tileset/jewel.xpm";
 	*(path + 3) = "img/tileset/exit.xpm";
-	*(path + 4) = "img/sprite/twinsen-front-up.xpm";
-	*(path + 5) = "img/sprite/croma.xpm";
+	*(path + 4) = "img/sprite/twinsen-ft-down.xpm";
+	*(path + 5) = "img/sprite/mage1.xpm";
+}
+
+static int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*(str + i))
+		i++;
+	return (i);
 }
 
 static t_status	image_load(t_place *set)
@@ -36,6 +46,7 @@ static t_status	image_load(t_place *set)
 		if (!set->image_load_last(set, path[i], i + 1))
 		{
 			write(1, "Error\nimage doesn't exist\n", 26);
+			write(1, path[i], ft_strlen(path[i]));
 			set->gear->event &= ~(1 << MACHINE_RUNNING);
 			return (Off);
 		}
@@ -71,7 +82,7 @@ static void	floor_load(t_place *set, t_map *map)
 	}
 }
 
-void	map_init(t_place *set, void *data)
+void	user_init(t_place *set, void *data)
 {
 	t_map	map;
 
@@ -96,9 +107,4 @@ void	map_init(t_place *set, void *data)
 		object_create(set, &map);
 	}
 	map_pop(&map);
-}
-
-void	user_init(t_place *set, void *data)
-{
-	map_init(set, data);
 }

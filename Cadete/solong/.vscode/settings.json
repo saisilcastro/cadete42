@@ -10,6 +10,7 @@
 		"pixel_of.h": "c",
 		"map_of.h": "c",
 		"typeinfo": "c",
-		"place.h": "c"
+		"place.h": "c",
+		"x.h": "c"
 	}
 }

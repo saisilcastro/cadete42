@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:59:15 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/06/29 12:53:16 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/21 17:38:33 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <stdio.h>
+#include <stdlib.h>
 
 extern char			*ft_strdup(char *str);
 extern int			ft_strlen(char *str);

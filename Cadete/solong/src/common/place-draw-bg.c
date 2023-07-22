@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   place-draw-bg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:14:32 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/20 09:28:49 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/21 14:54:30 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
-#include <stdio.h>
 
 static void	map_lock(t_place *set)
 {
@@ -54,6 +53,7 @@ void	place_draw_sub_bg(t_place *set, int id, t_vi2d begin)
 
 void	place_draw_bg(t_place *set)
 {
+	t_mlx_plugin	*plugin;
 	void			*buffer;
 	int				x;
 	int				y;
@@ -62,6 +62,8 @@ void	place_draw_bg(t_place *set)
 		return ;
 	if (set->gear->up->system == SYSTEM_MINILIBX)
 	{
+		plugin = set->gear->plugin;
+		mlx_clear_window(plugin->mlx, plugin->window);
 		map_lock(set);
 		if (set->gear->bg->image && set->gear->bg->image->buffer)
 		{

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   user-pop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 16:47:02 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/02 17:22:49 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/21 10:31:52 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
-#include <stdio.h>
 
 void	user_pop(t_place *set)
 {

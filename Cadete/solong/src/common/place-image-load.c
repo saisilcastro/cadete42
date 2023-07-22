@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   place-image-load.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
+/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 16:14:55 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/20 09:29:20 by mister-code      ###   ########.fr       */
+/*   Updated: 2023/07/21 16:53:56 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <place.h>
 
-t_status	place_image_load_first(t_place *set, char *path, int id)
+int	place_image_load_first(t_place *set, char *path, int id)
 {
 	t_image			*image;
 
@@ -40,7 +40,7 @@ t_status	place_image_load_first(t_place *set, char *path, int id)
 	return (Off);
 }
 
-t_status	place_image_load_last(t_place *set, char *path, int id)
+int	place_image_load_last(t_place *set, char *path, int id)
 {
 	t_image			*image;
 

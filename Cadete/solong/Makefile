@@ -5,8 +5,7 @@ INCLUDE = -I./include/plugin \
 		  -I./include/bonus \
 		  -I./mlx-linux
 LIB = ./mlx-linux
-VPATH = src: ./ src: ./src/common src: ./src/plugin src:  ./src/mandatory
-vpath %.c ../src/common
+VPATH = src: ./ src: ./src/common src: ./src/plugin src: ./src/mandatory src: ./src/bonus
 SRC_FILE_COMMON = chained-of.c chained-next.c \
 				map-valid-file.c \
 				map-of.c \
@@ -60,26 +59,44 @@ SRC_FILE_PLUGIN = mlx-plugin.c \
 				mlx-plugin-mouse.c \
 				mlx-plugin-image.c \
 				mlx-plugin-draw.c \
+				mlx-putchar.c \
 				mlx-plugin-destroy.c
 SRC_FILE_MANDATORY = user-object-image-create.c \
 					user-object-create.c \
 					user-init.c user-update.c user-pop.c \
 					so_long.c
+SRC_FILE_BONUS = user-image-animation_bonus.c \
+				 user-object-image-create_bonus.c \
+				 user-object-create_bonus.c \
+				 user-init_bonus.c user-update_bonus.c user-pop_bonus.c \
+				 place-print_bonus.c \
+				 itoa-base.c \
+				 so_long_bonus.c
 SRC = ${SRC_FILE_COMMON} \
 	  ${SRC_FILE_PLUGIN} \
 	  ${SRC_FILE_MANDATORY} \
 	  main.c
+SRC_BONUS = ${SRC_FILE_COMMON} \
+			${SRC_FILE_PLUGIN} \
+			${SRC_FILE_BONUS} \
+	  		main.c
 OBJ = ./obj/
 SRCOBJ = $(SRC:%.c=${OBJ}%.o)
+SRCOBJ_BONUS = $(SRC_BONUS:%.c=${OBJ}%.o)
 CFLAG = -Wall -Wextra -Werror
 ENGINE = -lmlx -lX11 -lXext -lm
 
 
 all: $(NAME)
 $(NAME): $(SRCOBJ)
-	@$(CC) ${SRCOBJ} $(INCLUDE) -L$(LIB) $(ENGINE) -o $(NAME) $(CFLAG)
+	@$(CC) $? $(INCLUDE) -L$(LIB) $(ENGINE) -o $(NAME) $(CFLAG)
 	@rm -rf ./obj/*.o
 ${OBJ}%.o: %.c
+	@$(CC) -c $< -o $@ $(INCLUDE) $(CFLAG)
+bonus: $(SRCOBJ_BONUS)
+	@$(CC) $? $(INCLUDE) -L$(LIB) $(ENGINE) -o $(NAME) $(CFLAG)
+	@rm -rf ./obj/*.o
+${OBJ}%.o : %.c
 	@$(CC) -c $< -o $@ $(INCLUDE) $(CFLAG)
 clean:
 	@rm -rf ./obj/*.o
