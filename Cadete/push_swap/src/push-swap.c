@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push-swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:46:15 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/22 02:50:54 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:26:59 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,22 @@
 void	push_swap(char **argv)
 {
 	t_command	*head;
+	t_list		list;
 
 	head = NULL;
 	argv++;
+	list_set(&list);
 	while (*argv)
 	{
-		command_next_last(&head, command_push(*argv));
+		command_get(&head, *argv);
 		argv++;
 	}
-	if (!command_validate(head))
-		write(2, "Error\n", 6);
-	command_pop(&head);
+	if (!command_validate(head, &list))
+	{
+		command_pop(&head);
+		ft_printf("Error\n");
+	}
+	else
+		list_sort(&list);
+	list_pop(&list);
 }

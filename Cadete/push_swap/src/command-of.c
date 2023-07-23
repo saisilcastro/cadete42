@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command-of.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mister-coder <mister-coder@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:54:55 by lde-cast          #+#    #+#             */
-/*   Updated: 2023/07/22 02:40:27 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:45:00 by mister-code      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	command_pop(t_command **head)
 {
 	t_command	*next;
 
+	if (!head)
+		return ;
 	while (*head)
 	{
 		next = (*head)->next;
@@ -81,4 +83,5 @@ void	command_pop(t_command **head)
 		free(*head);
 		*head = next;
 	}
+	*head = NULL;
 }

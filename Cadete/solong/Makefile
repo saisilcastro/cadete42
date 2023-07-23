@@ -92,11 +92,13 @@ $(NAME): $(SRCOBJ)
 	@$(CC) $? $(INCLUDE) -L$(LIB) $(ENGINE) -o $(NAME) $(CFLAG)
 	@rm -rf ./obj/*.o
 ${OBJ}%.o: %.c
+	@mkdir -p "./obj"
 	@$(CC) -c $< -o $@ $(INCLUDE) $(CFLAG)
 bonus: $(SRCOBJ_BONUS)
 	@$(CC) $? $(INCLUDE) -L$(LIB) $(ENGINE) -o $(NAME) $(CFLAG)
 	@rm -rf ./obj/*.o
 ${OBJ}%.o : %.c
+	@mkdir -p "./obj"
 	@$(CC) -c $< -o $@ $(INCLUDE) $(CFLAG)
 clean:
 	@rm -rf ./obj/*.o

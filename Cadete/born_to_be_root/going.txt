@@ -1,9 +1,0 @@
-sudo passwd root #set root password with this
-sudo nano /etc/ssh/sshd_config # unmark Port and change the port to 4242
-port=4242
-user=lde-cast
-ip=10.11.200.3
-ssh -p $port $user@$ip 
-
-# reference
-# https://github.com/psdiaspedro/born2beroot-42Cursus/blob/master/monitoring.sh
