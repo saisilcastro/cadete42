@@ -1,41 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list-of.c                                          :+:      :+:    :+:   */
+/*   rotate_of.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/23 01:41:57 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/24 20:34:48 by lde-cast         ###   ########.fr       */
+/*   Created: 2023/07/24 19:28:22 by lde-cast          #+#    #+#             */
+/*   Updated: 2023/07/24 20:23:09 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <list_of.h>
-#include <stdlib.h>
-#include <ft_printf.h>
-#include <rotate_of.h>
+#ifndef ROTATE_OF_H
+# define ROTATE_OF_H
 
-void	list_set(t_list *list)
-{
-	list->a = NULL;
-	list->b = NULL;
-	list->a_max = 0;
-	list->b_max = 0;
-}
+extern void	rotate_int(int *set, int size);
+extern void	reverse_rotate_int(int *set, int size);
 
-void	list_sort(t_list *list)
-{
-	if (!list)
-		return ;
-	rotate_int(list->a, list->a_max);
-}
-
-void	list_pop(t_list *list)
-{
-	if (!list)
-		return ;
-	if (list->a)
-		free(list->a);
-	if (list->b)
-		free(list->b);
-}
+#endif

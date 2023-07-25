@@ -6,7 +6,7 @@
 /*   By: lde-cast <lde-cast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:16:16 by mister-code       #+#    #+#             */
-/*   Updated: 2023/07/21 18:09:08 by lde-cast         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:30:04 by lde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	parent_process(pid_t id)
 
 	while (1)
 	{
-		if (waitpid(id, &status, WUNTRACED | WCONTINUED) == -1)
+		if (waitpid(id, &status, 0) == -1)
 			return (-1);
 		if (WEXITSTATUS(status))
 			return (WEXITSTATUS(status));
@@ -53,7 +53,7 @@ int	parent_process(pid_t id)
 		else if (WIFCONTINUED(status))
 			return (WIFCONTINUED(status));
 		if (!WIFEXITED(status) && !WIFSIGNALED(status))
-			exit(EXIT_SUCCESS);
+			exit(status);
 	}
 	return (0);
 }
