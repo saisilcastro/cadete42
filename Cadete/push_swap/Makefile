@@ -7,6 +7,7 @@ SRC = command-of.c \
 	  command-validate.c \
 	  ft_atoi_base.c \
 	  list-of.c \
+	  swap-of.c \
 	  rotate-of.c \
 	  push-swap.c \
 	  main.c
