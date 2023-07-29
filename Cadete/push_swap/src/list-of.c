@@ -27,7 +27,7 @@ void	list_sort(t_list *list)
 {
 	if (!list)
 		return ;
-	rotate_int(list->a, list->a_max);
+	reverse_rotate_int(list->a, list->a_max);
 }
 
 void	list_pop(t_list *list)

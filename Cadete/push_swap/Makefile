@@ -15,7 +15,7 @@ OBJ = ./obj/
 SRCOBJ = $(SRC:%.c=${OBJ}%.o)
 LIB = -L./ft_printf
 CFLAG = -Wall -Wextra -Werror -g3
-PRINTF = printf
+PRINTF = ft_printf.a
 
 all: $(PRINTF)
 $(PRINTF):

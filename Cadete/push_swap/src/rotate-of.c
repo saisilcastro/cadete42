@@ -18,20 +18,15 @@ void	rotate_int(int *set, int size)
 {
 	int	i;
 
-	if (!set)
+	if (!set || size < 2)
 		return ;
-	i = -1;
-	while (++i < size)
+	i = size;
+	while (--i > 0)
 	{
 		if (i == 0)
-			swap(&set[0], &set[size - 1]);
+		 	swap(&set[0], &set[size - 1]);
 		else
-			swap(&set[i], &set[i - 1]);
-	}
-	i = -1;
-	while (++i < size)
-	{
-		ft_printf("%i", set[i]);
+		 	swap(&set[i - 1], &set[i]);
 	}
 }
 
@@ -41,12 +36,12 @@ void	reverse_rotate_int(int *set, int size)
 
 	if (!set)
 		return ;
-	i = size;
-	while (--i >= 0)
+	i = -1;
+	while (++i < size - 1)
 	{
-		if (i == size - 1)
-			ft_printf("*%d %d\n", 0, set[size - 1]);
-		else
-			ft_printf("#%i %i\n", size - i - 1, set[size - i - 2]);
-	}	
+		swap(&set[i], &set[i + 1]);
+	}
+	i = -1;
+	while (++i < size)
+		ft_printf("%i\n", set[i]);
 }
